@@ -221,7 +221,6 @@
     <Compile Include="Assets\ApFramework\UI\Form.cs" />
     <Compile Include="Assets\ApFramework\UI\ImageEx.cs" />
     <Compile Include="Assets\ApFramework\UI\Joystick.cs" />
-    <Compile Include="Assets\ApFramework\UI\LuaControlEvent.cs" />
     <Compile Include="Assets\ApFramework\UI\ScrollRectEx.cs" />
     <Compile Include="Assets\ApFramework\UI\TextEx.cs" />
   </ItemGroup>
