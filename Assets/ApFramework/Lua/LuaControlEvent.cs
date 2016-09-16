@@ -6,9 +6,24 @@ using Ap.Base;
 using LuaInterface;
 namespace Ap.Lua
 {
-    public struct LuaControlEvent
+    /// <summary>
+    /// c# Lua 控件事件
+    /// </summary>
+    public class LuaControlEvent
     {
-        public LuaFunction Fun;
-        public 
+        public virtual LuaFunction Fun
+        {
+            set
+            {
+                m_Fun = value;
+            }
+            get
+            {
+                return m_Fun;
+            }
+        }
+        protected LuaFunction m_Fun;
+
+
     }
 }
