@@ -11,9 +11,21 @@ namespace Ap.Managers
 {
     public class FormManager : ManagerBase<FormManager>
     {
+        /// <summary>
+        /// 窗体集合
+        /// </summary>
         protected Dictionary<int, Form> m_Forms = new Dictionary<int, Form>();
+        /// <summary>
+        /// ID索引
+        /// </summary>
         protected int m_IdIndex = 0;
+        /// <summary>
+        /// 窗体根目录
+        /// </summary>
         protected GameObject m_FormRoot;
+        /// <summary>
+        /// 窗体根目录
+        /// </summary>
         protected Transform m_FormRootTrans;
 
         protected override void Init()
@@ -24,6 +36,7 @@ namespace Ap.Managers
         }
         /// <summary>
         /// 非模态打开 - 全屏模式
+        /// 全屏模式会自动隐藏背景界面
         /// </summary>
         /// <param name="formName"></param>
         /// <returns></returns>
@@ -32,16 +45,6 @@ namespace Ap.Managers
             m_IdIndex++;
             StartCoroutine(ShowAsync(formName));
             return m_IdIndex;
-        }
-
-        /// <summary>
-        /// 模态打开 - 非全屏模式
-        /// </summary>
-        /// <param name="formName"></param>
-        /// <returns></returns>
-        public int ShowDialog(string formName)
-        {
-            return 0;
         }
         protected IEnumerator ShowAsync(string formName)
         {
@@ -65,6 +68,8 @@ namespace Ap.Managers
             form.OnLoad();
             form.Focus = true;
 
+            // todo 处理全屏模式
+
         }
         public int Close(int id)
         {
@@ -76,7 +81,6 @@ namespace Ap.Managers
             return 0;
         }
 
-        
 
         /// <summary>
         /// 窗体加载中
@@ -87,7 +91,7 @@ namespace Ap.Managers
         {
             LuaManager.Instance.CallFunction("FormManager.FormLoad", id);
         }
-        protected void FormClose(object sender,int id)
+        protected void FormClose(object sender, int id)
         {
             LuaManager.Instance.CallFunction("FormManager.FormClose", id);
         }

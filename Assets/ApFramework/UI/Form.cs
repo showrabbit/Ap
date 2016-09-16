@@ -45,6 +45,22 @@ namespace Ap.UI
         protected bool m_Focus = false;
 
         /// <summary>
+        /// 是否是全屏界面
+        /// </summary>
+        public bool IsFull
+        {
+            set
+            {
+                m_IsFull = value;
+            }
+            get
+            {
+                return m_IsFull;
+            }
+        }
+        protected bool m_IsFull = true;
+
+        /// <summary>
         /// 加载中
         /// </summary>
         public virtual void OnLoad()

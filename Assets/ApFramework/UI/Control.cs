@@ -15,6 +15,22 @@ namespace Ap.UI
         public LoadAssetEndHandle LoadAssetEnd;
 
         /// <summary>
+        /// 控件包含的子控件
+        /// </summary>
+        public List<GameObject> Controls
+        {
+            set
+            {
+                m_Controls = value;
+            }
+            get
+            {
+                return m_Controls;
+            }
+        }
+        protected List<GameObject> m_Controls;
+
+        /// <summary>
         /// 控件特殊标签
         /// </summary>
         public object CtrTag

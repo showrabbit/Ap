@@ -13,11 +13,6 @@ function FormManager.Show(formName,class)
     self.m_Forms[id] = class;
 end
 
-function FormManager.ShowDialog(formName,class)
-    local id = Ap.FormManager:ShowDialog(formName);
-    self.m_Forms[id] = class;
-end
-
 -- 界面加载asset开始
 function FormManager.FormLoadAssetStart(id,assetName)
     local form = self.m_Forms[id];
