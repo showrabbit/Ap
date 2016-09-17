@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Ap.Base;
+using Ap.UI;
 
 
 // 自动更新模块
-public class AutoUpdate : MonoBehaviourEx , IView
+public class AutoUpdate : Form
 {
     
 

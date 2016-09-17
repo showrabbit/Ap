@@ -35,5 +35,12 @@ namespace Ap.Lua
         {
             return new LuaPointerClickEvent(sender);
         }
+
+        public static LuaPointerClickEvent Create(ButtonEx sender, LuaInterface.LuaFunction fun)
+        {
+            var l = new LuaPointerClickEvent(sender);
+            l.Fun = fun;
+            return l;
+        }
     }
 }

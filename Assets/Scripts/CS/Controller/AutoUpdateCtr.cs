@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Ap.Base;
+using Ap.UI;
 
-public class AutoUpdateCtr : MonoBehaviourEx , IController
+public class AutoUpdateCtr : FormCtr
 {
+
+    
 
     // Use this for initialization
     void Start()
@@ -20,12 +23,12 @@ public class AutoUpdateCtr : MonoBehaviourEx , IController
     /// <summary>
     /// 下载
     /// </summary>
-    public void Download(IView view)
+    public void Download()
     {
-        StartCoroutine(DownloadAsync(view));
+        StartCoroutine(DownloadAsync());
     }
 
-    private IEnumerator DownloadAsync(IView view)
+    private IEnumerator DownloadAsync()
     {
         yield return null;
     }
@@ -41,5 +44,4 @@ public class AutoUpdateCtr : MonoBehaviourEx , IController
         /// 2. 比较本地版本号 是否更新
         return false;
     }
-
 }

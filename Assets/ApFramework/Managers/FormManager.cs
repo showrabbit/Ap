@@ -14,7 +14,10 @@ namespace Ap.Managers
         /// <summary>
         /// 窗体集合
         /// </summary>
+        //protected Dictionary<int, FormCtr> m_FormCtrs = new Dictionary<int, FormCtr>();
+
         protected Dictionary<int, Form> m_Forms = new Dictionary<int, Form>();
+        protected Dictionary<int, IController[]> m_FormCtrs = new Dictionary<int, IController[]>();
         /// <summary>
         /// ID索引
         /// </summary>
@@ -34,7 +37,7 @@ namespace Ap.Managers
             m_FormRoot = GameObject.Find("FormRoot");
             if (m_FormRoot == null)
             {
-                Debug.AssertFormat(true, "FormManager Init Error");
+                Ap.Tools.Logger.Instance.Write("FormManager Init Error");
                 return;
             }
             else
@@ -62,8 +65,18 @@ namespace Ap.Managers
             m_Forms.Add(m_IdIndex, form);
             form.ID = m_IdIndex;
 
-            // -----------绑定事件
+            // 绑定控制器
+            IController[] ctrs = form.gameObject.GetComponents<IController>();
+            if (ctrs != null)
+            {
+                for (int i = 0; i < ctrs.Length; i++)
+                {
+                    ctrs[i].BindView(form);
+                }
+                m_FormCtrs.Add(m_IdIndex, ctrs);
+            }
 
+            // 绑定事件
             form.Load += FormLoad;
             form.Close += FormClose;
             form.LoadAssetStart += FormLoadAssetStart;
@@ -76,13 +89,17 @@ namespace Ap.Managers
 
             // todo 处理全屏模式
 
+            yield return null;
+
         }
         public int Close(int id)
         {
             if (m_Forms.ContainsKey(id))
             {
+                m_FormCtrs.Remove(id);
                 m_Forms[id].OnClose();
                 m_Forms.Remove(id);
+                //m_Forms.Remove(id);
             }
             return 0;
         }
@@ -95,7 +112,7 @@ namespace Ap.Managers
         /// <param name="id"></param>
         protected void FormLoad(object sender, int id)
         {
-            LuaManager.Instance.CallFunction("FormManager.FormLoad", id);
+            LuaManager.Instance.CallFunction("FormManager.FormLoad", id, m_Forms[id]);
         }
         protected void FormClose(object sender, int id)
         {

@@ -17,18 +17,7 @@ namespace Ap.UI
         /// <summary>
         /// 控件包含的子控件
         /// </summary>
-        public List<GameObject> Controls
-        {
-            set
-            {
-                m_Controls = value;
-            }
-            get
-            {
-                return m_Controls;
-            }
-        }
-        protected List<GameObject> m_Controls;
+        public GameObject[] Controls;
 
         /// <summary>
         /// 控件特殊标签

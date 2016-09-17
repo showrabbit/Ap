@@ -15,6 +15,9 @@ require "Common/Functions"
 require "Common/NetworkManager";
 require "Common/Protocal"
 
+require "View/MainForm"
+require "Controller/MainFormCtr"
 
 function Main()
+    FormManager.Show("MainForm",MainForm.new(),MainFormCtr.Init());
 end

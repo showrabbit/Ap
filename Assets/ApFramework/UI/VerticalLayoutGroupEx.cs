@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine.UI;
 
-namespace Ap.Base
+namespace Ap.UI
 {
-    public interface IController
+    public class VerticalLayoutGroupEx : VerticalLayoutGroup
     {
-        void BindView(IView view);
+
     }
 }

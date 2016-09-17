@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ap.Base;
+using UnityEngine;
 using Ap.Managers;
-using System.Collections;
 
 namespace Ap.UI
 {
-    public class Form : Control
+    public class Form : Control, IView
     {
 
         public delegate void LoadHandle(object sender, int id);
@@ -43,7 +44,6 @@ namespace Ap.UI
             }
         }
         protected bool m_Focus = false;
-
         /// <summary>
         /// 是否是全屏界面
         /// </summary>
@@ -92,6 +92,9 @@ namespace Ap.UI
             base.OnLoadAssetEnd(assetName, obj);
         }
 
-
+        public void Changed(string type, params object[] values)
+        {
+            
+        }
     }
 }

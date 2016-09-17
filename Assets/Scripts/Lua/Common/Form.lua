@@ -9,12 +9,12 @@
 Form = class()
 
 function Form:ctor()
-
+    self.m_View = nil;
+    self.m_ID = -1;
 end
 
--- 加载中
-function Form:OnLoad()
-
+function Form:OnLoad(viewObj)
+    self.m_View = viewObj;
 end
 
 -- 加载资源

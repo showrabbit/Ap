@@ -89,6 +89,8 @@
     <Compile Include="Lua\Common\Define.lua" />
     <Compile Include="Lua\Common\EventProtocol.lua" />
     <Compile Include="Lua\Common\Form.lua" />
+    <Compile Include="Lua\Common\FormCtr.lua" />
+    <Compile Include="Lua\Controller\MainFormCtr.lua" />
     <Compile Include="Lua\Manager\FormManager.lua" />
     <Compile Include="Lua\Common\Functions.lua" />
     <Compile Include="Lua\Common\Protocal.lua" />
@@ -97,6 +99,7 @@
     <Compile Include="Lua\Data\Temp.lua" />
     <Compile Include="Lua\Main.lua" />
     <Compile Include="Lua\Model\Temp.lua" />
+    <Compile Include="Lua\View\MainForm.lua" />
     <Compile Include="Lua\View\Temp.lua" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />

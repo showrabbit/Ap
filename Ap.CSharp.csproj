@@ -112,7 +112,7 @@
     <Compile Include="Assets\ApFramework\SDK\SDK.cs" />
     <Compile Include="Assets\ApFramework\SDK\SDKFactory.cs" />
     <Compile Include="Assets\ApFramework\SDK\SDKManager.cs" />
-    <Compile Include="Assets\ApFramework\SDK\SdkEventArgs.cs" />
+    <Compile Include="Assets\ApFramework\SDK\SDKEventArgs.cs" />
     <Compile Include="Assets\ApFramework\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
     <Compile Include="Assets\ApFramework\ToLua\BaseType\LuaInterface_LuaConstructorWrap.cs" />
     <Compile Include="Assets\ApFramework\ToLua\BaseType\LuaInterface_LuaFieldWrap.cs" />
@@ -223,10 +223,12 @@
     <Compile Include="Assets\ApFramework\UI\ButtonEx.cs" />
     <Compile Include="Assets\ApFramework\UI\Control.cs" />
     <Compile Include="Assets\ApFramework\UI\Form.cs" />
+    <Compile Include="Assets\ApFramework\UI\FormCtr.cs" />
     <Compile Include="Assets\ApFramework\UI\ImageEx.cs" />
     <Compile Include="Assets\ApFramework\UI\Joystick.cs" />
     <Compile Include="Assets\ApFramework\UI\ScrollRectEx.cs" />
     <Compile Include="Assets\ApFramework\UI\TextEx.cs" />
+    <Compile Include="Assets\ApFramework\UI\VerticalLayoutGroupEx.cs" />
     <Compile Include="Assets\Scripts\CS\Common\EventTypes.cs" />
     <Compile Include="Assets\Scripts\CS\Controller\AutoUpdateCtr.cs" />
     <Compile Include="Assets\Scripts\CS\Data\Config.cs" />
@@ -243,8 +245,6 @@
     <None Include="Assets\Shaders\Info.txt" />
     <None Include="Assets\Sounds\Info.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\ApFramework\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

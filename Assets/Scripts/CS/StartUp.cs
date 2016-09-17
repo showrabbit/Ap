@@ -24,7 +24,7 @@ public class StartUp : MonoBehaviourEx
     /// <summary>
     /// 初始化
     /// 1.读取本地配置
-    /// 2.加载管理模块
+    /// 2.加载管理模块(更新资源/LUA)
     /// 3.调用自动更新模块
     /// 4.调用lua启动模块
     /// 5.进入菜单界面
@@ -37,18 +37,32 @@ public class StartUp : MonoBehaviourEx
         // 加载管理类
         var m = ManagerManagers.Instance;
 
-        if( AutoUpdateCtr.IsAutoUpdate () )
+        if (AutoUpdateCtr.IsAutoUpdate())
         {
+            EventManager.Instance.AddHandle(EventTypes.AutoUpdate, AutoUpdateEnd);
             // 显示更新界面
             // 更新界面包含AutoUpdate
+            // 更新结束后重新加载资源
         }
         else
         {
+            // 不需要自动更新/更新完毕的
+            // 加载Lua 加载lua 
+            // 加载地图
+            ManagerManagers.Instance.L.StartMain();
 
         }
-
-        
     }
+
+    /// <summary>
+    /// 自动更新结束
+    /// </summary>
+    private void AutoUpdateEnd(object sender, EventData e)
+    {
+        // 清理游戏
+        // 重新开始游戏
+    }
+
 }
 
 

@@ -18,7 +18,7 @@ namespace Ap.Managers
             LuaBinder.Bind(m_Lua);
             m_Lua.AddSearchPath(Utility.LuaPath);
             this.m_Lua.Start();    //启动LUAVM
-            this.StartMain();
+            //this.StartMain();
         }
 
 
@@ -33,7 +33,7 @@ namespace Ap.Managers
             m_Lua.LuaSetField(-2, "cjson.safe");
         }
 
-        void StartMain()
+        public void StartMain()
         {
             m_Lua.DoFile("Main.lua");
 
