@@ -30,11 +30,7 @@ namespace Ap
 
         protected override void Init()
         {
-#if UNITY_EDITOR
-            //AssetBundleManager.Initialize();
-#else
-        StartCoroutine(AssetBundleManager.Initialize());
-#endif
+
         }
         // Use this for initialization
         void Start()
@@ -48,7 +44,10 @@ namespace Ap
 
         }
 
-        
+        public override void Clear()
+        {
+            
+        }
     }
 
 }

@@ -32,7 +32,13 @@ namespace Ap.Managers
         {
             m_IdIndex = 0;
             m_FormRoot = GameObject.Find("FormRoot");
-            m_FormRootTrans = m_FormRoot.transform;
+            if (m_FormRoot == null)
+            {
+                Debug.AssertFormat(true, "FormManager Init Error");
+                return;
+            }
+            else
+                m_FormRootTrans = m_FormRoot.transform;
         }
         /// <summary>
         /// 非模态打开 - 全屏模式

@@ -82,7 +82,9 @@
     <Compile Include="Assets\ApFramework\Base\EventData.cs" />
     <Compile Include="Assets\ApFramework\Base\EventTypes.cs" />
     <Compile Include="Assets\ApFramework\Base\FileTable.cs" />
+    <Compile Include="Assets\ApFramework\Base\IController.cs" />
     <Compile Include="Assets\ApFramework\Base\IEventTrigge.cs" />
+    <Compile Include="Assets\ApFramework\Base\IView.cs" />
     <Compile Include="Assets\ApFramework\Base\LoadedAssetBundle.cs" />
     <Compile Include="Assets\ApFramework\Base\MonoBehaviourEx.cs" />
     <Compile Include="Assets\ApFramework\Base\SingletonBase.cs" />
@@ -97,12 +99,14 @@
     <Compile Include="Assets\ApFramework\Managers\GameManager.cs" />
     <Compile Include="Assets\ApFramework\Managers\LuaManager.cs" />
     <Compile Include="Assets\ApFramework\Managers\ManagerBase.cs" />
+    <Compile Include="Assets\ApFramework\Managers\Managers.cs" />
     <Compile Include="Assets\ApFramework\Managers\NetworkManager.cs" />
     <Compile Include="Assets\ApFramework\Managers\ObjectPoolManager.cs" />
     <Compile Include="Assets\ApFramework\Net\ByteBuffer.cs" />
     <Compile Include="Assets\ApFramework\Net\Converter.cs" />
     <Compile Include="Assets\ApFramework\Net\Protocal.cs" />
     <Compile Include="Assets\ApFramework\Net\SocketClient.cs" />
+    <Compile Include="Assets\ApFramework\Net\WebClient.cs" />
     <Compile Include="Assets\ApFramework\ObjectPool\Cache.cs" />
     <Compile Include="Assets\ApFramework\ObjectPool\Pool.cs" />
     <Compile Include="Assets\ApFramework\SDK\SDK.cs" />
@@ -151,7 +155,6 @@
     <Compile Include="Assets\ApFramework\ToLua\Reflection\LuaMethod.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Reflection\LuaProperty.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Reflection\LuaReflection.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Source\Generate\DebuggerWrap.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Source\Generate\DelegateFactory.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Source\Generate\LuaBinder.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Source\Generate\UnityEngine_AnimationBlendModeWrap.cs" />
@@ -215,6 +218,7 @@
     <Compile Include="Assets\ApFramework\ToLua\Source\Generate\UnityEngine_WrapModeWrap.cs" />
     <Compile Include="Assets\ApFramework\ToLua\Source\LuaConst.cs" />
     <Compile Include="Assets\ApFramework\Tools\Bezier.cs" />
+    <Compile Include="Assets\ApFramework\Tools\Logger.cs" />
     <Compile Include="Assets\ApFramework\Tools\Utility.cs" />
     <Compile Include="Assets\ApFramework\UI\ButtonEx.cs" />
     <Compile Include="Assets\ApFramework\UI\Control.cs" />
@@ -223,15 +227,24 @@
     <Compile Include="Assets\ApFramework\UI\Joystick.cs" />
     <Compile Include="Assets\ApFramework\UI\ScrollRectEx.cs" />
     <Compile Include="Assets\ApFramework\UI\TextEx.cs" />
+    <Compile Include="Assets\Scripts\CS\Common\EventTypes.cs" />
+    <Compile Include="Assets\Scripts\CS\Controller\AutoUpdateCtr.cs" />
+    <Compile Include="Assets\Scripts\CS\Data\Config.cs" />
+    <Compile Include="Assets\Scripts\CS\StartUp.cs" />
+    <Compile Include="Assets\Scripts\CS\View\AutoUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ApFramework\ToLua\readme.txt" />
     <None Include="Assets\Editor\Info.txt" />
     <None Include="Assets\Models\Info.txt" />
-    <None Include="Assets\Resources\Config\AssetBundles.txt" />
+    <None Include="Assets\Resources\Data\AssetBundles.txt" />
+    <None Include="Assets\Resources\Data\Config.txt" />
     <None Include="Assets\Sences\Info.txt" />
     <None Include="Assets\Shaders\Info.txt" />
     <None Include="Assets\Sounds\Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\ApFramework\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

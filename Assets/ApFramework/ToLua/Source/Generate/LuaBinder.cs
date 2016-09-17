@@ -9,7 +9,9 @@ public static class LuaBinder
 	{
 		float t = Time.realtimeSinceStartup;
 		L.BeginModule(null);
-		DebuggerWrap.Register(L);
+        
+
+
 		L.BeginModule("UnityEngine");
 		UnityEngine_ComponentWrap.Register(L);
 		UnityEngine_TransformWrap.Register(L);
@@ -86,7 +88,7 @@ public static class LuaBinder
 		L.RegFunction("Action", System_Action);
 		L.EndModule();
 		L.EndModule();
-		Debugger.Log("Register lua type cost time: {0}", Time.realtimeSinceStartup - t);
+        Ap.Tools.Logger.Instance.Write(string.Format( "Register lua type cost time: {0}", Time.realtimeSinceStartup - t ));
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

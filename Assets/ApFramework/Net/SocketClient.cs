@@ -113,7 +113,8 @@ namespace Ap.Net
                 }
                 else
                 {
-                    Debug.LogError("client.connected----->>false");
+                    Ap.Tools.Logger.Instance.Write(Tools.LogLevel.Error, "client.connected----->>false");
+                    
                 }
             }
         }

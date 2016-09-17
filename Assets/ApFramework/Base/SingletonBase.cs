@@ -31,6 +31,7 @@ namespace Ap.Base
 
         protected abstract void Init();
 
+        public abstract void Clear();
 
     }
 

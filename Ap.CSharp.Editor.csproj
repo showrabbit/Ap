@@ -130,7 +130,8 @@
     <None Include="Assets\ApFramework\ToLua\readme.txt" />
     <None Include="Assets\Editor\Info.txt" />
     <None Include="Assets\Models\Info.txt" />
-    <None Include="Assets\Resources\Config\AssetBundles.txt" />
+    <None Include="Assets\Resources\Data\AssetBundles.txt" />
+    <None Include="Assets\Resources\Data\Config.txt" />
     <None Include="Assets\Sences\Info.txt" />
     <None Include="Assets\Shaders\Info.txt" />
     <None Include="Assets\Sounds\Info.txt" />
