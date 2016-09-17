@@ -9,6 +9,7 @@ Temp
 # Unity3d Library folder
 Library
 /Library
+/Library/metadata
 
 # Folder config file
 Desktop.ini
@@ -53,3 +54,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+Library/metadata/51/51c7b6814f7ca8d4f9035a2d987bb96f
+*.suo
+Library/assetDatabase3
