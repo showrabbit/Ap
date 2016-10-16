@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="Ap.CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ApFramework\ToLua\Source\Generate\UnityEngine_AnimatorWrap.cs">
+    <Files>
+      <File FileName="Assets\ApFramework\ToLua\Source\Generate\UnityEngine_AnimatorWrap.cs" Line="1290" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

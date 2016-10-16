@@ -49,8 +49,8 @@ namespace Ap.Managers
         void OpenLibs()
         {
             m_Lua.OpenLibs(LuaDLL.luaopen_pb);
-            m_Lua.OpenLibs(LuaDLL.luaopen_sproto_core);
-            m_Lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
+            //m_Lua.OpenLibs(LuaDLL.luaopen_sproto_core);
+            //m_Lua.OpenLibs(LuaDLL.luaopen_protobuf_c);
             m_Lua.OpenLibs(LuaDLL.luaopen_lpeg);
             m_Lua.OpenLibs(LuaDLL.luaopen_bit);
             m_Lua.OpenLibs(LuaDLL.luaopen_socket_core);

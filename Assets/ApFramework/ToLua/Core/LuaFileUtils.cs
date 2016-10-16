@@ -282,7 +282,7 @@ namespace LuaInterface
 
         public static string GetOSDir()
         {
-            return LuaConst.OsDir;
+            return LuaConst.osDir;
         }
     }
 }
