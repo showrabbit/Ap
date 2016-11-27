@@ -108,26 +108,25 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Custom\CustomSettings.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_LuaInterface_EventObject.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaConstructor.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaField.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaMethod.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_LuaInterface_LuaProperty.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_System_Delegate.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_System_Enum.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_System_Object.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_System_String.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_System_Type.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_UnityEngine_GameObject.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_UnityEngine_Input.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\Extend\ToLua_UnityEngine_Object.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\ToLuaExport.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\ToLuaMenu.cs" />
-    <Compile Include="Assets\ApFramework\ToLua\Editor\ToLuaTree.cs" />
+    <Compile Include="Assets\ToLua\Editor\CustomSettings.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_LuaInterface_EventObject.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_LuaInterface_LuaConstructor.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_LuaInterface_LuaField.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_LuaInterface_LuaMethod.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_LuaInterface_LuaProperty.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_System_Delegate.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_System_Enum.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_System_Object.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_System_String.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_System_Type.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_GameObject.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_Input.cs" />
+    <Compile Include="Assets\ToLua\Editor\Extend\ToLua_UnityEngine_Object.cs" />
+    <Compile Include="Assets\ToLua\Editor\ToLuaExport.cs" />
+    <Compile Include="Assets\ToLua\Editor\ToLuaMenu.cs" />
+    <Compile Include="Assets\ToLua\Editor\ToLuaTree.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ApFramework\ToLua\readme.txt" />
     <None Include="Assets\Editor\Info.txt" />
     <None Include="Assets\Models\Info.txt" />
     <None Include="Assets\Resources\Data\AssetBundles.txt" />
@@ -135,6 +134,7 @@
     <None Include="Assets\Sences\Info.txt" />
     <None Include="Assets\Shaders\Info.txt" />
     <None Include="Assets\Sounds\Info.txt" />
+    <None Include="Assets\ToLua\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

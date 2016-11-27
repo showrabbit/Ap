@@ -6,17 +6,12 @@
 
 -- endregion
 
-MainFormCtr = FormCtr()
-
--- 初始化函数
-function MainFormCtr.Init(id)
-    FormManager.BindCtr(id, MainFormCtr.new());
-end
+MainFormCtr = class(FormCtr)
 
 -- 加载
 function MainFormCtr:OnLoad()
     -- 绑定事件
-    LuaPointerClickEvent.Create(m_View.btnStart, function(sender)
+    Ap.Lua.PointerClickEvent.Create(self.m_View.btnStart, function(sender)
         self:btnStart_OnClick(sender);
     end );
 end

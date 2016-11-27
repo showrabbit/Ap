@@ -4,9 +4,9 @@
 
 --endregion
 
-require "../Common/Form"
+require "Common/Form"
 
-MainForm = Form()
+MainForm = class(Form)
 
 function MainForm:ctor()
     self.btnStart = nil;
@@ -14,6 +14,6 @@ end
 
 -- 加载
 function MainForm:OnLoad(view)
-    self.btnStart = view.Contorls[0];
+    self.btnStart = view.Controls[0]:GetComponent("ButtonEx");
 end
 

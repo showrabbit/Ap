@@ -2,12 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
-# Unity3d temp folder
-Temp
-/Temp
-
-# Unity3d Library folder
-Library/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
 
 # Folder config file
 Desktop.ini

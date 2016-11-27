@@ -3,28 +3,21 @@ require "Common/define"
 require "Common/protocal"
 require "Common/functions"
 
-require "3rd/pblua/login_pb"
-require "3rd/pbc/protobuf"
-
-local sproto = require "3rd/sproto/sproto"
-local core = require "sproto.core"
-local print_r = require "3rd/sproto/print_r"
-
-Network = {};
-local this = Network;
+NetworkManager = {};
+local this = NetworkManager;
 
 
 function NetworkManager.Start() 
     logWarn("Network.Start!!");
-    Event.AddListener(Protocal.Connect, this.OnConnect); 
-    Event.AddListener(Protocal.Message, this.OnMessage); 
-    Event.AddListener(Protocal.Exception, this.OnException); 
-    Event.AddListener(Protocal.Disconnect, this.OnDisconnect); 
+    --Event.AddListener(Protocal.Connect, this.OnConnect); 
+    --Event.AddListener(Protocal.Message, this.OnMessage); 
+    --Event.AddListener(Protocal.Exception, this.OnException); 
+    --Event.AddListener(Protocal.Disconnect, this.OnDisconnect); 
 end
 
 --Socket消息--
 function NetworkManager.OnSocket(key, data)
-    Event.Brocast(tostring(key), data);
+    --Event.Brocast(tostring(key), data);
 end
 
 --当连接建立时--
@@ -51,9 +44,9 @@ end
 
 --卸载网络监听--
 function NetworkManager.Unload()
-    Event.RemoveListener(Protocal.Connect);
-    Event.RemoveListener(Protocal.Message);
-    Event.RemoveListener(Protocal.Exception);
-    Event.RemoveListener(Protocal.Disconnect);
+    --Event.RemoveListener(Protocal.Connect);
+    --Event.RemoveListener(Protocal.Message);
+    --Event.RemoveListener(Protocal.Exception);
+    --Event.RemoveListener(Protocal.Disconnect);
     logWarn('Unload Network...');
 end

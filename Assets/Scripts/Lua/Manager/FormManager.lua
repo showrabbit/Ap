@@ -2,7 +2,6 @@
 
 FormManager = { };
 self = FormManager;
-
 function FormManager.Init()
     -- 窗体
     self.m_Forms = { };
@@ -10,19 +9,22 @@ function FormManager.Init()
     self.m_FormCtrs = { };
 end
 -- 显示
-function FormManager.Show(formName, class,ctrInit)
-    local id = Ap.FormManager:Show(formName);
+function FormManager.Show(formName, class)
+    local id = Managers.F:Show(formName);
     self.m_Forms[id] = class;
     class.m_ID = id;
-    ctrInit(id);
+    return id;
 end
 -- 绑定控制
 function FormManager.BindCtr(id, ctr)
+
     if self.m_FormCtrs[id] == nil then
         self.m_FormCtrs[id] = { };
     end
     self.m_FormCtrs[id][#self.m_FormCtrs[id] + 1] = ctr;
+    -- 为这个view 绑定控制,如果 self.m_Forms里面没有这个view 说明出现错误
     ctr:BindView(self.m_Forms[id]);
+
 end
 
 -- 界面加载asset开始
@@ -46,10 +48,16 @@ function FormManager.FormLoad(id, viewObj)
     if form ~= nil then
         form:OnLoad(viewObj);
 
+        -- lua ctr对象初始化
         for k, v in pairs(self.m_FormCtrs[id]) do
             v:OnLoad();
         end
     end
+end
+
+-- 界面获取焦点
+function FormManager.FormFouce(id,fouce)
+    
 end
 
 -- 界面关闭

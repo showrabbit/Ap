@@ -9,6 +9,7 @@
 FormCtr = class()
 
 function FormCtr:ctor()
+    -- lua view 对象
     self.m_View = nil;
 end
 

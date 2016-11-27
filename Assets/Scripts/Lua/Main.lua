@@ -1,23 +1,29 @@
---region *.lua
---Date
---此文件由[BabeLua]插件自动生成
+-- region *.lua
+-- Date
+-- 此文件由[BabeLua]插件自动生成
 
 
 
---endregion
+-- endregion
 
 
 require "Common/Class";
 require "Common/Define";
 require "Common/EventProtocol"
-require "Common/FormManager"
 require "Common/Functions"
-require "Common/NetworkManager";
 require "Common/Protocal"
+require "Common/Form";
+require "Common/FormCtr"
+require "Manager/FormManager"
+require "Manager/NetworkManager";
+
 
 require "View/MainForm"
 require "Controller/MainFormCtr"
 
 function Main()
-    FormManager.Show("MainForm",MainForm.new(),MainFormCtr.Init());
+    FormManager.Init();
+
+    local id = FormManager.Show("MainForm", MainForm.new());
+    FormManager.BindCtr(id, MainFormCtr.new());
 end

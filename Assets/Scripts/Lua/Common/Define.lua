@@ -12,8 +12,7 @@ WWW = UnityEngine.WWW;
 GameObject = UnityEngine.GameObject;
 -----------
 ----------- Ap
-Ap = {};
-Ap.FormManager = Ap.Managers.FormManager.Instance;
+Managers = Ap.Managers.ManagerManagers.Instance;
 
 
 -----------

@@ -1,17 +1,18 @@
 
 --输出日志--
 function log(str)
-    Util.Log(str);
+    
+    Ap.Tools.Logger.Instance:Write(0,str);
 end
 
 --错误日志--
 function logError(str) 
-	Util.LogError(str);
+	Ap.Tools.Logger.Instance:Write(2,str);
 end
 
 --警告日志--
 function logWarn(str) 
-	Util.LogWarning(str);
+	Ap.Tools.Logger.Instance:Write(1,str);
 end
 
 --查找对象--
