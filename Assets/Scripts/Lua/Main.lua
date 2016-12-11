@@ -12,10 +12,10 @@ require "Common/Define";
 require "Common/EventProtocol"
 require "Common/Functions"
 require "Common/Protocal"
-require "Common/Form";
-require "Common/FormCtr"
 require "Manager/FormManager"
 require "Manager/NetworkManager";
+require "Common/Form";
+require "Common/FormCtr"
 
 
 require "View/MainForm"

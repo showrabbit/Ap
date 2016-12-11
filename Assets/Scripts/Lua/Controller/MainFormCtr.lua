@@ -18,7 +18,7 @@ end
 
 -- 开始按钮点击
 function MainFormCtr:btnStart_OnClick(sender)
-
+    print("click");
 end
 
 -- 监听实体数据变更消息

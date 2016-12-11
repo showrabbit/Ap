@@ -1,2 +1,0 @@
-AssetName	AssetBundleName	Path	Type
-MainForm	MainForm	assets/prefabs/ui/form/mainform.prefab	object

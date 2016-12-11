@@ -32,6 +32,7 @@ namespace Ap.Managers
         protected List<AssetBundleLoadOperation> m_InProgressOperations = new List<AssetBundleLoadOperation>();
         protected Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]>();
         //static DataTable m_AssetBundles;
+        protected Dictionary<string, AssetData> m_AssetDatas = new Dictionary<string, AssetData>();
         protected Dictionary<string, AssetBundleData> m_AssetBundleDatas = new Dictionary<string, AssetBundleData>();
 
         public LogMode logMode
@@ -62,7 +63,7 @@ namespace Ap.Managers
 
         protected override void Init()
         {
-            
+
         }
 
         private void Log(LogType logType, string text)
@@ -111,17 +112,26 @@ namespace Ap.Managers
 
         protected void InitAssetBundleDatas()
         {
-            //DataTable dt = DbHelper.Quary(Utility.DbPath, "SELECT * FROM ASSET_BUNDLES");
-            FileTable ft = new FileTable(Utility.DataPath+ "/AssetBundles.txt");
+            FileTable ft = new FileTable(Utility.DataPath + "/Assets.txt");
+            for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
+            {
+                string[] dr = ft.Rows[tmpi];
+                AssetData abd = new AssetData();
+                abd.Name = dr[0].ToString();
+                abd.AssetBundleName = dr[1].ToString();
+                abd.Type = dr[3].ToString();
+                m_AssetDatas.Add(abd.Name, abd);
+            }
+
+            ft = new FileTable(Utility.DataPath + "/AssetBundles.txt");
             for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
             {
                 string[] dr = ft.Rows[tmpi];
                 AssetBundleData abd = new AssetBundleData();
-                abd.AssetName = dr[0].ToString();
-                abd.AssetBundleName = dr[1].ToString();
-                abd.Path = dr[2].ToString();
-                abd.Type = dr[3].ToString();
-                m_AssetBundleDatas.Add(abd.AssetName, abd);
+                abd.Name = dr[0].ToString();
+                abd.Path = dr[1].ToString();
+                abd.IsUpdate = dr[2].ToString() == "1" ? true : false;
+                m_AssetBundleDatas.Add(abd.Name, abd);
             }
         }
         // Load AssetBundleManifest.
@@ -133,7 +143,6 @@ namespace Ap.Managers
 
             return null;
 #endif
-
             LoadAssetBundle(manifestAssetBundleName, true);
             var operation = new AssetBundleLoadManifestOperation(manifestAssetBundleName, "AssetBundleManifest", typeof(AssetBundleManifest));
             m_InProgressOperations.Add(operation);
@@ -149,7 +158,6 @@ namespace Ap.Managers
 
             return;
 #endif
-
             if (!isLoadingAssetBundleManifest)
             {
                 if (m_AssetBundleManifest == null)
@@ -224,10 +232,14 @@ namespace Ap.Managers
             }
             if (m_DownloadingWWWs.ContainsKey(assetBundleName))
                 return true;
+            if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
+                return true;
 
             WWW download = null;
-            string url = Utility.AssetBundlePath + assetBundleName;
-
+            string url = GetAssetBundlePath(assetBundleName);
+            if (string.IsNullOrEmpty(url))
+                return true;
+           
             // For manifest assetbundle, always download it as we don't have hash for it.
             if (isLoadingAssetBundleManifest)
                 download = new WWW(url);
@@ -363,7 +375,7 @@ namespace Ap.Managers
             }
 
             // Update all in progress operations
-            for (int i = 0; i < m_InProgressOperations.Count;)
+            for (int i = 0; i < m_InProgressOperations.Count; )
             {
                 if (!m_InProgressOperations[i].Update())
                 {
@@ -381,17 +393,18 @@ namespace Ap.Managers
         /// <typeparam name="T"></typeparam>
         /// <param name="assetName"></param>
         /// <returns></returns>
-        public T LoadAsset<T>(string assetBundleName, string assetName) where T : UnityEngine.Object
+        public T LoadAsset<T>( string assetName) where T : UnityEngine.Object
         {
+            AssetData ad = m_AssetDatas[assetName];
 #if UNITY_EDITOR
-            string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(assetBundleName, assetName);
+            string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(ad.AssetBundleName, assetName);
             if (assetPaths.Length == 0)
             {
                 return null;
             }
             return AssetDatabase.LoadAssetAtPath<T>(assetPaths[0]);
 #endif
-            assetBundleName = RemapVariantName(assetBundleName);
+            string assetBundleName = RemapVariantName(ad.AssetBundleName);
             string[] dependencies = GetDependencies(assetBundleName);
             if (dependencies == null || dependencies.Length == 0)
                 return null;
@@ -424,7 +437,9 @@ namespace Ap.Managers
             }
             else
             {
-                string url = Utility.AssetBundlePath + assetBundleName;
+                string url = GetAssetBundlePath(assetBundleName);
+                if (string.IsNullOrEmpty(url))
+                    return;
                 if (m_DownloadingWWWs.ContainsKey(assetBundleName))
                 {
                     // 处理在下载中的问题
@@ -445,10 +460,25 @@ namespace Ap.Managers
 
         public AssetBundleLoadAssetOperation LoadAssetAsync(string assetName, System.Type type)
         {
-            if( m_AssetBundleDatas.ContainsKey(assetName))
+            if (m_AssetDatas.ContainsKey(assetName))
             {
-                AssetBundleData abd = m_AssetBundleDatas[assetName];
-                return LoadAssetAsync(abd.AssetBundleName, abd.AssetName, abd.Path, type);
+                AssetData abd = m_AssetDatas[assetName];
+
+                AssetBundleLoadAssetOperation operation = null;
+#if UNITY_EDITOR
+                string path = GetAssetBundlePath(abd.AssetBundleName);
+                var res = AssetDatabase.LoadAssetAtPath(path, type);
+                operation = new AssetBundleLoadAssetOperationSimulation(res);
+                return operation;
+#endif
+                string assetBundleName = RemapVariantName(abd.AssetBundleName);
+                LoadAssetBundle(assetBundleName);
+                operation = new AssetBundleLoadAssetOperationFull(assetBundleName, assetName, type);
+
+                m_InProgressOperations.Add(operation);
+
+
+                return operation;
             }
             else
             {
@@ -456,43 +486,48 @@ namespace Ap.Managers
                 return null;
             }
         }
-        // Load asset from the given assetBundle.
-        public AssetBundleLoadAssetOperation LoadAssetAsync(string assetBundleName, string assetName, string assetBundlePath, System.Type type)
-        {
-            AssetBundleLoadAssetOperation operation = null;
-#if UNITY_EDITOR
-            var res = AssetDatabase.LoadAssetAtPath(assetBundlePath, type);
-            operation = new AssetBundleLoadAssetOperationSimulation(res);
-            return operation;
-#endif
-            assetBundleName = RemapVariantName(assetBundleName);
-            LoadAssetBundle(assetBundleName);
-            operation = new AssetBundleLoadAssetOperationFull(assetBundleName, assetName, type);
-
-            m_InProgressOperations.Add(operation);
-
-
-            return operation;
-        }
 
         // Load level from the given assetBundle.
-        public AssetBundleLoadOperation LoadLevelAsync(string assetBundleName, string levelName, bool isAdditive)
+        public AssetBundleLoadOperation LoadLevelAsync(string levelName, bool isAdditive)
         {
             AssetBundleLoadOperation operation = null;
 #if UNITY_EDITOR
             throw new NoNullAllowedException();
             return null;
 #endif
+            if( m_AssetDatas.ContainsKey(levelName) == false )
+            {
+                Debug.LogError(string.Format("LoadLevelAsync: Level {0} not found!", levelName));
+                return null;
+            }
 
-            assetBundleName = RemapVariantName(assetBundleName);
+            AssetData ad = m_AssetDatas[levelName];
+            string assetBundleName = RemapVariantName(ad.AssetBundleName);
             LoadAssetBundle(assetBundleName);
             operation = new AssetBundleLoadLevelOperation(assetBundleName, levelName, isAdditive);
 
             m_InProgressOperations.Add(operation);
-
-
+            
             return operation;
         }
-    } // End of AssetBundleManager.
+        /// <summary>
+        /// 获取assetbundle的路径
+        /// </summary>
+        /// <param name="assetBundleName"></param>
+        /// <returns></returns>
+        private string GetAssetBundlePath(string assetBundleName )
+        {
+            if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
+                return "";
+            else
+            {
+                AssetBundleData abd = m_AssetBundleDatas[assetBundleName];
+                if (abd.IsUpdate)
+                    return Utility.AssetBundleUpdatePath + assetBundleName;
+                else
+                    return Utility.AssetBundlePath + assetBundleName;
+            }
+        }
+    }
 
 }

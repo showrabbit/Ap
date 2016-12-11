@@ -31,7 +31,6 @@ namespace Ap.Net
 
         private const int MAX_READ = 8192;
         private byte[] byteBuffer = new byte[MAX_READ];
-        public static bool loggedIn = false;
 
         // Use this for initialization
         public SocketClient()
@@ -277,7 +276,6 @@ namespace Ap.Net
                 if (client.Connected) client.Close();
                 client = null;
             }
-            loggedIn = false;
         }
 
         /// <summary>

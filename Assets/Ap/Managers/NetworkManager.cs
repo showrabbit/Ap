@@ -31,7 +31,7 @@ namespace Ap.Managers
         public void Awake()
         {
             SocketClient.OnRegister();
-            LuaManager.Instance.CallFunction("NetworkManager.Start");
+            //LuaManager.Instance.CallFunction("NetworkManager.Start");
         }
 
         protected override void Init()
@@ -109,7 +109,7 @@ namespace Ap.Managers
         void OnDestroy()
         {
             SocketClient.OnRemove();
-            LuaManager.Instance.CallFunction("NetworkManager.Unload");
+            //LuaManager.Instance.CallFunction("NetworkManager.Unload");
             Debug.Log("~NetworkManager was destroy");
         }
     }

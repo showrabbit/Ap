@@ -82,7 +82,7 @@ namespace Ap.Tools
                     return Application.dataPath + "/Resources/Data";
                 }
                 else
-                    return Application.streamingAssetsPath + "/Data/";
+                    return Application.persistentDataPath + "/Data/";
             }
         }
 
@@ -98,9 +98,9 @@ namespace Ap.Tools
         }
 
         /// <summary>
-        /// AssetBundle路径
+        /// AssetBundle 更新的路径
         /// </summary>
-        public static string AssetBundlePath
+        public static string AssetBundleUpdatePath
         {
             get
             {
@@ -115,6 +115,26 @@ namespace Ap.Tools
 
             }
         }
+
+        /// <summary>
+        /// AssetBundle 发布后的路径
+        /// </summary>
+        public static string AssetBundlePath
+        {
+            get
+            {
+                if (Application.isEditor)
+                {
+                    return Application.dataPath + "/";
+                }
+                else
+                {
+                    return Application.streamingAssetsPath + "/AssetBundles/";
+                }
+            }
+        }
+        
+
         /// <summary>
         /// 本地数据库配置路径
         /// </summary>
@@ -155,17 +175,6 @@ namespace Ap.Tools
             get
             {
                 return Application.dataPath + "/Ap";
-            }
-        }
-
-        /// <summary>
-        /// 打包路径
-        /// </summary>
-        public static string PackagePath
-        {
-            get
-            {
-                return Application.dataPath + "Packages";
             }
         }
 
