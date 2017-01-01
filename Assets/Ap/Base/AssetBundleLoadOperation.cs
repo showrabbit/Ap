@@ -27,44 +27,62 @@ namespace Ap.Base
 
         abstract public bool IsDone();
     }
-
-
-#if UNITY_EDITOR
-    public class AssetBundleLoadLevelSimulationOperation : AssetBundleLoadOperation
+    public abstract class AssetBundleDownloadOperation : AssetBundleLoadOperation
     {
-        AsyncOperation m_Operation = null;
+        bool done;
 
+        public string assetBundleName { get; private set; }
+        public LoadedAssetBundle assetBundle { get; protected set; }
+        public string error { get; protected set; }
 
-        public AssetBundleLoadLevelSimulationOperation(string assetBundleName, string levelName, bool isAdditive)
-        {
-            string[] levelPaths = UnityEditor.AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(assetBundleName, levelName);
-            if (levelPaths.Length == 0)
-            {
-                ///@TODO: The error needs to differentiate that an asset bundle name doesn't exist
-                //        from that there right scene does not exist in the asset bundle...
-
-                Debug.LogError("There is no scene with name \"" + levelName + "\" in " + assetBundleName);
-                return;
-            }
-
-            if (isAdditive)
-                m_Operation = UnityEditor.EditorApplication.LoadLevelAdditiveAsyncInPlayMode(levelPaths[0]);
-            else
-                m_Operation = UnityEditor.EditorApplication.LoadLevelAsyncInPlayMode(levelPaths[0]);
-        }
+        protected abstract bool downloadIsDone { get; }
+        protected abstract void FinishDownload();
 
         public override bool Update()
         {
-            return false;
+            if (!done && downloadIsDone)
+            {
+                FinishDownload();
+                done = true;
+            }
+
+            return !done;
         }
 
         public override bool IsDone()
         {
-            return m_Operation == null || m_Operation.isDone;
+            return done;
+        }
+        
+        public AssetBundleDownloadOperation(string assetBundleName)
+        {
+            this.assetBundleName = assetBundleName;
         }
     }
 
-#endif
+    public class AssetBundleDownloadFromFileOperation : AssetBundleDownloadOperation
+    {
+        protected AssetBundleCreateRequest m_CR = null;
+
+        public AssetBundleDownloadFromFileOperation(string assetBundleName, string path)
+            : base(assetBundleName)
+        {
+            m_CR = AssetBundle.LoadFromFileAsync(path);
+        }
+
+        protected override bool downloadIsDone { get { return (m_CR == null) || m_CR.isDone; } }
+
+        protected override void FinishDownload()
+        {
+            error = "";
+            AssetBundle bundle = m_CR.assetBundle;
+            if (bundle == null)
+                error = string.Format("{0} is not a valid asset bundle.", assetBundleName);
+            else
+                assetBundle = new LoadedAssetBundle(m_CR.assetBundle);
+        }
+    }
+
     public class AssetBundleLoadLevelOperation : AssetBundleLoadOperation
     {
         protected string m_AssetBundleName;

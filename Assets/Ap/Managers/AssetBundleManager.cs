@@ -12,7 +12,6 @@ using Ap.Tools;
 
 namespace Ap.Managers
 {
-    // Loaded assetBundle contains the references count which can be used to unload dependent assetBundles automatically.
 
     // Class takes care of loading assetBundle and its dependencies automatically, loading variants automatically.
     public class AssetBundleManager : ManagerBase<AssetBundleManager>
@@ -27,10 +26,11 @@ namespace Ap.Managers
         protected AssetBundleManifest m_AssetBundleManifest = null;
 
         protected Dictionary<string, LoadedAssetBundle> m_LoadedAssetBundles = new Dictionary<string, LoadedAssetBundle>();
-        protected Dictionary<string, WWW> m_DownloadingWWWs = new Dictionary<string, WWW>();
+        protected List<string> m_DownloadingBundles = new List<string>();
         protected Dictionary<string, string> m_DownloadingErrors = new Dictionary<string, string>();
         protected List<AssetBundleLoadOperation> m_InProgressOperations = new List<AssetBundleLoadOperation>();
         protected Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]>();
+
         //static DataTable m_AssetBundles;
         protected Dictionary<string, AssetData> m_AssetDatas = new Dictionary<string, AssetData>();
         protected Dictionary<string, AssetBundleData> m_AssetBundleDatas = new Dictionary<string, AssetBundleData>();
@@ -155,7 +155,6 @@ namespace Ap.Managers
         {
 
 #if UNITY_EDITOR
-
             return;
 #endif
             if (!isLoadingAssetBundleManifest)
@@ -230,23 +229,21 @@ namespace Ap.Managers
                 bundle.m_ReferencedCount++;
                 return true;
             }
-            if (m_DownloadingWWWs.ContainsKey(assetBundleName))
+
+
+            if (this.m_DownloadingBundles.Contains(assetBundleName))
                 return true;
             if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
                 return true;
 
-            WWW download = null;
-            string url = GetAssetBundlePath(assetBundleName);
-            if (string.IsNullOrEmpty(url))
+            
+            string path = GetAssetBundlePath(assetBundleName);
+            if (string.IsNullOrEmpty(path))
                 return true;
-           
-            // For manifest assetbundle, always download it as we don't have hash for it.
-            if (isLoadingAssetBundleManifest)
-                download = new WWW(url);
-            else
-                download = WWW.LoadFromCacheOrDownload(url, m_AssetBundleManifest.GetAssetBundleHash(assetBundleName), 0);
 
-            m_DownloadingWWWs.Add(assetBundleName, download);
+            m_InProgressOperations.Add(new AssetBundleDownloadFromFileOperation(assetBundleName, path));
+
+            m_DownloadingBundles.Add(assetBundleName);
 
             return false;
         }
@@ -335,57 +332,37 @@ namespace Ap.Managers
 
         void Update()
         {
-            // Collect all the finished WWWs.
-            var keysToRemove = new List<string>();
-            foreach (var keyValue in m_DownloadingWWWs)
+            for (int i = 0; i < m_InProgressOperations.Count;)
             {
-                WWW download = keyValue.Value;
-
-                // If downloading fails.
-                if (download.error != null)
+                var operation = m_InProgressOperations[i];
+                if (operation.Update())
                 {
-                    m_DownloadingErrors.Add(keyValue.Key, string.Format("Failed downloading bundle {0} from {1}: {2}", keyValue.Key, download.url, download.error));
-                    keysToRemove.Add(keyValue.Key);
-                    continue;
-                }
-
-                // If downloading succeeds.
-                if (download.isDone)
-                {
-                    AssetBundle bundle = download.assetBundle;
-                    if (bundle == null)
-                    {
-                        m_DownloadingErrors.Add(keyValue.Key, string.Format("{0} is not a valid asset bundle.", keyValue.Key));
-                        keysToRemove.Add(keyValue.Key);
-                        continue;
-                    }
-
-                    //Debug.Log("Downloading " + keyValue.Key + " is done at frame " + Time.frameCount);
-                    m_LoadedAssetBundles.Add(keyValue.Key, new LoadedAssetBundle(download.assetBundle));
-                    keysToRemove.Add(keyValue.Key);
-                }
-            }
-
-            // Remove the finished WWWs.
-            foreach (var key in keysToRemove)
-            {
-                WWW download = m_DownloadingWWWs[key];
-                m_DownloadingWWWs.Remove(key);
-                download.Dispose();
-            }
-
-            // Update all in progress operations
-            for (int i = 0; i < m_InProgressOperations.Count; )
-            {
-                if (!m_InProgressOperations[i].Update())
-                {
-                    m_InProgressOperations.RemoveAt(i);
+                    i++;
                 }
                 else
-                    i++;
+                {
+                    m_InProgressOperations.RemoveAt(i);
+                    ProcessFinishedOperation(operation);
+                }
             }
         }
+        void ProcessFinishedOperation(AssetBundleLoadOperation operation)
+        {
+            AssetBundleDownloadOperation download = operation as AssetBundleDownloadOperation;
+            if (download == null)
+                return;
 
+            if (download.error == null)
+                m_LoadedAssetBundles.Add(download.assetBundleName, download.assetBundle);
+            else
+            {
+                string msg = string.Format("Failed downloading bundle {0} from {1}: {2}",
+                        download.assetBundleName, download.assetBundleName, download.error);
+                m_DownloadingErrors.Add(download.assetBundleName, msg);
+            }
+
+            m_DownloadingBundles.Remove(download.assetBundleName);
+        }
 
         /// <summary>
         /// 同步形式加载
@@ -440,14 +417,26 @@ namespace Ap.Managers
                 string url = GetAssetBundlePath(assetBundleName);
                 if (string.IsNullOrEmpty(url))
                     return;
-                if (m_DownloadingWWWs.ContainsKey(assetBundleName))
+                if (m_DownloadingBundles.Contains(assetBundleName))
                 {
                     // 处理在下载中的问题
                     // 1.先移除下载中的队列
                     // 2.移除下载错误
                     // 3.手动下载
-                    m_DownloadingWWWs.Remove(assetBundleName);
+                    m_DownloadingBundles.Remove(assetBundleName);
                     m_DownloadingErrors.Remove(assetBundleName);
+                    for(int i = 0;i< m_InProgressOperations.Count;i++)
+                    {
+                        if(m_InProgressOperations[i] is AssetBundleDownloadFromFileOperation)
+                        {
+                            AssetBundleDownloadFromFileOperation op = m_InProgressOperations[i] as AssetBundleDownloadFromFileOperation;
+                            if(op.assetBundleName == assetBundleName)
+                            {
+                                m_InProgressOperations.RemoveAt(i);
+                                break;
+                            }
+                        }
+                    }
                 }
                 else
                 {

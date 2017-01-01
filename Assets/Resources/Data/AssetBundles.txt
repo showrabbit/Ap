@@ -1,0 +1,2 @@
+﻿Name	IsUpdate
+MainForm	0

@@ -10,10 +10,13 @@ namespace Ap.Pack
 
     public class Package
     {
-        // 1.打包路径
+        // 打包路径
         // 打包assetbundle
-
-        [MenuItem("Assets/AssetBundles/Build AssetBundles")]
+        // 重命名AssetBundleManifest 为平台的名称
+        // 移动assetbundle到StreamingAssets 路径下
+        // 生成完整的包
+        // 上传完整包和assetbundles
+        [MenuItem("Assets/AssetBundles/Build")]
         public static void Build()
         {
             IPackageBuilder builder = null;
@@ -26,8 +29,10 @@ namespace Ap.Pack
                 builder = (new PackageIOS()) as IPackageBuilder;
             }
 
-            builder.Build(PackageConfig.OutputPath);
-
+            builder.BuildAssetBundle(PackageConfig.OutputPath);
+            builder.BuildPlayer(PackageConfig.PlayerOutPath);
+            builder.UpLoad(PackageConfig.UpLoadUrl);
+            builder.Clear();
         }
 
     }
