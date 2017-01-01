@@ -119,7 +119,7 @@ namespace Ap.Managers
                 AssetData abd = new AssetData();
                 abd.Name = dr[0].ToString();
                 abd.AssetBundleName = dr[1].ToString();
-                abd.Type = dr[3].ToString();
+                abd.Type = dr[2].ToString();
                 m_AssetDatas.Add(abd.Name, abd);
             }
 
@@ -129,8 +129,7 @@ namespace Ap.Managers
                 string[] dr = ft.Rows[tmpi];
                 AssetBundleData abd = new AssetBundleData();
                 abd.Name = dr[0].ToString();
-                abd.Path = dr[1].ToString();
-                abd.IsUpdate = dr[2].ToString() == "1" ? true : false;
+                abd.IsUpdate = dr[1].ToString() == "1" ? true : false;
                 m_AssetBundleDatas.Add(abd.Name, abd);
             }
         }
@@ -236,7 +235,7 @@ namespace Ap.Managers
             if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
                 return true;
 
-            
+
             string path = GetAssetBundlePath(assetBundleName);
             if (string.IsNullOrEmpty(path))
                 return true;
@@ -332,7 +331,7 @@ namespace Ap.Managers
 
         void Update()
         {
-            for (int i = 0; i < m_InProgressOperations.Count;)
+            for (int i = 0; i < m_InProgressOperations.Count; )
             {
                 var operation = m_InProgressOperations[i];
                 if (operation.Update())
@@ -370,7 +369,7 @@ namespace Ap.Managers
         /// <typeparam name="T"></typeparam>
         /// <param name="assetName"></param>
         /// <returns></returns>
-        public T LoadAsset<T>( string assetName) where T : UnityEngine.Object
+        public T LoadAsset<T>(string assetName) where T : UnityEngine.Object
         {
             AssetData ad = m_AssetDatas[assetName];
 #if UNITY_EDITOR
@@ -425,12 +424,12 @@ namespace Ap.Managers
                     // 3.手动下载
                     m_DownloadingBundles.Remove(assetBundleName);
                     m_DownloadingErrors.Remove(assetBundleName);
-                    for(int i = 0;i< m_InProgressOperations.Count;i++)
+                    for (int i = 0; i < m_InProgressOperations.Count; i++)
                     {
-                        if(m_InProgressOperations[i] is AssetBundleDownloadFromFileOperation)
+                        if (m_InProgressOperations[i] is AssetBundleDownloadFromFileOperation)
                         {
                             AssetBundleDownloadFromFileOperation op = m_InProgressOperations[i] as AssetBundleDownloadFromFileOperation;
-                            if(op.assetBundleName == assetBundleName)
+                            if (op.assetBundleName == assetBundleName)
                             {
                                 m_InProgressOperations.RemoveAt(i);
                                 break;
@@ -455,8 +454,12 @@ namespace Ap.Managers
 
                 AssetBundleLoadAssetOperation operation = null;
 #if UNITY_EDITOR
-                string path = GetAssetBundlePath(abd.AssetBundleName);
-                var res = AssetDatabase.LoadAssetAtPath(path, type);
+                string[] assetPaths = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(abd.AssetBundleName, assetName);
+                if (assetPaths.Length == 0)
+                {
+                    return null;
+                }
+                var res = AssetDatabase.LoadAssetAtPath(assetPaths[0], type);
                 operation = new AssetBundleLoadAssetOperationSimulation(res);
                 return operation;
 #endif
@@ -484,7 +487,7 @@ namespace Ap.Managers
             throw new NoNullAllowedException();
             return null;
 #endif
-            if( m_AssetDatas.ContainsKey(levelName) == false )
+            if (m_AssetDatas.ContainsKey(levelName) == false)
             {
                 Debug.LogError(string.Format("LoadLevelAsync: Level {0} not found!", levelName));
                 return null;
@@ -496,7 +499,7 @@ namespace Ap.Managers
             operation = new AssetBundleLoadLevelOperation(assetBundleName, levelName, isAdditive);
 
             m_InProgressOperations.Add(operation);
-            
+
             return operation;
         }
         /// <summary>
@@ -504,7 +507,7 @@ namespace Ap.Managers
         /// </summary>
         /// <param name="assetBundleName"></param>
         /// <returns></returns>
-        private string GetAssetBundlePath(string assetBundleName )
+        private string GetAssetBundlePath(string assetBundleName)
         {
             if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
                 return "";

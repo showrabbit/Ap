@@ -1,2 +1,2 @@
 Name	AssetBundleName	Type
-MainForm	MainForm	object
+MainForm	ui_form01	object

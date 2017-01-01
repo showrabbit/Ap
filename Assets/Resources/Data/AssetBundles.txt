@@ -1,2 +1,2 @@
 ﻿Name	IsUpdate
-MainForm	0
+ui_form01	0

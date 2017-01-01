@@ -6,7 +6,8 @@ ehthumbs.db
 [Tt]emp/
 [Oo]bj/
 [Bb]uild/
-
+[Aa]ssetBundles
+[Pp]layers
 # Folder config file
 Desktop.ini
 
@@ -54,3 +55,4 @@ Library/assetDatabase3
 Library/metadata/00/00000000000000004000000000000000
 *.dll
 Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+ProjectSettings/EditorBuildSettings.asset
