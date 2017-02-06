@@ -15,6 +15,12 @@ function FormManager.Show(formName, class)
     class.m_ID = id;
     return id;
 end
+
+-- 关闭界面
+function FormManager.Close(id)
+    Managers.F:Close(id);
+end
+
 -- 绑定控制
 function FormManager.BindCtr(id, ctr)
 
@@ -56,14 +62,14 @@ function FormManager.FormLoad(id, viewObj)
 end
 
 -- 界面获取焦点
-function FormManager.FormFouce(id,fouce)
-    
+function FormManager.FormFouce(id, fouce)
+
 end
 
 -- 界面关闭
 function FormManager.FormClose(id)
+    
     local form = self.m_Forms[id];
-    form:OnClose();
     self.m_FormCtrs[id] = nil;
     self.m_Forms[id] = nil;
 end

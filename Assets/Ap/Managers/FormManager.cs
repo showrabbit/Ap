@@ -14,8 +14,6 @@ namespace Ap.Managers
         /// <summary>
         /// 窗体集合
         /// </summary>
-        //protected Dictionary<int, FormCtr> m_FormCtrs = new Dictionary<int, FormCtr>();
-
         protected Dictionary<int, Form> m_Forms = new Dictionary<int, Form>();
         protected Dictionary<int, IController[]> m_FormCtrs = new Dictionary<int, IController[]>();
         /// <summary>
@@ -57,11 +55,11 @@ namespace Ap.Managers
         public int Show(string formName)
         {
             m_IdIndex++;
-            StartCoroutine(ShowAsync(formName));
+            StartCoroutine(ShowAsync(m_IdIndex, formName));
             return m_IdIndex;
         }
 
-        protected IEnumerator ShowAsync(string formName)
+        protected IEnumerator ShowAsync(int id, string formName)
         {
 
             AssetBundleLoadAssetOperation ab = AssetBundleManager.Instance.LoadAssetAsync(formName, typeof(GameObject));
@@ -69,7 +67,7 @@ namespace Ap.Managers
             GameObject obj = GameObject.Instantiate(ab.GetAsset<GameObject>());
             RectTransform reTrans = obj.GetComponent<RectTransform>();
             reTrans.SetParent(m_FormRootTrans);
-            // 确保界面整个沾满
+            // 确保界面整个占满
             reTrans.localScale = Vector3.one;
             reTrans.localPosition = Vector3.zero;
             reTrans.anchorMin = Vector2.zero;
@@ -78,8 +76,8 @@ namespace Ap.Managers
             reTrans.offsetMax = Vector2.zero;
 
             Form form = obj.GetComponent<Form>();
-            m_Forms.Add(m_IdIndex, form);
-            form.ID = m_IdIndex;
+            m_Forms.Add(id, form);
+            form.ID = id;
 
             // 绑定控制器
             IController[] ctrs = form.gameObject.GetComponents<IController>();
@@ -89,7 +87,7 @@ namespace Ap.Managers
                 {
                     ctrs[i].BindView(form);
                 }
-                m_FormCtrs.Add(m_IdIndex, ctrs);
+                m_FormCtrs.Add(id, ctrs);
             }
 
             // 绑定事件
@@ -104,7 +102,11 @@ namespace Ap.Managers
             form.OnLoad();
             form.Focus = true;
 
-            // todo 处理全屏模式
+            // 处理全屏模式
+            if (form.IsFull)
+            {
+
+            }
 
             yield return null;
 
@@ -113,14 +115,21 @@ namespace Ap.Managers
         {
             if (m_Forms.ContainsKey(id))
             {
+                if (m_Forms[id].Visible && m_Forms[id].IsFull)
+                {
+                    // 全屏而且是可见的窗体,需要显示之前被自动隐藏的界面
+
+                }
                 m_FormCtrs.Remove(id);
                 m_Forms[id].OnClose();
                 m_Forms.Remove(id);
+
                 //m_Forms.Remove(id);
             }
             return 0;
         }
 
+        
 
         /// <summary>
         /// 窗体加载中

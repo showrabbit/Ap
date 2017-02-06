@@ -10,10 +10,14 @@ MainForm = class(Form)
 
 function MainForm:ctor()
     self.btnStart = nil;
+    self.btnClose = nil;
+    self.btnOpen = nil;
 end
 
 -- 加载
 function MainForm:OnLoad(view)
     self.btnStart = view.Controls[0]:GetComponent("ButtonEx");
+    self.btnClose = view.Controls[1]:GetComponent("ButtonEx");
+    self.btnOpen = view.Controls[2]:GetComponent("ButtonEx");
 end
 

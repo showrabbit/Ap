@@ -26,4 +26,5 @@ function Main()
 
     local id = FormManager.Show("MainForm", MainForm.new());
     FormManager.BindCtr(id, MainFormCtr.new());
+    
 end

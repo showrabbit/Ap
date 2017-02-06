@@ -82,6 +82,7 @@ namespace Ap.UI
         /// </summary>
         public virtual void OnClose()
         {
+            GameObject.Destroy(this.gameObject);
             if (Close != null)
             {
                 Close(this, m_ID);
