@@ -285,6 +285,24 @@ namespace Ap.Managers
                 LoadAssetBundleInternal(dependencies[i], false);
         }
 
+        /// <summary>
+        /// 根据asset名称卸载
+        /// </summary>
+        /// <param name="assetName"></param>
+        public void UnloadAssetBundleByAssetName(string assetName)
+        {
+#if UNITY_EDITOR
+
+            return;
+#endif
+            if (m_AssetDatas.ContainsKey(assetName))
+            {
+                AssetData abd = m_AssetDatas[assetName];
+
+                string assetBundleName = RemapVariantName(abd.AssetBundleName);
+                UnloadAssetBundle(assetBundleName);
+            }
+        }
 
         // Unload assetbundle and its dependencies.
         public void UnloadAssetBundle(string assetBundleName)
