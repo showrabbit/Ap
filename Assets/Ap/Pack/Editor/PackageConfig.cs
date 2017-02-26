@@ -50,5 +50,45 @@ namespace Ap.Pack
                 return PlayerSettings.bundleVersion;
             }
         }
+
+        /// <summary>
+        /// TOLUA 路径
+        /// </summary>
+        public static string ToLuaPath
+        {
+            get
+            {
+                return Application.dataPath + "/ToLua/Lua";
+            }
+        }
+        /// <summary>
+        /// 本项目的Lua 路径 
+        /// </summary>
+        public static string LuaPath
+        {
+            get
+            {
+                return Application.dataPath + "/Scripts/Lua";
+            }
+        }
+        
+        /// <summary>
+        /// LUA 打包路径
+        /// </summary>
+        public static string LuaOutPath
+        {
+            get
+            {
+                return Application.streamingAssetsPath + "/Scripts";
+            }
+        }
+
+        public static string DataOutPath
+        {
+            get
+            {
+                return Application.streamingAssetsPath + "/Data";
+            }
+        }
     }
 }

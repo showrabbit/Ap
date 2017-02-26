@@ -14,9 +14,19 @@ namespace Ap.Pack
     /// </summary>
     public class PackageAndroid : IPackageBuilder
     {
+        public void BuildLua(string path)
+        {
+            PackageTools.PackLua(path);
+        }
+
+        public void BuildData(string path)
+        {
+            PackageTools.PackData(path);
+        }
+
         public void BuildAssetBundle(string path)
         {
-            PackageTools.CopyToStreamingAssets(path);
+            PackageTools.PackAssetBundle(path);
         }
 
         public void BuildPlayer(string path)
@@ -34,17 +44,20 @@ namespace Ap.Pack
             }
             Directory.CreateDirectory(topath);
             BuildOptions option = EditorUserBuildSettings.development ? BuildOptions.Development : BuildOptions.None;
+
             BuildPipeline.BuildPlayer(levels, topath, EditorUserBuildSettings.activeBuildTarget, option);
         }
 
         public void Clear()
         {
-
+            AssetDatabase.Refresh();
         }
 
         public void UpLoad(string url)
         {
 
         }
+
+        
     }
 }

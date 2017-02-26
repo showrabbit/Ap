@@ -7,6 +7,9 @@ namespace Ap.Pack
 {
     interface IPackageBuilder
     {
+        void BuildLua(string path);
+        //void BuildData(string path);
+
         void BuildAssetBundle(string path);
         void BuildPlayer(string path);
         void UpLoad(string url);

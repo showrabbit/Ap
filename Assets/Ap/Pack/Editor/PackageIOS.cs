@@ -14,9 +14,19 @@ namespace Ap.Pack
     public class PackageIOS : IPackageBuilder
     {
 
+        public void BuildLua(string path)
+        {
+            PackageTools.PackLua(path);
+        }
+
+        public void BuildData(string path)
+        {
+            PackageTools.PackData(path);
+        }
+
         public void BuildAssetBundle(string path)
         {
-            PackageTools.CopyToStreamingAssets(path);
+            PackageTools.PackAssetBundle(path);
         }
 
 
@@ -40,7 +50,7 @@ namespace Ap.Pack
 
         public void Clear()
         {
-
+            AssetDatabase.Refresh();
         }
 
         public void UpLoad(string url)

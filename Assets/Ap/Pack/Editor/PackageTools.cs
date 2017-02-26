@@ -11,7 +11,7 @@ namespace Ap.Pack
 {
     public class PackageTools
     {
-        public static void CopyToStreamingAssets(string path)
+        public static void PackAssetBundle(string path)
         {
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -42,6 +42,70 @@ namespace Ap.Pack
                 file = file.Substring(file.LastIndexOf("/"));
                 File.Copy(f, toPath + "/" + file);
             }
+            AssetDatabase.Refresh();
+        }
+
+        /// <summary>
+        /// 打包lua 
+        /// </summary>
+        /// <param name="outPath">打包输出的路径 这个路径会被先删除在创建!</param>
+        public static void PackLua(string outPath)
+        {
+            // 创建目录
+            if (System.IO.Directory.Exists(outPath))
+            {
+                System.IO.Directory.Delete(outPath,true);
+            }
+            // 拷贝文件
+            PackageTools.DirectoryCopy(PackageConfig.ToLuaPath, outPath + "/ToLua");
+            PackageTools.DirectoryCopy(PackageConfig.LuaPath, outPath + "/Lua");
+
+            // luajit/luac
+
+            AssetDatabase.Refresh();
+        }
+
+        /// <summary>
+        /// 打包配置文件数据
+        /// </summary>
+        /// <param name="outPath"></param>
+        public static void PackData(string outPath)
+        {
+
+        }
+
+        /// <summary>
+        /// 文件夹拷贝
+        /// </summary>
+        /// <param name="fromPath"></param>
+        /// <param name="toPath"></param>
+        public static void DirectoryCopy(string fromPath, string toPath)
+        {
+            if (!Directory.Exists(fromPath))
+            {
+                throw new Exception("FromPath Error");
+            }
+            if (Directory.Exists(toPath))
+            {
+                throw new Exception("ToPath Error");
+            }
+
+            Directory.CreateDirectory(toPath);
+
+            foreach (string f in Directory.GetFiles(fromPath))
+            {
+                string file = f.Replace("\\", "/");
+                file = file.Substring(file.LastIndexOf("/"));
+                File.Copy(f, toPath + "/" + file);
+            }
+
+            foreach (var dir in Directory.GetDirectories(fromPath))
+            {
+                string path = dir.Replace("\\", "/");
+                path = toPath + "/" + path.Substring(path.LastIndexOf("/"));
+                DirectoryCopy(dir, path);
+            }
+
         }
 
         public static string[] GetLevelsFromBuildSettings()
@@ -55,5 +119,6 @@ namespace Ap.Pack
 
             return levels.ToArray();
         }
+
     }
 }
