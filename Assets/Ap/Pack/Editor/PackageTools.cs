@@ -54,13 +54,20 @@ namespace Ap.Pack
             // 创建目录
             if (System.IO.Directory.Exists(outPath))
             {
-                System.IO.Directory.Delete(outPath,true);
+                System.IO.Directory.Delete(outPath, true);
             }
             // 拷贝文件
             PackageTools.DirectoryCopy(PackageConfig.ToLuaPath, outPath + "/ToLua");
             PackageTools.DirectoryCopy(PackageConfig.LuaPath, outPath + "/Lua");
 
             // luajit/luac
+
+            Ap.Base.LZMACompress lzma = new Base.LZMACompress();
+            lzma.CompressFolder(outPath + "/ToLua", outPath + "/ToLua.7z");
+            lzma.CompressFolder(outPath + "/Lua", outPath + "/Lua.7z");
+
+            System.IO.Directory.Delete(outPath + "/ToLua",true);
+            System.IO.Directory.Delete(outPath + "/Lua", true);
 
             AssetDatabase.Refresh();
         }
