@@ -12,6 +12,11 @@ public class Ap_Managers_FormManagerWrap
 		L.RegFunction("Close", Close);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("LayerShowedTrans", get_LayerShowedTrans, set_LayerShowedTrans);
+		L.RegVar("LayerHidedTrans", get_LayerHidedTrans, set_LayerHidedTrans);
+		L.RegVar("m_FormShowed", get_m_FormShowed, set_m_FormShowed);
+		L.RegVar("m_FormHided", get_m_FormHided, set_m_FormHided);
+		L.RegVar("UIRootTrans", get_UIRootTrans, null);
 		L.EndClass();
 	}
 
@@ -82,6 +87,177 @@ public class Ap_Managers_FormManagerWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_LayerShowedTrans(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.List<UnityEngine.RectTransform> ret = obj.LayerShowedTrans;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerShowedTrans on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_LayerHidedTrans(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			UnityEngine.RectTransform ret = obj.LayerHidedTrans;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerHidedTrans on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_m_FormShowed(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.List<Ap.UI.Form> ret = obj.m_FormShowed;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormShowed on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_m_FormHided(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>> ret = obj.m_FormHided;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormHided on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_UIRootTrans(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			UnityEngine.Transform ret = obj.UIRootTrans;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index UIRootTrans on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_LayerShowedTrans(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.List<UnityEngine.RectTransform> arg0 = (System.Collections.Generic.List<UnityEngine.RectTransform>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.List<UnityEngine.RectTransform>));
+			obj.LayerShowedTrans = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerShowedTrans on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_LayerHidedTrans(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			UnityEngine.RectTransform arg0 = (UnityEngine.RectTransform)ToLua.CheckUnityObject(L, 2, typeof(UnityEngine.RectTransform));
+			obj.LayerHidedTrans = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerHidedTrans on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_m_FormShowed(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.List<Ap.UI.Form> arg0 = (System.Collections.Generic.List<Ap.UI.Form>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.List<Ap.UI.Form>));
+			obj.m_FormShowed = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormShowed on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_m_FormHided(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
+			System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>> arg0 = (System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>));
+			obj.m_FormHided = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormHided on a nil value" : e.Message);
 		}
 	}
 }

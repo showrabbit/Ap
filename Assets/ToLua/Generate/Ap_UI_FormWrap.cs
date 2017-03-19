@@ -7,19 +7,39 @@ public class Ap_UI_FormWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(Ap.UI.Form), typeof(Ap.UI.Control));
+		L.RegFunction("Start", Start);
 		L.RegFunction("OnLoad", OnLoad);
 		L.RegFunction("OnClose", OnClose);
 		L.RegFunction("Changed", Changed);
 		L.RegFunction("__eq", op_Equality);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("LayerIndex", get_LayerIndex, set_LayerIndex);
 		L.RegVar("Load", get_Load, set_Load);
 		L.RegVar("Close", get_Close, set_Close);
+		L.RegVar("FocusChanged", get_FocusChanged, set_FocusChanged);
+		L.RegVar("IsFull", get_IsFull, set_IsFull);
 		L.RegVar("Visible", get_Visible, set_Visible);
 		L.RegVar("Focus", get_Focus, set_Focus);
-		L.RegVar("IsFull", get_IsFull, set_IsFull);
+		L.RegFunction("FocusChangedHandle", Ap_UI_Form_FocusChangedHandle);
 		L.RegFunction("CloseHandle", Ap_UI_Form_CloseHandle);
 		L.RegFunction("LoadHandle", Ap_UI_Form_LoadHandle);
 		L.EndClass();
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Start(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject(L, 1, typeof(Ap.UI.Form));
+			obj.Start();
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -91,6 +111,25 @@ public class Ap_UI_FormWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_LayerIndex(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)o;
+			int ret = obj.LayerIndex;
+			LuaDLL.lua_pushinteger(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerIndex on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_Load(IntPtr L)
 	{
 		object o = null;
@@ -125,6 +164,44 @@ public class Ap_UI_FormWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Close on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_FocusChanged(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)o;
+			Ap.UI.Form.FocusChangedHandle ret = obj.FocusChanged;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index FocusChanged on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_IsFull(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)o;
+			bool ret = obj.IsFull;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
 		}
 	}
 
@@ -167,7 +244,7 @@ public class Ap_UI_FormWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_IsFull(IntPtr L)
+	static int set_LayerIndex(IntPtr L)
 	{
 		object o = null;
 
@@ -175,13 +252,13 @@ public class Ap_UI_FormWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Form obj = (Ap.UI.Form)o;
-			bool ret = obj.IsFull;
-			LuaDLL.lua_pushboolean(L, ret);
-			return 1;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.LayerIndex = arg0;
+			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerIndex on a nil value" : e.Message);
 		}
 	}
 
@@ -248,6 +325,56 @@ public class Ap_UI_FormWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_FocusChanged(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)o;
+			Ap.UI.Form.FocusChangedHandle arg0 = null;
+			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
+
+			if (funcType2 != LuaTypes.LUA_TFUNCTION)
+			{
+				 arg0 = (Ap.UI.Form.FocusChangedHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Form.FocusChangedHandle));
+			}
+			else
+			{
+				LuaFunction func = ToLua.ToLuaFunction(L, 2);
+				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func) as Ap.UI.Form.FocusChangedHandle;
+			}
+
+			obj.FocusChanged = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index FocusChanged on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_IsFull(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.UI.Form obj = (Ap.UI.Form)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.IsFull = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_Visible(IntPtr L)
 	{
 		object o = null;
@@ -286,21 +413,29 @@ public class Ap_UI_FormWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_IsFull(IntPtr L)
+	static int Ap_UI_Form_FocusChangedHandle(IntPtr L)
 	{
-		object o = null;
-
 		try
 		{
-			o = ToLua.ToObject(L, 1);
-			Ap.UI.Form obj = (Ap.UI.Form)o;
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			obj.IsFull = arg0;
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+			LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+			if (count == 1)
+			{
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func);
+				ToLua.Push(L, arg1);
+			}
+			else
+			{
+				LuaTable self = ToLua.CheckLuaTable(L, 2);
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func, self);
+				ToLua.Push(L, arg1);
+			}
+			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
 
