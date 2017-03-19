@@ -5,9 +5,11 @@ using System.Text;
 
 namespace Ap.Base
 {
+    // 业务事件类型 从2000 开始
     public partial class EventTypes
     {
         // AutoUpdate
-        public const int AutoUpdate = 4;
+        // 
+        public const int AutoUpdate = 2000;
     }
 }

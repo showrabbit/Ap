@@ -7,8 +7,8 @@ namespace Ap.SDK
 {
     public class SDKEventArgs
     {
-        public bool IsError;
-        public string ErrorInfo;
+        public bool Ok;
+        public string Error;
     }
 
     public class SDKLoginEventArgs : SDKEventArgs

@@ -178,6 +178,21 @@ namespace Ap.Tools
             }
         }
 
+
+        public static RuntimePlatform Platform
+        {
+            get
+            {
+#if UNITY_ANDROID
+                return RuntimePlatform.Android;
+#elif UNITY_IOS
+                return RuntimePlatform.IPhonePlayer;
+#else
+                return RuntimePlatform.WindowsPlayer;
+#endif
+            }
+        }
+
         /// <summary>
         /// 清楚对象的子对象
         /// </summary>

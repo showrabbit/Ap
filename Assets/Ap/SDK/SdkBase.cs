@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Ap.SDK
 {
-    public abstract class SDK
+    public abstract class SdkBase
     {
 
         public delegate void LoginHandle(object sender,SDKLoginEventArgs e);
@@ -20,14 +20,14 @@ namespace Ap.SDK
         public PayHandle OnPay;
         public SwitchLoginHandle OnSwitchLogin;
         public ShowAccountCenterHandle OnShowAccountCenter;
-        public abstract void Login(string gameid, string name, string pwd, string p1, string p2);
+        public abstract void Login(string param);
 
-        public abstract void Logout(string sid);
+        public abstract void Logout(string param);
 
-        public abstract void Pay(string gameid, string sid, string goodsid);
+        public abstract void Pay(string param);
 
-        public abstract void SwitchLogin();
+        public abstract void SwitchLogin(string param);
 
-        public abstract void ShowAccountCenter();
+        public abstract void ShowAccountCenter(string param);
     }
 }
