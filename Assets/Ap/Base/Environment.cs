@@ -34,8 +34,6 @@ namespace Ap.Base
                     return "iOS";
                 case BuildTarget.WebGL:
                     return "WebGL";
-                case BuildTarget.WebPlayer:
-                    return "WebPlayer";
                 case BuildTarget.StandaloneWindows:
                 case BuildTarget.StandaloneWindows64:
                     return "Windows";
@@ -61,9 +59,6 @@ namespace Ap.Base
                     return "iOS";
                 case RuntimePlatform.WebGLPlayer:
                     return "WebGL";
-                case RuntimePlatform.OSXWebPlayer:
-                case RuntimePlatform.WindowsWebPlayer:
-                    return "WebPlayer";
                 case RuntimePlatform.WindowsPlayer:
                     return "Windows";
                 case RuntimePlatform.OSXPlayer:
@@ -75,8 +70,9 @@ namespace Ap.Base
             }
         }
 
+        private static string m_DataPath = "";
         /// <summary>
-        /// 取得数据存放目录
+        /// 取得数据配置存放目录
         /// </summary>
         public static string DataPath
         {
@@ -87,21 +83,42 @@ namespace Ap.Base
                     return Application.dataPath + "/Resources/Data/";
                 }
                 else
-                    return Application.persistentDataPath + "/Data/";
+                {
+                    if (string.IsNullOrEmpty(m_DataPath))
+                        m_DataPath = Application.persistentDataPath + "/Data/";
+                    return m_DataPath;
+                }
             }
         }
 
+        private static string m_CachePath = "";
         /// <summary>
-        /// 存档路径
+        /// 缓存路径
         /// </summary>
-        public static string SavePath
+        public static string CachePath
         {
             get
             {
-                return Application.persistentDataPath;
+                if (Application.isEditor)
+                {
+                    if (string.IsNullOrEmpty(m_CachePath))
+                    {
+                        string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/"));
+                        path = path + "/Cache/";
+                        m_CachePath = path;
+                    }
+                    return m_CachePath;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(m_CachePath))
+                        m_CachePath = Application.persistentDataPath + "/Data/";
+                    return m_CachePath;
+                }
             }
         }
 
+        private static string m_AssetBundleUpdatePath = "";
         /// <summary>
         /// AssetBundle 更新的路径
         /// </summary>
@@ -115,11 +132,14 @@ namespace Ap.Base
                 }
                 else
                 {
-                    return Application.persistentDataPath + "/AssetBundles/";
+                    if (string.IsNullOrEmpty(m_AssetBundleUpdatePath))
+                        m_AssetBundleUpdatePath = Application.persistentDataPath + "/AssetBundles/";
+                    return m_AssetBundleUpdatePath;
                 }
             }
         }
 
+        private static string m_AssetBundlePath;
         /// <summary>
         /// AssetBundle 发布后的路径
         /// </summary>
@@ -133,32 +153,14 @@ namespace Ap.Base
                 }
                 else
                 {
-                    return Application.streamingAssetsPath + "/AssetBundles/";
+                    if (string.IsNullOrEmpty(m_AssetBundlePath))
+                        m_AssetBundlePath = Application.streamingAssetsPath + "/AssetBundles/";
+                    return m_AssetBundlePath;
                 }
             }
         }
 
-
-        /// <summary>
-        /// 本地数据库配置路径
-        /// </summary>
-        public static string DbPath
-        {
-            get
-            {
-                return "Data Source=" + Environment.DataPath + "/db.txt"; ;
-            }
-        }
-        /// <summary>
-        /// 本地用户数据路径
-        /// </summary>
-        public static string DbUserPath
-        {
-            get
-            {
-                return "Data Source=" + Environment.DataPath + "/user.txt"; ;
-            }
-        }
+        private static string m_LuaPath;
         /// <summary>
         /// lua 脚本路径
         /// </summary>
@@ -169,34 +171,14 @@ namespace Ap.Base
 #if UNITY_EDITOR
                 return Application.dataPath + "/Scripts/Lua/";
 #else
-                return Application.persistentDataPath + "/Scripts/Lua/";
+                if (string.IsNullOrEmpty(m_LuaPath))
+                    m_LuaPath = Application.persistentDataPath + "/Scripts/Lua/";
+                return m_LuaPath;
 #endif
             }
         }
-
-        public static string FrameworkPath
-        {
-            get
-            {
-                return Application.dataPath + "/Ap/";
-            }
-        }
-
-        /// <summary>
-        /// 游戏运行中的临时文件夹
-        /// </summary>
-        public static string TempPath
-        {
-            get
-            {
-#if UNITY_EDITOR
-                return Application.dataPath + "/Temp/";
-#else
-                return Application.persistentDataPath + "/Temp/";
-#endif
-            }
-        }
-
+        
+        private static string m_LogPath;
         /// <summary>
         /// 游戏运行中的日志文件夹
         /// </summary>
@@ -205,10 +187,52 @@ namespace Ap.Base
             get
             {
 #if UNITY_EDITOR
-                return Application.dataPath + "/Log/";
+                if (string.IsNullOrEmpty(m_LogPath))
+                {
+                    string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/"));
+                    path = path + "/Log/";
+                    m_LogPath = path;
+                }
+                return m_LogPath;
 #else
-                return Application.persistentDataPath + "/Log/";
+                if (string.IsNullOrEmpty(m_LogPath))
+                    m_LogPath = Application.persistentDataPath + "/Log/";
+                return m_LogPath;
 #endif
+            }
+        }
+
+        private static string m_TempPath;
+        /// <summary>
+        /// 游戏运行中的临时文件夹
+        /// </summary>
+        public static string TempPath
+        {
+            get
+            {
+#if UNITY_EDITOR
+                if (string.IsNullOrEmpty(m_TempPath))
+                {
+                    string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/"));
+                    path = path + "/Temp/";
+                    m_TempPath = path;
+                }
+                return m_TempPath;
+#else
+                if (string.IsNullOrEmpty(m_TempPath))
+                    m_TempPath = Application.persistentDataPath + "/Temp/";
+                return m_TempPath;
+#endif
+            }
+        }
+        /// <summary>
+        /// 框架的目录
+        /// </summary>
+        public static string FrameworkPath
+        {
+            get
+            {
+                return Application.dataPath + "/Ap/";
             }
         }
 

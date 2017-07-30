@@ -56,7 +56,6 @@ namespace Ap.Tools
                 {
                     byte[] bytes = Encoding.ASCII.GetBytes(ta.text);
                     fs.Write(bytes, 0, bytes.Length);
-
                 }
             }
         }
@@ -95,6 +94,15 @@ namespace Ap.Tools
                 byte[] bytes = Encoding.ASCII.GetBytes(text);
                 fs.Write(bytes, 0, bytes.Length);
             }
+        }
+        /// <summary>
+        /// 删除文件
+        /// </summary>
+        /// <param name="path"></param>
+        public static void DeleteFile(string path)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
         }
     }
 }

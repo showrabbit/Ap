@@ -107,9 +107,23 @@ namespace Ap.Managers
         {
             FileHelper.WriteText(MANAGERS_LOG, "START_INIT");
 
+            // 创建各个初始目录
+            // 存放lua脚本目录
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.LuaPath);
+            // 存放配置
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.DataPath);
+            // 存放缓存
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.CachePath);
+            // 存放日志
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.LogPath);
+            // 存放更新后的assetbundles
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.AssetBundleUpdatePath);
+            // 临时文件夹
+            DirectoryHelper.CreateDirectory(Ap.Base.Environment.TempPath);
+
             // 拷贝 Assetbundle manifeast
             string from = "AssetBundles/" + Ap.Base.Environment.GetPlatformName();
-            string to = Ap.Base.Environment.AssetBundlePath + "/" + Ap.Base.Environment.GetPlatformName();
+            string to = Ap.Base.Environment.AssetBundleUpdatePath + "/" + Ap.Base.Environment.GetPlatformName();
             FileHelper.CopyFromStreamingAssets(from, to);
             FileHelper.WriteText(MANAGERS_LOG, "COPY ASSETBUNDLE MANIFEAST");
 
@@ -120,8 +134,22 @@ namespace Ap.Managers
             FileHelper.CopyFromStreamingAssets(from, to);
             from = Ap.Base.Environment.LuaPath + "/Lua.7z";
             lzma.Decompress(to, from);
+            FileHelper.DeleteFile(to);
 
-            // TODO
+            from = "Scripts/ToLua.7z";
+            to = Ap.Base.Environment.TempPath + "/ToLua.7z";
+            FileHelper.CopyFromStreamingAssets(from, to);
+            from = Ap.Base.Environment.LuaPath + "/ToLua.7z";
+            lzma.Decompress(to, from);
+            FileHelper.DeleteFile(to);
+
+            FileHelper.WriteText(MANAGERS_LOG, "COPY LUA SCRIPT");
+
+
+            // 拷贝配置文件
+            FileHelper.CopyTextFromResources("Data/AssetBundles", Ap.Base.Environment.DataPath + "/AssetBundles.txt");
+            FileHelper.CopyTextFromResources("Data/AssetBundles", Ap.Base.Environment.DataPath + "/Assets.txt");
+            FileHelper.WriteText(MANAGERS_LOG, "COPY DATA");
 
 
             FileHelper.WriteText(MANAGERS_LOG, "INIT_SUCCESS");
