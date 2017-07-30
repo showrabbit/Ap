@@ -11,7 +11,7 @@ public class StartUp : MonoBehaviourEx
     // Use this for initialization
     void Start()
     {
-        Init();
+        StartCoroutine(Init());
     }
 
     // Update is called once per frame
@@ -30,12 +30,22 @@ public class StartUp : MonoBehaviourEx
     /// 5.进入菜单界面
     /// 6.进入主界面
     /// </summary>
-    void Init()
+    IEnumerator Init()
     {
         // 加载配置
         var c = Config.Instance;
         // 加载管理类
         var m = ManagerManagers.Instance;
+        // 延迟一帧
+        yield return new WaitForEndOfFrame();
+        // 确保加载了assetbundle
+        yield return AssetBundleManager.Instance.AssetBundleManifestOpt;
+
+        // 是否初次加载游戏
+        if (Ap.Managers.ManagerManagers.Instance.IsFirstInited == false)
+        {
+            yield return ManagerManagers.Instance.ExecFirstInit();
+        }
 
         if (AutoUpdateCtr.IsAutoUpdate())
         {
@@ -43,6 +53,7 @@ public class StartUp : MonoBehaviourEx
             // 显示更新界面
             // 更新界面包含AutoUpdate
             // 更新结束后重新加载资源
+            ManagerManagers.Instance.F.Show("AutoUpdate");
         }
         else
         {
@@ -52,6 +63,8 @@ public class StartUp : MonoBehaviourEx
             ManagerManagers.Instance.L.StartMain();
 
         }
+
+        yield return null;
     }
 
     /// <summary>

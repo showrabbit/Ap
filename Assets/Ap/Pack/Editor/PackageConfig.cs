@@ -18,7 +18,7 @@ namespace Ap.Pack
         {
             get
             {
-                return "AssetBundles/" + Utility.GetPlatformName() + "/" + Version;
+                return "AssetBundles/" + Ap.Base.Environment.GetPlatformName() + "/" + Version;
             }
         }
 
@@ -28,7 +28,7 @@ namespace Ap.Pack
             get
             {
                 string path = Application.dataPath.Substring(0, Application.dataPath.LastIndexOf("/"));
-                return path + "/Players/" + Utility.GetPlatformName() + "/" + Version;
+                return path + "/Players/" + Ap.Base.Environment.GetPlatformName() + "/" + Version;
             }
         }
         /// <summary>
@@ -38,7 +38,7 @@ namespace Ap.Pack
         {
             get
             {
-                return "127.0.0.1:5000//" + Utility.GetPlatformName() + "/" + Version;
+                return "127.0.0.1:5000//" + Ap.Base.Environment.GetPlatformName() + "/" + Version;
             }
         }
 

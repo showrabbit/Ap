@@ -18,12 +18,7 @@ namespace Ap.Pack
         {
             PackageTools.PackLua(path);
         }
-
-        public void BuildData(string path)
-        {
-            PackageTools.PackData(path);
-        }
-
+        
         public void BuildAssetBundle(string path)
         {
             PackageTools.PackAssetBundle(path);

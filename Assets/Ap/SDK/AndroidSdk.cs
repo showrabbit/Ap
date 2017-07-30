@@ -8,8 +8,6 @@ namespace Ap.SDK
 {
     public class AndroidSDK : SdkBase
     {
-
-
         public override void Login(string param)
         {
             AndroidMsgManager.Instance.AndroidSendMessage(EventTypes.SdkLogin, param);

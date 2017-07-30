@@ -29,7 +29,6 @@ namespace Ap.Pack
                 builder = (new PackageIOS()) as IPackageBuilder;
             }
             builder.BuildLua(PackageConfig.LuaOutPath);
-            //builder.BuildData(PackageConfig.DataOutPath);
             builder.BuildAssetBundle(PackageConfig.OutputPath);
             builder.BuildPlayer(PackageConfig.PlayerOutPath);
             builder.UpLoad(PackageConfig.UpLoadUrl);

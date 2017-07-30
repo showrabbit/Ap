@@ -19,9 +19,9 @@ namespace Ap.Pack
             // 重命名
             if (File.Exists(path + "/" + PackageConfig.Version))
             {
-                if (File.Exists(path + "/" + Utility.GetPlatformName()))
-                    File.Delete(path + "/" + Utility.GetPlatformName());
-                File.Move(path + "/" + PackageConfig.Version, path + "/" + Utility.GetPlatformName());
+                if (File.Exists(path + "/" + Ap.Base.Environment.GetPlatformName()))
+                    File.Delete(path + "/" + Ap.Base.Environment.GetPlatformName());
+                File.Move(path + "/" + PackageConfig.Version, path + "/" + Ap.Base.Environment.GetPlatformName());
             }
             // 拷贝
             string toPath = Application.streamingAssetsPath + "/AssetBundles";
@@ -71,16 +71,7 @@ namespace Ap.Pack
 
             AssetDatabase.Refresh();
         }
-
-        /// <summary>
-        /// 打包配置文件数据
-        /// </summary>
-        /// <param name="outPath"></param>
-        public static void PackData(string outPath)
-        {
-
-        }
-
+        
         /// <summary>
         /// 文件夹拷贝
         /// </summary>

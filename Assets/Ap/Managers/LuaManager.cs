@@ -17,7 +17,7 @@ namespace Ap.Managers
             OpenLibs();
             m_Lua.LuaSetTop(0);
             LuaBinder.Bind(m_Lua);
-            m_Lua.AddSearchPath(Utility.LuaPath);
+            m_Lua.AddSearchPath(Environment.LuaPath);
             m_Lua.Start();    //启动LUAVM
         }
 

@@ -5,6 +5,10 @@ using Ap.Managers;
 
 namespace Ap
 {
+    /// <summary>
+    /// 全局上下文
+    /// 
+    /// </summary>
     public class Context : SingletonBase<Context>
     {
 
@@ -25,7 +29,6 @@ namespace Ap
             get;
             set;
         }
-
         
 
         protected override void Init()

@@ -56,9 +56,65 @@ namespace Ap.Managers
             set { m_AssetBundleManifest = value; }
         }
 
+        private AssetBundleLoadManifestOperation m_AssetBundleManifestOpt;
+        /// <summary>
+        /// manifest 操作回调 
+        /// 确保加载manifest之后才能正式开始进行游戏
+        /// </summary>
+        public AssetBundleLoadManifestOperation AssetBundleManifestOpt
+        {
+            get
+            {
+                return m_AssetBundleManifestOpt;
+            }
+        }
+    
+
         public void Awake()
         {
-            Initialize();
+            m_AssetBundleManifestOpt = Initialize();
+        }
+        protected AssetBundleLoadManifestOperation Initialize()
+        {
+            return Initialize(Environment.GetPlatformName());
+        }
+
+        protected void InitAssetBundleDatas()
+        {
+            FileTable ft = new FileTable(Environment.DataPath + "/Assets.txt");
+            for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
+            {
+                string[] dr = ft.Rows[tmpi];
+                AssetData abd = new AssetData();
+                abd.Name = dr[0].ToString();
+                abd.AssetBundleName = dr[1].ToString();
+                abd.Type = dr[2].ToString();
+                m_AssetDatas.Add(abd.Name, abd);
+            }
+
+            ft = new FileTable(Environment.DataPath + "/AssetBundles.txt");
+            for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
+            {
+                string[] dr = ft.Rows[tmpi];
+                AssetBundleData abd = new AssetBundleData();
+                abd.Name = dr[0].ToString();
+                abd.IsUpdate = dr[1].ToString() == "1" ? true : false;
+                m_AssetBundleDatas.Add(abd.Name, abd);
+            }
+        }
+        // Load AssetBundleManifest.
+        protected AssetBundleLoadManifestOperation Initialize(string manifestAssetBundleName)
+        {
+            InitAssetBundleDatas();
+#if UNITY_EDITOR
+            // If we're in Editor simulation mode, we don't need the manifest assetBundle.
+
+            return null;
+#endif
+            LoadAssetBundle(manifestAssetBundleName, true);
+            var operation = new AssetBundleLoadManifestOperation(manifestAssetBundleName, "AssetBundleManifest", typeof(AssetBundleManifest));
+            m_InProgressOperations.Add(operation);
+            return operation;
         }
 
         protected override void Init()
@@ -105,50 +161,7 @@ namespace Ap.Managers
             return bundle;
         }
 
-        protected AssetBundleLoadManifestOperation Initialize()
-        {
-            return Initialize(Utility.GetPlatformName());
-        }
-
-        protected void InitAssetBundleDatas()
-        {
-            FileTable ft = new FileTable(Utility.DataPath + "/Assets.txt");
-            for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
-            {
-                string[] dr = ft.Rows[tmpi];
-                AssetData abd = new AssetData();
-                abd.Name = dr[0].ToString();
-                abd.AssetBundleName = dr[1].ToString();
-                abd.Type = dr[2].ToString();
-                m_AssetDatas.Add(abd.Name, abd);
-            }
-
-            ft = new FileTable(Utility.DataPath + "/AssetBundles.txt");
-            for (int tmpi = 0; tmpi < ft.Rows.Count; tmpi++)
-            {
-                string[] dr = ft.Rows[tmpi];
-                AssetBundleData abd = new AssetBundleData();
-                abd.Name = dr[0].ToString();
-                abd.IsUpdate = dr[1].ToString() == "1" ? true : false;
-                m_AssetBundleDatas.Add(abd.Name, abd);
-            }
-        }
-        // Load AssetBundleManifest.
-        protected AssetBundleLoadManifestOperation Initialize(string manifestAssetBundleName)
-        {
-            InitAssetBundleDatas();
-#if UNITY_EDITOR
-            // If we're in Editor simulation mode, we don't need the manifest assetBundle.
-
-            return null;
-#endif
-            LoadAssetBundle(manifestAssetBundleName, true);
-            var operation = new AssetBundleLoadManifestOperation(manifestAssetBundleName, "AssetBundleManifest", typeof(AssetBundleManifest));
-            m_InProgressOperations.Add(operation);
-            return operation;
-        }
-
-
+        
         // Load AssetBundle and its dependencies.
         protected void LoadAssetBundle(string assetBundleName, bool isLoadingAssetBundleManifest = false)
         {
@@ -166,7 +179,7 @@ namespace Ap.Managers
             }
 
             // Check if the assetBundle has already been processed.
-            bool isAlreadyProcessed = LoadAssetBundleInternal(assetBundleName, isLoadingAssetBundleManifest);
+            bool isAlreadyProcessed = LoadAssetBundleInternal(assetBundleName);
 
             // Load dependencies.
             if (!isAlreadyProcessed && !isLoadingAssetBundleManifest)
@@ -218,7 +231,7 @@ namespace Ap.Managers
         }
 
         // Where we actuall call WWW to download the assetBundle.
-        protected bool LoadAssetBundleInternal(string assetBundleName, bool isLoadingAssetBundleManifest)
+        protected bool LoadAssetBundleInternal(string assetBundleName)
         {
             // Already loaded.
             LoadedAssetBundle bundle = null;
@@ -282,7 +295,7 @@ namespace Ap.Managers
             // Record and load all dependencies.
 
             for (int i = 0; i < dependencies.Length; i++)
-                LoadAssetBundleInternal(dependencies[i], false);
+                LoadAssetBundleInternal(dependencies[i]);
         }
 
         /// <summary>
@@ -533,9 +546,9 @@ namespace Ap.Managers
             {
                 AssetBundleData abd = m_AssetBundleDatas[assetBundleName];
                 if (abd.IsUpdate)
-                    return Utility.AssetBundleUpdatePath + assetBundleName;
+                    return Environment.AssetBundleUpdatePath + assetBundleName;
                 else
-                    return Utility.AssetBundlePath + assetBundleName;
+                    return Environment.AssetBundlePath + assetBundleName;
             }
         }
     }

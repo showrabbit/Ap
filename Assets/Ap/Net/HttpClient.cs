@@ -22,7 +22,7 @@ namespace Ap.Net
         /// <summary>
         /// 发送
         /// </summary>
-        public void Post(string url, Dictionary<string, string> values)
+        public WWW PostWithWWW(string url, Dictionary<string, string> values)
         {
             WWWForm form = new WWWForm();
             foreach (var v in values)
@@ -30,17 +30,49 @@ namespace Ap.Net
                 form.AddField(v.Key, v.Value);
             }
             WWW www = new WWW(url, form);
-            StartCoroutine(Quary(www));
+            return www;
         }
 
+        public byte[] Post(string url, Dictionary<string, string> values)
+        {
+            WWWForm form = new WWWForm();
+            foreach (var v in values)
+            {
+                form.AddField(v.Key, v.Value);
+            }
+            WWW www = new WWW(url, form);
+            while (www.isDone)
+            {
+            }
+            if (string.IsNullOrEmpty(www.error))
+            {
+                return www.bytes;
+            }
+            else
+                return null;
+        }
 
         /// <summary>
         /// 获取
         /// </summary>
-        public void Get(string url)
+        public WWW GetWithWWW(string url)
         {
             WWW www = new WWW(url);
-            StartCoroutine(Quary(www));
+            return www;
+        }
+
+        public byte[] Get(string url)
+        {
+            WWW www = new WWW(url);
+            while (www.isDone)
+            {
+            }
+            if (string.IsNullOrEmpty(www.error))
+            {
+                return www.bytes;
+            }
+            else
+                return null;
         }
 
         protected IEnumerator Quary(WWW www)

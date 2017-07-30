@@ -21,7 +21,7 @@ namespace Ap.Managers
 
         protected override void Init()
         {
-            switch (Ap.Tools.Utility.Platform)
+            switch (Ap.Base.Environment.Platform)
             {
                 case RuntimePlatform.Android:
                     m_Link = new AndroidSDK();
