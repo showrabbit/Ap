@@ -12,18 +12,20 @@ namespace Ap.Managers
 
         public void Awake()
         {
-            
+
             m_Lua = new LuaState();
             OpenLibs();
             m_Lua.LuaSetTop(0);
             LuaBinder.Bind(m_Lua);
-            m_Lua.AddSearchPath(Environment.LuaPath);
+            // 增加项目本身的lua目录
+            // tolua的文件路径已经在LuaState里面添加了
+            m_Lua.AddSearchPath(Environment.LuaPath + "/Lua");
             m_Lua.Start();    //启动LUAVM
         }
 
         protected override void Init()
         {
-            
+
         }
 
 

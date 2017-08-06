@@ -16,7 +16,7 @@ public class AutoUpdate : Form
 
     
 
-    public void Changed(string type, params object[] values)
+    public override void Changed(string type, params object[] values)
     {
         
     }

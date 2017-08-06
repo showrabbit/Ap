@@ -38,14 +38,16 @@ public class StartUp : MonoBehaviourEx
         var m = ManagerManagers.Instance;
         // 延迟一帧
         yield return new WaitForEndOfFrame();
-        // 确保加载了assetbundle
-        yield return AssetBundleManager.Instance.AssetBundleManifestOpt;
 
         // 是否初次加载游戏
-        if (Ap.Managers.ManagerManagers.Instance.IsFirstInited == false)
+        if (Ap.Managers.ManagerManagers.Instance.IsFirstInited)
         {
             yield return ManagerManagers.Instance.ExecFirstInit();
         }
+
+        // 确保加载了assetbundle
+        yield return AssetBundleManager.Instance.AssetBundleManifestOpt;
+
 
         if (AutoUpdateCtr.IsAutoUpdate())
         {
@@ -67,6 +69,8 @@ public class StartUp : MonoBehaviourEx
         yield return null;
     }
 
+    
+
     /// <summary>
     /// 自动更新结束
     /// </summary>
@@ -75,7 +79,7 @@ public class StartUp : MonoBehaviourEx
         // 清理游戏
         // 重新开始游戏
     }
-
+    
 }
 
 

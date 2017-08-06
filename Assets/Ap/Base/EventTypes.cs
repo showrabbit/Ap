@@ -29,6 +29,20 @@ namespace Ap.Base
         public const int SdkShowAccountCenter = 113;
         public const int SdkPay = 114;
         public const int SdkInit = 115;
+
+        // 游戏释放 151 - 180
+        public const int GameInitStart = 151;
+        // 初始化游戏目录
+        public const int GameInitDirectory = 152;
+        // 初始化mainfeast
+        public const int GameInitManifeast = 153;
+        // 初始化lua脚本
+        public const int GameInitLua = 154;
+        // 初始配置
+        public const int GameInitData = 155;
+
+        public const int GameInitEnd = 180;
+
     }
 
 }

@@ -112,7 +112,7 @@ namespace Ap.UI
             base.OnLoadAssetEnd(assetName, obj);
         }
 
-        public void Changed(string type, params object[] values)
+        public virtual void Changed(string type, params object[] values)
         {
 
         }

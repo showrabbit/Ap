@@ -68,7 +68,7 @@ namespace Ap.Managers
                 return m_AssetBundleManifestOpt;
             }
         }
-    
+
 
         public void Awake()
         {
@@ -111,7 +111,11 @@ namespace Ap.Managers
 
             return null;
 #endif
-            LoadAssetBundle(manifestAssetBundleName, true);
+            //LoadAssetBundle(manifestAssetBundleName, true);
+            string path = Ap.Base.Environment.AssetBundleUpdatePath + "/" + manifestAssetBundleName;
+            m_InProgressOperations.Add(new AssetBundleDownloadFromFileOperation(manifestAssetBundleName, path));
+            m_DownloadingBundles.Add(manifestAssetBundleName);
+
             var operation = new AssetBundleLoadManifestOperation(manifestAssetBundleName, "AssetBundleManifest", typeof(AssetBundleManifest));
             m_InProgressOperations.Add(operation);
             return operation;
@@ -161,7 +165,7 @@ namespace Ap.Managers
             return bundle;
         }
 
-        
+
         // Load AssetBundle and its dependencies.
         protected void LoadAssetBundle(string assetBundleName, bool isLoadingAssetBundleManifest = false)
         {
@@ -362,7 +366,7 @@ namespace Ap.Managers
 
         void Update()
         {
-            for (int i = 0; i < m_InProgressOperations.Count; )
+            for (int i = 0; i < m_InProgressOperations.Count;)
             {
                 var operation = m_InProgressOperations[i];
                 if (operation.Update())

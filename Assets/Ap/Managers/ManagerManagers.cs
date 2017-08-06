@@ -74,12 +74,17 @@ namespace Ap.Managers
         {
             get
             {
+#if UNITY_EDITOR
+                return false;
+
+#else
                 if (File.Exists(MANAGERS_LOG))
                 {
                     string text = FileHelper.ReadText(MANAGERS_LOG);
                     return text.Contains("INIT_SUCCESS");
                 }
-                return false;
+                return true;
+#endif
             }
         }
 
@@ -105,7 +110,14 @@ namespace Ap.Managers
         /// <returns></returns>
         public IEnumerator ExecFirstInit()
         {
+            EventData data = new EventData();
+
+            data = new EventData();
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitStart, this, data);
+
             FileHelper.WriteText(MANAGERS_LOG, "START_INIT");
+
 
             // 创建各个初始目录
             // 存放lua脚本目录
@@ -120,6 +132,8 @@ namespace Ap.Managers
             DirectoryHelper.CreateDirectory(Ap.Base.Environment.AssetBundleUpdatePath);
             // 临时文件夹
             DirectoryHelper.CreateDirectory(Ap.Base.Environment.TempPath);
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitDirectory, this, data);
 
             // 拷贝 Assetbundle manifeast
             string from = "AssetBundles/" + Ap.Base.Environment.GetPlatformName();
@@ -127,32 +141,45 @@ namespace Ap.Managers
             FileHelper.CopyFromStreamingAssets(from, to);
             FileHelper.WriteText(MANAGERS_LOG, "COPY ASSETBUNDLE MANIFEAST");
 
+            data = new EventData();
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitManifeast, this, data);
+
+
             // 解压脚本
             LZMACompress lzma = new LZMACompress();
             from = "Scripts/Lua.7z";
             to = Ap.Base.Environment.TempPath + "/Lua.7z";
             FileHelper.CopyFromStreamingAssets(from, to);
-            from = Ap.Base.Environment.LuaPath + "/Lua.7z";
+            from = Ap.Base.Environment.LuaPath + "/Lua";
             lzma.Decompress(to, from);
             FileHelper.DeleteFile(to);
 
             from = "Scripts/ToLua.7z";
             to = Ap.Base.Environment.TempPath + "/ToLua.7z";
             FileHelper.CopyFromStreamingAssets(from, to);
-            from = Ap.Base.Environment.LuaPath + "/ToLua.7z";
+            from = Ap.Base.Environment.LuaPath + "/ToLua";
             lzma.Decompress(to, from);
             FileHelper.DeleteFile(to);
 
             FileHelper.WriteText(MANAGERS_LOG, "COPY LUA SCRIPT");
-
+            data = new EventData();
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitLua, this, data);
 
             // 拷贝配置文件
             FileHelper.CopyTextFromResources("Data/AssetBundles", Ap.Base.Environment.DataPath + "/AssetBundles.txt");
             FileHelper.CopyTextFromResources("Data/AssetBundles", Ap.Base.Environment.DataPath + "/Assets.txt");
             FileHelper.WriteText(MANAGERS_LOG, "COPY DATA");
-
+            data = new EventData();
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitManifeast, this, data);
 
             FileHelper.WriteText(MANAGERS_LOG, "INIT_SUCCESS");
+
+            data = new EventData();
+            data.Values = new object[] { true };
+            EventManager.Instance.Trigge(EventTypes.GameInitEnd, this, data);
             yield return null;
         }
     }

@@ -163,6 +163,7 @@
     <None Include="Assets\Resources\Data\AssetBundles.txt" />
     <None Include="Assets\Resources\Data\Assets.txt" />
     <None Include="Assets\Resources\Data\Config.txt" />
+    <None Include="Assets\Resources\Data\UpdateFiles.txt" />
     <None Include="Assets\Sences\Info.txt" />
     <None Include="Assets\Shaders\Info.txt" />
     <None Include="Assets\Sounds\Info.txt" />

@@ -6,6 +6,7 @@ using System.Text;
 
 using UnityEngine;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Ap.Tools
 {
@@ -14,6 +15,23 @@ namespace Ap.Tools
     /// </summary>
     public class FileHelper
     {
+        /// <summary>
+        /// 创建获取替换现有的文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="bytes"></param>
+        public static void CreateOrReplace(string path, byte[] bytes)
+        {
+            if (File.Exists(path))
+                File.Delete(path);
+            using (FileStream fs = File.Create(path))
+            {
+                fs.Write(bytes, 0, bytes.Length);
+            }
+        }
+
+
+
         /// <summary>
         /// 从streaimingassets里面拷贝内容到指定目录
         /// </summary>
@@ -58,6 +76,39 @@ namespace Ap.Tools
                     fs.Write(bytes, 0, bytes.Length);
                 }
             }
+        }
+
+        /// <summary>
+        /// 获取文件md5
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFileMD5(string path)
+        {
+            if (File.Exists(path) == false)
+                return "";
+            using (FileStream file = new FileStream(path, System.IO.FileMode.Open))
+            {
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(file);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
+        /// <summary>
+        /// 从路径里面获取文件名称
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetFileName(string path)
+        {
+            path = path.Replace('\\', '/');
+            string name = path.Substring(path.LastIndexOf('/'));
+            return name;
         }
 
         /// <summary>

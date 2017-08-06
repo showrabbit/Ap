@@ -1,0 +1,3 @@
+﻿ResType	FileName	Path	Size	MD5
+1	Test.assetbundle	/UI/Perfab/Test	5123123	XXXX
+2	Test.lua	/Lua/View/Test.lua	1000	xxxx
