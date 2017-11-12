@@ -10,7 +10,6 @@ public static class CustomSettings
 {
     public static string saveDir = Application.dataPath + "/ToLua/Generate/";
     public static string toluaBaseType = Application.dataPath + "/ToLua/BaseType/";
-
     //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)
     //unity 有些类作为sealed class, 其实完全等价于静态类
     public static List<Type> staticClassTypes = new List<Type>
@@ -25,6 +24,7 @@ public static class CustomSettings
         typeof(UnityEngine.RenderSettings),
         typeof(UnityEngine.QualitySettings),
         typeof(UnityEngine.GL),
+        typeof(UnityEngine.Graphics),
     };
 
     //附加导出委托类型(在导出委托时, customTypeList 中牵扯的委托类型都会导出， 无需写在这里)
@@ -35,6 +35,7 @@ public static class CustomSettings
         _DT(typeof(System.Predicate<int>)),
         _DT(typeof(System.Action<int>)),
         _DT(typeof(System.Comparison<int>)),
+        _DT(typeof(System.Func<int, int>)),
     };
 
     //在这里添加你要导出注册到lua的类型列表
@@ -45,24 +46,14 @@ public static class CustomSettings
         //_GT(typeof(TestProtol)),
         //_GT(typeof(TestAccount)),
         //_GT(typeof(Dictionary<int, TestAccount>)).SetLibName("AccountMap"),
-        //_GT(typeof(KeyValuePair<int, TestAccount>)),    
+        //_GT(typeof(KeyValuePair<int, TestAccount>)),
+        //_GT(typeof(Dictionary<int, TestAccount>.KeyCollection)),
+        //_GT(typeof(Dictionary<int, TestAccount>.ValueCollection)),
         //_GT(typeof(TestExport)),
         //_GT(typeof(TestExport.Space)),
         //-------------------------------------------------------------------        
-                
-        _GT(typeof(Debugger)).SetNameSpace(null),
-        _GT(typeof(Ap.Base.Context)),
-        _GT(typeof(Ap.Managers.ManagerManagers)),
-        _GT(typeof(Ap.Managers.FormManager)),
-        _GT(typeof(Ap.Base.Environment)),
-        _GT(typeof(Ap.Tools.Logger)),
-        _GT(typeof(Ap.Net.ByteBuffer)),
-        _GT(typeof(Ap.UI.ButtonEx)),
-        _GT(typeof(Ap.UI.Control)),
-        _GT(typeof(Ap.UI.Form)),
-        _GT(typeof(Ap.UI.FormCtr)),
-        _GT(typeof(Ap.Lua.PointerClickEvent)),
-        _GT(typeof(Ap.Lua.ControlEvent)),
+                        
+        _GT(typeof(Debugger)).SetNameSpace(null),          
 
 #if USING_DOTWEENING
         _GT(typeof(DG.Tweening.DOTween)),
@@ -91,8 +82,8 @@ public static class CustomSettings
         _GT(typeof(Rigidbody)),
         _GT(typeof(Camera)),
         _GT(typeof(AudioSource)),
-        _GT(typeof(LineRenderer)),
-        _GT(typeof(TrailRenderer)),
+        //_GT(typeof(LineRenderer))
+        //_GT(typeof(TrailRenderer))
 #endif
       
         _GT(typeof(Behaviour)),
@@ -116,6 +107,9 @@ public static class CustomSettings
         _GT(typeof(AsyncOperation)).SetBaseType(typeof(System.Object)),
         _GT(typeof(LightType)),
         _GT(typeof(SleepTimeout)),
+#if UNITY_5_3_OR_NEWER && !UNITY_5_6_OR_NEWER
+        _GT(typeof(UnityEngine.Experimental.Director.DirectorPlayer)),
+#endif
         _GT(typeof(Animator)),
         _GT(typeof(Input)),
         _GT(typeof(KeyCode)),
@@ -124,9 +118,11 @@ public static class CustomSettings
 
 
         _GT(typeof(MeshRenderer)),
+#if !UNITY_5_4_OR_NEWER
         _GT(typeof(ParticleEmitter)),
         _GT(typeof(ParticleRenderer)),
-        _GT(typeof(ParticleAnimator)),
+        _GT(typeof(ParticleAnimator)), 
+#endif
 
         _GT(typeof(BoxCollider)),
         _GT(typeof(MeshCollider)),
@@ -146,14 +142,33 @@ public static class CustomSettings
         _GT(typeof(RenderSettings)),
         _GT(typeof(BlendWeights)),
         _GT(typeof(RenderTexture)),
+        _GT(typeof(Resources)),
+
+        #region Ap
+        _GT(typeof(Ap.Base.Context)),
+        _GT(typeof(Ap.Managers.ManagerManagers)),
+        _GT(typeof(Ap.Managers.FormManager)),
+        _GT(typeof(Ap.Base.Environment)),
+        _GT(typeof(Ap.Tools.Logger)),
+        _GT(typeof(Ap.Net.ByteBuffer)),
+        _GT(typeof(Ap.UI.ButtonEx)),
+        _GT(typeof(Ap.UI.Control)),
+        _GT(typeof(Ap.UI.Form)),
+        _GT(typeof(Ap.UI.FormCtr)),
+        _GT(typeof(Ap.Lua.PointerClickEvent)),
+        _GT(typeof(Ap.Lua.ControlEvent)),
+
+        #endregion
     };
 
     public static List<Type> dynamicList = new List<Type>()
     {
         typeof(MeshRenderer),
+#if !UNITY_5_4_OR_NEWER
         typeof(ParticleEmitter),
         typeof(ParticleRenderer),
         typeof(ParticleAnimator),
+#endif
 
         typeof(BoxCollider),
         typeof(MeshCollider),
@@ -177,6 +192,47 @@ public static class CustomSettings
 
     };
 
+    //ngui优化，下面的类没有派生类，可以作为sealed class
+    public static List<Type> sealedList = new List<Type>()
+    {
+        /*typeof(Transform),
+        typeof(UIRoot),
+        typeof(UICamera),
+        typeof(UIViewport),
+        typeof(UIPanel),
+        typeof(UILabel),
+        typeof(UIAnchor),
+        typeof(UIAtlas),
+        typeof(UIFont),
+        typeof(UITexture),
+        typeof(UISprite),
+        typeof(UIGrid),
+        typeof(UITable),
+        typeof(UIWrapGrid),
+        typeof(UIInput),
+        typeof(UIScrollView),
+        typeof(UIEventListener),
+        typeof(UIScrollBar),
+        typeof(UICenterOnChild),
+        typeof(UIScrollView),        
+        typeof(UIButton),
+        typeof(UITextList),
+        typeof(UIPlayTween),
+        typeof(UIDragScrollView),
+        typeof(UISpriteAnimation),
+        typeof(UIWrapContent),
+        typeof(TweenWidth),
+        typeof(TweenAlpha),
+        typeof(TweenColor),
+        typeof(TweenRotation),
+        typeof(TweenPosition),
+        typeof(TweenScale),
+        typeof(TweenHeight),
+        typeof(TypewriterEffect),
+        typeof(UIToggle),
+        typeof(Localization),*/
+    };
+
     public static BindType _GT(Type t)
     {
         return new BindType(t);
@@ -187,3 +243,4 @@ public static class CustomSettings
         return new DelegateType(t);
     }
 }
+
