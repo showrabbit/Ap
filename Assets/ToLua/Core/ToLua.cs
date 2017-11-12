@@ -474,12 +474,11 @@ namespace LuaInterface
                 FieldInfo listViewFieldInfo = consoleWindowType.GetField("m_ListView", BindingFlags.Instance | BindingFlags.NonPublic);
                 logListView = listViewFieldInfo.GetValue(consoleWindow);
                 logListViewCurrentRow = listViewFieldInfo.FieldType.GetField("row", BindingFlags.Instance | BindingFlags.Public);
-
-                Type logEntriesType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntries");
-                LogEntriesGetEntry = logEntriesType.GetMethod("GetEntryInternal", BindingFlags.Static | BindingFlags.Public);
-                Type logEntryType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntry");
-                logEntry = Activator.CreateInstance(logEntryType);
-                logEntryCondition = logEntryType.GetField("condition", BindingFlags.Instance | BindingFlags.Public);                
+                //Type logEntriesType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntries");
+                //LogEntriesGetEntry = logEntriesType.GetMethod("GetEntryInternal", BindingFlags.Static | BindingFlags.Public);
+                //Type logEntryType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntry");
+                //logEntry = Activator.CreateInstance(logEntryType);
+                //logEntryCondition = logEntryType.GetField("condition", BindingFlags.Instance | BindingFlags.Public);
             }
 
             return true;

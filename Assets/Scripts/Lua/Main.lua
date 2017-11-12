@@ -6,7 +6,6 @@
 
 -- endregion
 
-
 require "Common/Class";
 require "Common/Define";
 require "Common/EventProtocol"
@@ -20,6 +19,7 @@ require "Common/FormCtr"
 
 require "View/MainForm"
 require "Controller/MainFormCtr"
+require "Controller/ProtocolCtr"
 
 function Main()
     FormManager.Init();

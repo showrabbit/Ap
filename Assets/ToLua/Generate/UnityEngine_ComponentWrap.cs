@@ -57,18 +57,18 @@ public class UnityEngine_ComponentWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.Component), typeof(string)))
+			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.Component), typeof(System.Type)))
 			{
 				UnityEngine.Component obj = (UnityEngine.Component)ToLua.ToObject(L, 1);
-				string arg0 = ToLua.ToString(L, 2);
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 2);
 				UnityEngine.Component o = obj.GetComponent(arg0);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.Component), typeof(System.Type)))
+			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.Component), typeof(string)))
 			{
 				UnityEngine.Component obj = (UnityEngine.Component)ToLua.ToObject(L, 1);
-				System.Type arg0 = (System.Type)ToLua.ToObject(L, 2);
+				string arg0 = ToLua.ToString(L, 2);
 				UnityEngine.Component o = obj.GetComponent(arg0);
 				ToLua.Push(L, o);
 				return 1;

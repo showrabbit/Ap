@@ -12,7 +12,8 @@ public class UnityEngine_ApplicationWrap
 		L.RegFunction("Unload", Unload);
 		L.RegFunction("GetStreamProgressForLevel", GetStreamProgressForLevel);
 		L.RegFunction("CanStreamedLevelBeLoaded", CanStreamedLevelBeLoaded);
-		L.RegFunction("CaptureScreenshot", CaptureScreenshot);
+		L.RegFunction("GetBuildTags", GetBuildTags);
+		L.RegFunction("SetBuildTags", SetBuildTags);
 		L.RegFunction("HasProLicense", HasProLicense);
 		L.RegFunction("ExternalCall", ExternalCall);
 		L.RegFunction("RequestAdvertisingIdentifierAsync", RequestAdvertisingIdentifierAsync);
@@ -23,9 +24,11 @@ public class UnityEngine_ApplicationWrap
 		L.RegFunction("HasUserAuthorization", HasUserAuthorization);
 		L.RegVar("streamedBytes", get_streamedBytes, null);
 		L.RegVar("isPlaying", get_isPlaying, null);
+		L.RegVar("isFocused", get_isFocused, null);
 		L.RegVar("isEditor", get_isEditor, null);
 		L.RegVar("isWebPlayer", get_isWebPlayer, null);
 		L.RegVar("platform", get_platform, null);
+		L.RegVar("buildGUID", get_buildGUID, null);
 		L.RegVar("isMobilePlatform", get_isMobilePlatform, null);
 		L.RegVar("isConsolePlatform", get_isConsolePlatform, null);
 		L.RegVar("runInBackground", get_runInBackground, set_runInBackground);
@@ -38,7 +41,7 @@ public class UnityEngine_ApplicationWrap
 		L.RegVar("unityVersion", get_unityVersion, null);
 		L.RegVar("version", get_version, null);
 		L.RegVar("installerName", get_installerName, null);
-		L.RegVar("bundleIdentifier", get_bundleIdentifier, null);
+		L.RegVar("identifier", get_identifier, null);
 		L.RegVar("installMode", get_installMode, null);
 		L.RegVar("sandboxType", get_sandboxType, null);
 		L.RegVar("productName", get_productName, null);
@@ -50,10 +53,13 @@ public class UnityEngine_ApplicationWrap
 		L.RegVar("internetReachability", get_internetReachability, null);
 		L.RegVar("genuine", get_genuine, null);
 		L.RegVar("genuineCheckAvailable", get_genuineCheckAvailable, null);
+		L.RegVar("lowMemory", get_lowMemory, set_lowMemory);
 		L.RegVar("logMessageReceived", get_logMessageReceived, set_logMessageReceived);
 		L.RegVar("logMessageReceivedThreaded", get_logMessageReceivedThreaded, set_logMessageReceivedThreaded);
+		L.RegVar("onBeforeRender", get_onBeforeRender, set_onBeforeRender);
 		L.RegFunction("AdvertisingIdentifierCallback", UnityEngine_Application_AdvertisingIdentifierCallback);
 		L.RegFunction("LogCallback", UnityEngine_Application_LogCallback);
+		L.RegFunction("LowMemoryCallback", UnityEngine_Application_LowMemoryCallback);
 		L.EndStaticLibs();
 	}
 
@@ -109,16 +115,16 @@ public class UnityEngine_ApplicationWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(string)))
+			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(int)))
 			{
-				string arg0 = ToLua.ToString(L, 1);
+				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
 				float o = UnityEngine.Application.GetStreamProgressForLevel(arg0);
 				LuaDLL.lua_pushnumber(L, o);
 				return 1;
 			}
-			else if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(int)))
+			else if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(string)))
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
+				string arg0 = ToLua.ToString(L, 1);
 				float o = UnityEngine.Application.GetStreamProgressForLevel(arg0);
 				LuaDLL.lua_pushnumber(L, o);
 				return 1;
@@ -141,16 +147,16 @@ public class UnityEngine_ApplicationWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(string)))
+			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(int)))
 			{
-				string arg0 = ToLua.ToString(L, 1);
+				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
 				bool o = UnityEngine.Application.CanStreamedLevelBeLoaded(arg0);
 				LuaDLL.lua_pushboolean(L, o);
 				return 1;
 			}
-			else if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(int)))
+			else if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(string)))
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
+				string arg0 = ToLua.ToString(L, 1);
 				bool o = UnityEngine.Application.CanStreamedLevelBeLoaded(arg0);
 				LuaDLL.lua_pushboolean(L, o);
 				return 1;
@@ -167,29 +173,30 @@ public class UnityEngine_ApplicationWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int CaptureScreenshot(IntPtr L)
+	static int GetBuildTags(IntPtr L)
 	{
 		try
 		{
-			int count = LuaDLL.lua_gettop(L);
+			ToLua.CheckArgsCount(L, 0);
+			string[] o = UnityEngine.Application.GetBuildTags();
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(string)))
-			{
-				string arg0 = ToLua.ToString(L, 1);
-				UnityEngine.Application.CaptureScreenshot(arg0);
-				return 0;
-			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(string), typeof(int)))
-			{
-				string arg0 = ToLua.ToString(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				UnityEngine.Application.CaptureScreenshot(arg0, arg1);
-				return 0;
-			}
-			else
-			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.Application.CaptureScreenshot");
-			}
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetBuildTags(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string[] arg0 = ToLua.CheckStringArray(L, 1);
+			UnityEngine.Application.SetBuildTags(arg0);
+			return 0;
 		}
 		catch(Exception e)
 		{
@@ -372,6 +379,20 @@ public class UnityEngine_ApplicationWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_isFocused(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushboolean(L, UnityEngine.Application.isFocused);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_isEditor(IntPtr L)
 	{
 		try
@@ -405,6 +426,20 @@ public class UnityEngine_ApplicationWrap
 		try
 		{
 			ToLua.Push(L, UnityEngine.Application.platform);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_buildGUID(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, UnityEngine.Application.buildGUID);
 			return 1;
 		}
 		catch(Exception e)
@@ -582,11 +617,11 @@ public class UnityEngine_ApplicationWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_bundleIdentifier(IntPtr L)
+	static int get_identifier(IntPtr L)
 	{
 		try
 		{
-			LuaDLL.lua_pushstring(L, UnityEngine.Application.bundleIdentifier);
+			LuaDLL.lua_pushstring(L, UnityEngine.Application.identifier);
 			return 1;
 		}
 		catch(Exception e)
@@ -750,6 +785,13 @@ public class UnityEngine_ApplicationWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_lowMemory(IntPtr L)
+	{
+		ToLua.Push(L, new EventObject("UnityEngine.Application.lowMemory"));
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_logMessageReceived(IntPtr L)
 	{
 		ToLua.Push(L, new EventObject("UnityEngine.Application.logMessageReceived"));
@@ -760,6 +802,13 @@ public class UnityEngine_ApplicationWrap
 	static int get_logMessageReceivedThreaded(IntPtr L)
 	{
 		ToLua.Push(L, new EventObject("UnityEngine.Application.logMessageReceivedThreaded"));
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_onBeforeRender(IntPtr L)
+	{
+		ToLua.Push(L, new EventObject("UnityEngine.Application.onBeforeRender"));
 		return 1;
 	}
 
@@ -800,6 +849,57 @@ public class UnityEngine_ApplicationWrap
 		{
 			UnityEngine.ThreadPriority arg0 = (UnityEngine.ThreadPriority)ToLua.CheckObject(L, 2, typeof(UnityEngine.ThreadPriority));
 			UnityEngine.Application.backgroundLoadingPriority = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_lowMemory(IntPtr L)
+	{
+		try
+		{
+			EventObject arg0 = null;
+
+			if (LuaDLL.lua_isuserdata(L, 2) != 0)
+			{
+				arg0 = (EventObject)ToLua.ToObject(L, 2);
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "The event 'UnityEngine.Application.lowMemory' can only appear on the left hand side of += or -= when used outside of the type 'UnityEngine.Application'");
+			}
+
+			if (arg0.op == EventOp.Add)
+			{
+				UnityEngine.Application.LowMemoryCallback ev = (UnityEngine.Application.LowMemoryCallback)DelegateFactory.CreateDelegate(typeof(UnityEngine.Application.LowMemoryCallback), arg0.func);
+				UnityEngine.Application.lowMemory += ev;
+			}
+			else if (arg0.op == EventOp.Sub)
+			{
+				UnityEngine.Application.LowMemoryCallback ev = (UnityEngine.Application.LowMemoryCallback)LuaMisc.GetEventHandler(null, typeof(UnityEngine.Application), "lowMemory");
+				Delegate[] ds = ev.GetInvocationList();
+				LuaState state = LuaState.Get(L);
+
+				for (int i = 0; i < ds.Length; i++)
+				{
+					ev = (UnityEngine.Application.LowMemoryCallback)ds[i];
+					LuaDelegate ld = ev.Target as LuaDelegate;
+
+					if (ld != null && ld.func == arg0.func)
+					{
+						UnityEngine.Application.lowMemory -= ev;
+						state.DelayDispose(ld.func);
+						break;
+					}
+				}
+
+				arg0.func.Dispose();
+			}
+
 			return 0;
 		}
 		catch(Exception e)
@@ -911,6 +1011,57 @@ public class UnityEngine_ApplicationWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_onBeforeRender(IntPtr L)
+	{
+		try
+		{
+			EventObject arg0 = null;
+
+			if (LuaDLL.lua_isuserdata(L, 2) != 0)
+			{
+				arg0 = (EventObject)ToLua.ToObject(L, 2);
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "The event 'UnityEngine.Application.onBeforeRender' can only appear on the left hand side of += or -= when used outside of the type 'UnityEngine.Application'");
+			}
+
+			if (arg0.op == EventOp.Add)
+			{
+				UnityEngine.Events.UnityAction ev = (UnityEngine.Events.UnityAction)DelegateFactory.CreateDelegate(typeof(UnityEngine.Events.UnityAction), arg0.func);
+				UnityEngine.Application.onBeforeRender += ev;
+			}
+			else if (arg0.op == EventOp.Sub)
+			{
+				UnityEngine.Events.UnityAction ev = (UnityEngine.Events.UnityAction)LuaMisc.GetEventHandler(null, typeof(UnityEngine.Application), "onBeforeRender");
+				Delegate[] ds = ev.GetInvocationList();
+				LuaState state = LuaState.Get(L);
+
+				for (int i = 0; i < ds.Length; i++)
+				{
+					ev = (UnityEngine.Events.UnityAction)ds[i];
+					LuaDelegate ld = ev.Target as LuaDelegate;
+
+					if (ld != null && ld.func == arg0.func)
+					{
+						UnityEngine.Application.onBeforeRender -= ev;
+						state.DelayDispose(ld.func);
+						break;
+					}
+				}
+
+				arg0.func.Dispose();
+			}
+
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int UnityEngine_Application_AdvertisingIdentifierCallback(IntPtr L)
 	{
 		try
@@ -954,6 +1105,33 @@ public class UnityEngine_ApplicationWrap
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
 				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(UnityEngine.Application.LogCallback), func, self);
+				ToLua.Push(L, arg1);
+			}
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int UnityEngine_Application_LowMemoryCallback(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+			LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+			if (count == 1)
+			{
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(UnityEngine.Application.LowMemoryCallback), func);
+				ToLua.Push(L, arg1);
+			}
+			else
+			{
+				LuaTable self = ToLua.CheckLuaTable(L, 2);
+				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(UnityEngine.Application.LowMemoryCallback), func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

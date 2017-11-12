@@ -32,7 +32,7 @@ namespace Ap.Managers
             Pool pool = new Pool();
             pool.TemplateObject = templateObj;
             pool.MaxCount = maxCount;
-            pool.CacheObjects = new List<Cache>();
+            pool.CacheObjects = new List<Ap.ObjectPool.Cache>();
             pool.PoolRoot = new GameObject(poolName);
             pool.PoolRoot.transform.SetParent(mPoolManagerRoot.transform);
             templateObj.transform.SetParent(pool.PoolRoot.transform);
@@ -48,7 +48,7 @@ namespace Ap.Managers
                 // 确保现在正在使用的对象
                 for (int tmpi = 0; tmpi < pool.CacheObjects.Count; tmpi++)
                 {
-                    Cache cache = pool.CacheObjects[tmpi];
+                    Ap.ObjectPool.Cache cache = pool.CacheObjects[tmpi];
                     if (cache.IsUsed)
                     {
                         GameObject.Destroy(cache.Object);
@@ -72,7 +72,7 @@ namespace Ap.Managers
                     return pool.CacheObjects[tmpi].Object;
                 }
             }
-            Cache cache = new Cache();
+            Ap.ObjectPool.Cache cache = new Ap.ObjectPool.Cache();
             cache.Object = GameObject.Instantiate(pool.TemplateObject);
             cache.IsUsed = true;
             pool.CacheObjects.Add(cache);

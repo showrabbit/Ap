@@ -129,18 +129,18 @@ public class UnityEngine_MonoBehaviourWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(string)))
+			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(System.Collections.IEnumerator)))
 			{
 				UnityEngine.MonoBehaviour obj = (UnityEngine.MonoBehaviour)ToLua.ToObject(L, 1);
-				string arg0 = ToLua.ToString(L, 2);
+				System.Collections.IEnumerator arg0 = (System.Collections.IEnumerator)ToLua.ToObject(L, 2);
 				UnityEngine.Coroutine o = obj.StartCoroutine(arg0);
 				ToLua.PushObject(L, o);
 				return 1;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(System.Collections.IEnumerator)))
+			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(string)))
 			{
 				UnityEngine.MonoBehaviour obj = (UnityEngine.MonoBehaviour)ToLua.ToObject(L, 1);
-				System.Collections.IEnumerator arg0 = (System.Collections.IEnumerator)ToLua.ToObject(L, 2);
+				string arg0 = ToLua.ToString(L, 2);
 				UnityEngine.Coroutine o = obj.StartCoroutine(arg0);
 				ToLua.PushObject(L, o);
 				return 1;
@@ -172,10 +172,10 @@ public class UnityEngine_MonoBehaviourWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(UnityEngine.Coroutine)))
+			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(string)))
 			{
 				UnityEngine.MonoBehaviour obj = (UnityEngine.MonoBehaviour)ToLua.ToObject(L, 1);
-				UnityEngine.Coroutine arg0 = (UnityEngine.Coroutine)ToLua.ToObject(L, 2);
+				string arg0 = ToLua.ToString(L, 2);
 				obj.StopCoroutine(arg0);
 				return 0;
 			}
@@ -186,10 +186,10 @@ public class UnityEngine_MonoBehaviourWrap
 				obj.StopCoroutine(arg0);
 				return 0;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(string)))
+			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.MonoBehaviour), typeof(UnityEngine.Coroutine)))
 			{
 				UnityEngine.MonoBehaviour obj = (UnityEngine.MonoBehaviour)ToLua.ToObject(L, 1);
-				string arg0 = ToLua.ToString(L, 2);
+				UnityEngine.Coroutine arg0 = (UnityEngine.Coroutine)ToLua.ToObject(L, 2);
 				obj.StopCoroutine(arg0);
 				return 0;
 			}

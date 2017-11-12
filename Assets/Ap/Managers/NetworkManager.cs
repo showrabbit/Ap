@@ -10,6 +10,9 @@ namespace Ap.Managers
 {
     public class NetworkManager : ManagerBase<NetworkManager>
     {
+        public delegate void OnReceivedMessageHandle(int id, ByteBuffer data);
+        public OnReceivedMessageHandle OnReceivedMessage;
+
         private SocketClient m_Socket;
         protected Queue<KeyValuePair<int, ByteBuffer>> m_Events = new Queue<KeyValuePair<int, ByteBuffer>>();
 
@@ -22,7 +25,7 @@ namespace Ap.Managers
                     m_Socket = new SocketClient();
                     m_Socket.OnConnectEvent += OnConnect;
                     m_Socket.OnDisconnectedEvent += OnDisconnected;
-                    m_Socket.OnReceivedMessageEvent += OnReceivedMessage;
+                    m_Socket.OnReceivedMessageEvent += Socket_OnReceivedMessage;
                 }
                 return m_Socket;
             }
@@ -36,11 +39,11 @@ namespace Ap.Managers
 
         protected override void Init()
         {
-            
+
 
         }
         ///------------------------------------------------------------------------------------
-        public void AddEvent(int _event, ByteBuffer data)
+        protected void AddEvent(int _event, ByteBuffer data)
         {
             m_Events.Enqueue(new KeyValuePair<int, ByteBuffer>(_event, data));
         }
@@ -48,14 +51,15 @@ namespace Ap.Managers
         /// <summary>
         /// ÍÆËÍÊÂ¼þ
         /// </summary>
-        void Update()
+        protected void Update()
         {
             if (m_Events.Count > 0)
             {
                 while (m_Events.Count > 0)
                 {
-                    KeyValuePair<int, ByteBuffer> _event = m_Events.Dequeue();
-                    LuaManager.Instance.CallFunction("NetworkManager.OnMessage", _event.Key, _event.Value);
+                    KeyValuePair<int, ByteBuffer> e = m_Events.Dequeue();
+                    OnReceivedMessage?.Invoke(e.Key, e.Value);
+                    LuaManager.Instance.CallFunction("NetworkManager.OnMessage", e.Key, e.Value);
                 }
             }
         }
@@ -82,6 +86,7 @@ namespace Ap.Managers
         /// <param name="data"></param>
         protected void OnConnect(int protocal, ByteBuffer data)
         {
+            OnReceivedMessage?.Invoke(protocal, data);
             LuaManager.Instance.CallFunction("NetworkManager.OnConnect", protocal, data);
         }
         /// <summary>
@@ -91,6 +96,7 @@ namespace Ap.Managers
         /// <param name="data"></param>
         protected void OnDisconnected(int protocal, ByteBuffer data)
         {
+            OnReceivedMessage?.Invoke(protocal, data);
             LuaManager.Instance.CallFunction("NetworkManager.OnDisconnect", protocal, data);
         }
         /// <summary>
@@ -98,7 +104,7 @@ namespace Ap.Managers
         /// </summary>
         /// <param name="protocal"></param>
         /// <param name="data"></param>
-        protected void OnReceivedMessage(int protocal, ByteBuffer data)
+        protected void Socket_OnReceivedMessage(int protocal, ByteBuffer data)
         {
             AddEvent(protocal, data);
         }

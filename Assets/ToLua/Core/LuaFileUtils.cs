@@ -256,7 +256,7 @@ namespace LuaInterface
                 fileName += ".lua";
             }
 
-#if UNITY_5
+#if UNITY_5_4_OR_NEWER
             fileName += ".bytes";
 #endif
             zipName = StringBuilderCache.GetStringAndRelease(sb);
@@ -264,7 +264,7 @@ namespace LuaInterface
 
             if (zipFile != null)
             {
-#if UNITY_5
+#if UNITY_5_4_OR_NEWER
                 TextAsset luaCode = zipFile.LoadAsset<TextAsset>(fileName);
 #else
                 TextAsset luaCode = zipFile.Load(fileName, typeof(TextAsset)) as TextAsset;

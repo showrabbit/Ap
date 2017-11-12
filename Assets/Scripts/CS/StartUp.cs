@@ -48,7 +48,11 @@ public class StartUp : MonoBehaviourEx
         // 确保加载了assetbundle
         yield return AssetBundleManager.Instance.AssetBundleManifestOpt;
 
-
+        // 注册协议内容
+        ProtocolParser.Init();
+        m.N.OnReceivedMessage += ProtocolParser.Parse;
+        ProtocolCtr.Init();
+        
         if (AutoUpdateCtr.IsAutoUpdate())
         {
             EventManager.Instance.AddHandle(EventTypes.AutoUpdate, AutoUpdateEnd);
@@ -65,11 +69,11 @@ public class StartUp : MonoBehaviourEx
             ManagerManagers.Instance.L.StartMain();
 
         }
-
+        
         yield return null;
     }
 
-    
+
 
     /// <summary>
     /// 自动更新结束
@@ -79,7 +83,18 @@ public class StartUp : MonoBehaviourEx
         // 清理游戏
         // 重新开始游戏
     }
-    
+
+    /// <summary>
+    /// 监听登陆消息
+    /// </summary>
+    /// <param name="data"></param>
+    public static void StartUp_OnLogin(object data)
+    {
+        if (data == null)
+            return;
+        var info = data as Msg.LoginInfo;
+
+    }
 }
 
 

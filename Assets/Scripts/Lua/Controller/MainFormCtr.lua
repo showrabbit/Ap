@@ -6,6 +6,7 @@
 
 -- endregion
 
+
 MainFormCtr = class(FormCtr)
 
 -- 加载
@@ -25,6 +26,13 @@ end
 -- 开始按钮点击
 function MainFormCtr:btnStart_OnClick(sender)
     print("click" .. self.m_View.m_ID);
+    
+    -- TEST
+    Ap.Base.Context.Instance.ServerIp = "127.0.0.1";
+    Ap.Base.Context.Instance.ServerPort = 2345;
+    
+    ProtocolCtr.SendLOGIN_INFO({USER_NAME="11",USER_PWD="123",TOKEN="123"});
+
 end
 
 -- 关闭按钮点击
@@ -40,4 +48,11 @@ function MainFormCtr:btnOpen_OnClick(sender)
     FormManager.BindCtr(id, MainFormCtr.new());
 end
 
+
+
+
 -- 监听实体数据变更消息
+EventProtocol.addEventListener("msg.COMMON_INFO",function()
+    
+
+end);

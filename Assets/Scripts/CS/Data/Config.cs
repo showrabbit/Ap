@@ -14,7 +14,7 @@ public class Config : SingletonBase<Config>
     public static string UPDATE_SERVER = "UPDATE_SERVER";
     public static string LOGIN_SERVER = "LOGIN_SERVER";
     public static string GAME_SERVER = "GAME_SERVER";
-
+     
     public Dictionary<string, string> Data
     {
         get

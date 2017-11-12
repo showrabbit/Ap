@@ -68,18 +68,18 @@ public class Ap_Tools_LoggerWrap
 				obj.Write(arg0);
 				return 0;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(int), typeof(string)))
-			{
-				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 2);
-				string arg1 = ToLua.ToString(L, 3);
-				obj.Write(arg0, arg1);
-				return 0;
-			}
 			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(Ap.Tools.LogLevel), typeof(string)))
 			{
 				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
 				Ap.Tools.LogLevel arg0 = (Ap.Tools.LogLevel)ToLua.ToObject(L, 2);
+				string arg1 = ToLua.ToString(L, 3);
+				obj.Write(arg0, arg1);
+				return 0;
+			}
+			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(int), typeof(string)))
+			{
+				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
+				int arg0 = (int)LuaDLL.lua_tonumber(L, 2);
 				string arg1 = ToLua.ToString(L, 3);
 				obj.Write(arg0, arg1);
 				return 0;

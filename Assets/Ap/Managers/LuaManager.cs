@@ -12,13 +12,14 @@ namespace Ap.Managers
 
         public void Awake()
         {
-
+            // 这里会添加Tolua的目录
             m_Lua = new LuaState();
             OpenLibs();
             m_Lua.LuaSetTop(0);
             LuaBinder.Bind(m_Lua);
             // 增加项目本身的lua目录
             // tolua的文件路径已经在LuaState里面添加了
+            // 添加项目的脚本路径
             m_Lua.AddSearchPath(Environment.LuaPath + "/Lua");
             m_Lua.Start();    //启动LUAVM
         }

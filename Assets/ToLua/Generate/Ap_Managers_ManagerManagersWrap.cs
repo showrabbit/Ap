@@ -8,8 +8,10 @@ public class Ap_Managers_ManagerManagersWrap
 	{
 		L.BeginClass(typeof(Ap.Managers.ManagerManagers), typeof(Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>));
 		L.RegFunction("Clear", Clear);
+		L.RegFunction("ExecFirstInit", ExecFirstInit);
 		L.RegFunction("New", _CreateAp_Managers_ManagerManagers);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("MANAGERS_LOG", get_MANAGERS_LOG, set_MANAGERS_LOG);
 		L.RegVar("A", get_A, null);
 		L.RegVar("E", get_E, null);
 		L.RegVar("F", get_F, null);
@@ -17,6 +19,7 @@ public class Ap_Managers_ManagerManagersWrap
 		L.RegVar("L", get_L, null);
 		L.RegVar("N", get_N, null);
 		L.RegVar("O", get_O, null);
+		L.RegVar("IsFirstInited", get_IsFirstInited, null);
 		L.EndClass();
 	}
 
@@ -53,6 +56,37 @@ public class Ap_Managers_ManagerManagersWrap
 			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject(L, 1, typeof(Ap.Managers.ManagerManagers));
 			obj.Clear();
 			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ExecFirstInit(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject(L, 1, typeof(Ap.Managers.ManagerManagers));
+			System.Collections.IEnumerator o = obj.ExecFirstInit();
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_MANAGERS_LOG(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, Ap.Managers.ManagerManagers.MANAGERS_LOG);
+			return 1;
 		}
 		catch(Exception e)
 		{
@@ -190,6 +224,40 @@ public class Ap_Managers_ManagerManagersWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index O on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_IsFirstInited(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)o;
+			bool ret = obj.IsFirstInited;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFirstInited on a nil value" : e.Message);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_MANAGERS_LOG(IntPtr L)
+	{
+		try
+		{
+			string arg0 = ToLua.CheckString(L, 2);
+			Ap.Managers.ManagerManagers.MANAGERS_LOG = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
 }

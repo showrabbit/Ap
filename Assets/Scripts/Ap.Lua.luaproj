@@ -61,6 +61,7 @@
     <Content Include="Lua\3rd\pbc\addressbook.pb" />
     <Content Include="Lua\3rd\pbc\addressbook.proto" />
     <Content Include="Lua\3rd\pblua\login.proto" />
+    <Content Include="Lua\Model\protocol.pb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lua\3rd\cjson\json2lua.lua" />
@@ -91,6 +92,7 @@
     <Compile Include="Lua\Common\Form.lua" />
     <Compile Include="Lua\Common\FormCtr.lua" />
     <Compile Include="Lua\Controller\MainFormCtr.lua" />
+    <Compile Include="Lua\Controller\ProtocolCtr.lua" />
     <Compile Include="Lua\Manager\FormManager.lua" />
     <Compile Include="Lua\Common\Functions.lua" />
     <Compile Include="Lua\Common\Protocal.lua" />

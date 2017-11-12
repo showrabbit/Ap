@@ -101,18 +101,18 @@ public class UnityEngine_GameObjectWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.GameObject), typeof(string)))
+			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.GameObject), typeof(System.Type)))
 			{
 				UnityEngine.GameObject obj = (UnityEngine.GameObject)ToLua.ToObject(L, 1);
-				string arg0 = ToLua.ToString(L, 2);
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 2);
 				UnityEngine.Component o = obj.GetComponent(arg0);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.GameObject), typeof(System.Type)))
+			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.GameObject), typeof(string)))
 			{
 				UnityEngine.GameObject obj = (UnityEngine.GameObject)ToLua.ToObject(L, 1);
-				System.Type arg0 = (System.Type)ToLua.ToObject(L, 2);
+				string arg0 = ToLua.ToString(L, 2);
 				UnityEngine.Component o = obj.GetComponent(arg0);
 				ToLua.Push(L, o);
 				return 1;

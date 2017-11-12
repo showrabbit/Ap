@@ -7,6 +7,8 @@ public class UnityEngine_AssetBundleWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(UnityEngine.AssetBundle), typeof(UnityEngine.Object));
+		L.RegFunction("UnloadAllAssetBundles", UnloadAllAssetBundles);
+		L.RegFunction("GetAllLoadedAssetBundles", GetAllLoadedAssetBundles);
 		L.RegFunction("LoadFromFileAsync", LoadFromFileAsync);
 		L.RegFunction("LoadFromFile", LoadFromFile);
 		L.RegFunction("LoadFromMemoryAsync", LoadFromMemoryAsync);
@@ -46,6 +48,38 @@ public class UnityEngine_AssetBundleWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: UnityEngine.AssetBundle.New");
 			}
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int UnloadAllAssetBundles(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 1);
+			UnityEngine.AssetBundle.UnloadAllAssetBundles(arg0);
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetAllLoadedAssetBundles(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 0);
+			System.Collections.Generic.IEnumerable<UnityEngine.AssetBundle> o = UnityEngine.AssetBundle.GetAllLoadedAssetBundles();
+			ToLua.PushObject(L, o);
+			return 1;
 		}
 		catch(Exception e)
 		{
