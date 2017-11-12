@@ -19,11 +19,11 @@ public class Ap_Base_SingletonBase_Ap_Managers_ManagerManagersWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Base.SingletonBase<Ap.Managers.ManagerManagers> obj = (Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>)ToLua.CheckObject(L, 1, typeof(Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>));
+			Ap.Base.SingletonBase<Ap.Managers.ManagerManagers> obj = (Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>)ToLua.CheckObject<Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>>(L, 1);
 			obj.Clear();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -37,7 +37,7 @@ public class Ap_Base_SingletonBase_Ap_Managers_ManagerManagersWrap
 			ToLua.PushObject(L, Ap.Base.SingletonBase<Ap.Managers.ManagerManagers>.Instance);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

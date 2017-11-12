@@ -26,11 +26,11 @@ public class Ap_Managers_FormManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject(L, 1, typeof(Ap.Managers.FormManager));
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject<Ap.Managers.FormManager>(L, 1);
 			obj.Awake();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -42,13 +42,13 @@ public class Ap_Managers_FormManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject(L, 1, typeof(Ap.Managers.FormManager));
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject<Ap.Managers.FormManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			int o = obj.Show(arg0);
 			LuaDLL.lua_pushinteger(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -60,13 +60,13 @@ public class Ap_Managers_FormManagerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject(L, 1, typeof(Ap.Managers.FormManager));
+			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)ToLua.CheckObject<Ap.Managers.FormManager>(L, 1);
 			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
 			int o = obj.Close(arg0);
 			LuaDLL.lua_pushinteger(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -84,7 +84,7 @@ public class Ap_Managers_FormManagerWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -100,12 +100,12 @@ public class Ap_Managers_FormManagerWrap
 			o = ToLua.ToObject(L, 1);
 			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
 			System.Collections.Generic.List<UnityEngine.RectTransform> ret = obj.LayerShowedTrans;
-			ToLua.PushObject(L, ret);
+			ToLua.PushSealed(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerShowedTrans on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerShowedTrans on a nil value");
 		}
 	}
 
@@ -119,12 +119,12 @@ public class Ap_Managers_FormManagerWrap
 			o = ToLua.ToObject(L, 1);
 			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
 			UnityEngine.RectTransform ret = obj.LayerHidedTrans;
-			ToLua.Push(L, ret);
+			ToLua.PushSealed(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerHidedTrans on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerHidedTrans on a nil value");
 		}
 	}
 
@@ -138,12 +138,12 @@ public class Ap_Managers_FormManagerWrap
 			o = ToLua.ToObject(L, 1);
 			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
 			System.Collections.Generic.List<Ap.UI.Form> ret = obj.m_FormShowed;
-			ToLua.PushObject(L, ret);
+			ToLua.PushSealed(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormShowed on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index m_FormShowed on a nil value");
 		}
 	}
 
@@ -162,7 +162,7 @@ public class Ap_Managers_FormManagerWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormHided on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index m_FormHided on a nil value");
 		}
 	}
 
@@ -181,7 +181,7 @@ public class Ap_Managers_FormManagerWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index UIRootTrans on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index UIRootTrans on a nil value");
 		}
 	}
 
@@ -200,7 +200,7 @@ public class Ap_Managers_FormManagerWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerShowedTrans on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerShowedTrans on a nil value");
 		}
 	}
 
@@ -213,13 +213,13 @@ public class Ap_Managers_FormManagerWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
-			UnityEngine.RectTransform arg0 = (UnityEngine.RectTransform)ToLua.CheckUnityObject(L, 2, typeof(UnityEngine.RectTransform));
+			UnityEngine.RectTransform arg0 = (UnityEngine.RectTransform)ToLua.CheckObject(L, 2, typeof(UnityEngine.RectTransform));
 			obj.LayerHidedTrans = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerHidedTrans on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerHidedTrans on a nil value");
 		}
 	}
 
@@ -238,7 +238,7 @@ public class Ap_Managers_FormManagerWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormShowed on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index m_FormShowed on a nil value");
 		}
 	}
 
@@ -251,13 +251,13 @@ public class Ap_Managers_FormManagerWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.Managers.FormManager obj = (Ap.Managers.FormManager)o;
-			System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>> arg0 = (System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>)ToLua.CheckObject(L, 2, typeof(System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>));
+			System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>> arg0 = (System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>)ToLua.CheckObject<System.Collections.Generic.Stack<System.Collections.Generic.List<Ap.UI.Form>>>(L, 2);
 			obj.m_FormHided = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index m_FormHided on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index m_FormHided on a nil value");
 		}
 	}
 }

@@ -48,21 +48,21 @@ public class UnityEngine_RenderTextureWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.RenderTextureDescriptor)))
+			if (count == 1 && TypeChecker.CheckTypes<UnityEngine.RenderTextureDescriptor>(L, 1))
 			{
-				UnityEngine.RenderTextureDescriptor arg0 = (UnityEngine.RenderTextureDescriptor)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTextureDescriptor));
+				UnityEngine.RenderTextureDescriptor arg0 = StackTraits<UnityEngine.RenderTextureDescriptor>.To(L, 1);
 				UnityEngine.RenderTexture obj = new UnityEngine.RenderTexture(arg0);
 				ToLua.Push(L, obj);
 				return 1;
 			}
-			else if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.RenderTexture)))
+			else if (count == 1 && TypeChecker.CheckTypes<UnityEngine.RenderTexture>(L, 1))
 			{
-				UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckUnityObject(L, 1, typeof(UnityEngine.RenderTexture));
+				UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.ToObject(L, 1);
 				UnityEngine.RenderTexture obj = new UnityEngine.RenderTexture(arg0);
 				ToLua.Push(L, obj);
 				return 1;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int)))
+			else if (count == 3)
 			{
 				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
 				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
@@ -71,7 +71,7 @@ public class UnityEngine_RenderTextureWrap
 				ToLua.Push(L, obj);
 				return 1;
 			}
-			else if (count == 4 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat)))
+			else if (count == 4)
 			{
 				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
 				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
@@ -81,7 +81,7 @@ public class UnityEngine_RenderTextureWrap
 				ToLua.Push(L, obj);
 				return 1;
 			}
-			else if (count == 5 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat), typeof(UnityEngine.RenderTextureReadWrite)))
+			else if (count == 5)
 			{
 				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
 				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
@@ -97,7 +97,7 @@ public class UnityEngine_RenderTextureWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: UnityEngine.RenderTexture.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -110,72 +110,72 @@ public class UnityEngine_RenderTextureWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.RenderTextureDescriptor)))
+			if (count == 1)
 			{
-				UnityEngine.RenderTextureDescriptor arg0 = (UnityEngine.RenderTextureDescriptor)ToLua.ToObject(L, 1);
+				UnityEngine.RenderTextureDescriptor arg0 = StackTraits<UnityEngine.RenderTextureDescriptor>.Check(L, 1);
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int)))
+			else if (count == 2)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int)))
+			else if (count == 3)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				int arg2 = (int)LuaDLL.lua_tonumber(L, 3);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 3);
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1, arg2);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 4 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat)))
+			else if (count == 4)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				int arg2 = (int)LuaDLL.lua_tonumber(L, 3);
-				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.ToObject(L, 4);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 3);
+				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.CheckObject(L, 4, typeof(UnityEngine.RenderTextureFormat));
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1, arg2, arg3);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 5 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat), typeof(UnityEngine.RenderTextureReadWrite)))
+			else if (count == 5)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				int arg2 = (int)LuaDLL.lua_tonumber(L, 3);
-				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.ToObject(L, 4);
-				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.ToObject(L, 5);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 3);
+				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.CheckObject(L, 4, typeof(UnityEngine.RenderTextureFormat));
+				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.CheckObject(L, 5, typeof(UnityEngine.RenderTextureReadWrite));
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1, arg2, arg3, arg4);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 6 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat), typeof(UnityEngine.RenderTextureReadWrite), typeof(int)))
+			else if (count == 6)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				int arg2 = (int)LuaDLL.lua_tonumber(L, 3);
-				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.ToObject(L, 4);
-				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.ToObject(L, 5);
-				int arg5 = (int)LuaDLL.lua_tonumber(L, 6);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 3);
+				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.CheckObject(L, 4, typeof(UnityEngine.RenderTextureFormat));
+				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.CheckObject(L, 5, typeof(UnityEngine.RenderTextureReadWrite));
+				int arg5 = (int)LuaDLL.luaL_checknumber(L, 6);
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1, arg2, arg3, arg4, arg5);
 				ToLua.Push(L, o);
 				return 1;
 			}
-			else if (count == 7 && TypeChecker.CheckTypes(L, 1, typeof(int), typeof(int), typeof(int), typeof(UnityEngine.RenderTextureFormat), typeof(UnityEngine.RenderTextureReadWrite), typeof(int), typeof(UnityEngine.RenderTextureMemoryless)))
+			else if (count == 7)
 			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				int arg1 = (int)LuaDLL.lua_tonumber(L, 2);
-				int arg2 = (int)LuaDLL.lua_tonumber(L, 3);
-				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.ToObject(L, 4);
-				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.ToObject(L, 5);
-				int arg5 = (int)LuaDLL.lua_tonumber(L, 6);
-				UnityEngine.RenderTextureMemoryless arg6 = (UnityEngine.RenderTextureMemoryless)ToLua.ToObject(L, 7);
+				int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 2);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 3);
+				UnityEngine.RenderTextureFormat arg3 = (UnityEngine.RenderTextureFormat)ToLua.CheckObject(L, 4, typeof(UnityEngine.RenderTextureFormat));
+				UnityEngine.RenderTextureReadWrite arg4 = (UnityEngine.RenderTextureReadWrite)ToLua.CheckObject(L, 5, typeof(UnityEngine.RenderTextureReadWrite));
+				int arg5 = (int)LuaDLL.luaL_checknumber(L, 6);
+				UnityEngine.RenderTextureMemoryless arg6 = (UnityEngine.RenderTextureMemoryless)ToLua.CheckObject(L, 7, typeof(UnityEngine.RenderTextureMemoryless));
 				UnityEngine.RenderTexture o = UnityEngine.RenderTexture.GetTemporary(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
 				ToLua.Push(L, o);
 				return 1;
@@ -185,7 +185,7 @@ public class UnityEngine_RenderTextureWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.RenderTexture.GetTemporary");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -197,11 +197,11 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckUnityObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			UnityEngine.RenderTexture.ReleaseTemporary(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -213,12 +213,12 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			bool o = obj.Create();
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -230,11 +230,11 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			obj.Release();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -246,12 +246,12 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			bool o = obj.IsCreated();
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -264,17 +264,17 @@ public class UnityEngine_RenderTextureWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.RenderTexture)))
+			if (count == 1)
 			{
-				UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.ToObject(L, 1);
+				UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 				obj.DiscardContents();
 				return 0;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(UnityEngine.RenderTexture), typeof(bool), typeof(bool)))
+			else if (count == 3)
 			{
-				UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.ToObject(L, 1);
-				bool arg0 = LuaDLL.lua_toboolean(L, 2);
-				bool arg1 = LuaDLL.lua_toboolean(L, 3);
+				UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
+				bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
 				obj.DiscardContents(arg0, arg1);
 				return 0;
 			}
@@ -283,7 +283,7 @@ public class UnityEngine_RenderTextureWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: UnityEngine.RenderTexture.DiscardContents");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -295,11 +295,11 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			obj.MarkRestoreExpected();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -311,11 +311,11 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			obj.GenerateMips();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -327,12 +327,12 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			System.IntPtr o = obj.GetNativeDepthBufferPtr();
 			LuaDLL.lua_pushlightuserdata(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -344,12 +344,12 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.SetGlobalShaderProperty(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -361,12 +361,12 @@ public class UnityEngine_RenderTextureWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckUnityObject(L, 1, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 1);
 			bool o = UnityEngine.RenderTexture.SupportsStencil(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -384,7 +384,7 @@ public class UnityEngine_RenderTextureWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -405,7 +405,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index width on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index width on a nil value");
 		}
 	}
 
@@ -424,7 +424,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index height on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index height on a nil value");
 		}
 	}
 
@@ -443,7 +443,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index depth on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index depth on a nil value");
 		}
 	}
 
@@ -462,7 +462,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index isPowerOfTwo on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index isPowerOfTwo on a nil value");
 		}
 	}
 
@@ -481,7 +481,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index sRGB on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index sRGB on a nil value");
 		}
 	}
 
@@ -500,7 +500,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index format on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index format on a nil value");
 		}
 	}
 
@@ -519,7 +519,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index useMipMap on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index useMipMap on a nil value");
 		}
 	}
 
@@ -538,7 +538,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index autoGenerateMips on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index autoGenerateMips on a nil value");
 		}
 	}
 
@@ -557,7 +557,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index dimension on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index dimension on a nil value");
 		}
 	}
 
@@ -576,7 +576,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index volumeDepth on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index volumeDepth on a nil value");
 		}
 	}
 
@@ -595,7 +595,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index memorylessMode on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index memorylessMode on a nil value");
 		}
 	}
 
@@ -614,7 +614,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index antiAliasing on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index antiAliasing on a nil value");
 		}
 	}
 
@@ -633,7 +633,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index enableRandomWrite on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index enableRandomWrite on a nil value");
 		}
 	}
 
@@ -652,7 +652,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index colorBuffer on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index colorBuffer on a nil value");
 		}
 	}
 
@@ -671,7 +671,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index depthBuffer on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index depthBuffer on a nil value");
 		}
 	}
 
@@ -683,7 +683,7 @@ public class UnityEngine_RenderTextureWrap
 			ToLua.Push(L, UnityEngine.RenderTexture.active);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -704,7 +704,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index descriptor on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index descriptor on a nil value");
 		}
 	}
 
@@ -723,7 +723,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index width on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index width on a nil value");
 		}
 	}
 
@@ -742,7 +742,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index height on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index height on a nil value");
 		}
 	}
 
@@ -761,7 +761,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index depth on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index depth on a nil value");
 		}
 	}
 
@@ -780,7 +780,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index isPowerOfTwo on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index isPowerOfTwo on a nil value");
 		}
 	}
 
@@ -799,7 +799,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index format on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index format on a nil value");
 		}
 	}
 
@@ -818,7 +818,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index useMipMap on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index useMipMap on a nil value");
 		}
 	}
 
@@ -837,7 +837,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index autoGenerateMips on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index autoGenerateMips on a nil value");
 		}
 	}
 
@@ -856,7 +856,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index dimension on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index dimension on a nil value");
 		}
 	}
 
@@ -875,7 +875,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index volumeDepth on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index volumeDepth on a nil value");
 		}
 	}
 
@@ -894,7 +894,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index memorylessMode on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index memorylessMode on a nil value");
 		}
 	}
 
@@ -913,7 +913,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index antiAliasing on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index antiAliasing on a nil value");
 		}
 	}
 
@@ -932,7 +932,7 @@ public class UnityEngine_RenderTextureWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index enableRandomWrite on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index enableRandomWrite on a nil value");
 		}
 	}
 
@@ -941,11 +941,11 @@ public class UnityEngine_RenderTextureWrap
 	{
 		try
 		{
-			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckUnityObject(L, 2, typeof(UnityEngine.RenderTexture));
+			UnityEngine.RenderTexture arg0 = (UnityEngine.RenderTexture)ToLua.CheckObject<UnityEngine.RenderTexture>(L, 2);
 			UnityEngine.RenderTexture.active = arg0;
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -960,13 +960,13 @@ public class UnityEngine_RenderTextureWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			UnityEngine.RenderTexture obj = (UnityEngine.RenderTexture)o;
-			UnityEngine.RenderTextureDescriptor arg0 = (UnityEngine.RenderTextureDescriptor)ToLua.CheckObject(L, 2, typeof(UnityEngine.RenderTextureDescriptor));
+			UnityEngine.RenderTextureDescriptor arg0 = StackTraits<UnityEngine.RenderTextureDescriptor>.Check(L, 2);
 			obj.descriptor = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index descriptor on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index descriptor on a nil value");
 		}
 	}
 }

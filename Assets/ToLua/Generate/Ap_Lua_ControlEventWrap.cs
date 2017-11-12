@@ -31,7 +31,7 @@ public class Ap_Lua_ControlEventWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Lua.ControlEvent.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -47,12 +47,12 @@ public class Ap_Lua_ControlEventWrap
 			o = ToLua.ToObject(L, 1);
 			Ap.Lua.ControlEvent obj = (Ap.Lua.ControlEvent)o;
 			LuaInterface.LuaFunction ret = obj.Fun;
-			ToLua.Push(L, ret);
+			ToLua.PushObject(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Fun on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Fun on a nil value");
 		}
 	}
 
@@ -71,7 +71,7 @@ public class Ap_Lua_ControlEventWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Fun on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Fun on a nil value");
 		}
 	}
 }

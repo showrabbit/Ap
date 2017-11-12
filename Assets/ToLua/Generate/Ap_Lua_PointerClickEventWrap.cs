@@ -23,7 +23,7 @@ public class Ap_Lua_PointerClickEventWrap
 
 			if (count == 1)
 			{
-				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.CheckUnityObject(L, 1, typeof(Ap.UI.ButtonEx));
+				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.CheckObject<Ap.UI.ButtonEx>(L, 1);
 				Ap.Lua.PointerClickEvent obj = new Ap.Lua.PointerClickEvent(arg0);
 				ToLua.PushObject(L, obj);
 				return 1;
@@ -33,7 +33,7 @@ public class Ap_Lua_PointerClickEventWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Lua.PointerClickEvent.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -46,17 +46,17 @@ public class Ap_Lua_PointerClickEventWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 1 && TypeChecker.CheckTypes(L, 1, typeof(Ap.UI.ButtonEx)))
+			if (count == 1)
 			{
-				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.ToObject(L, 1);
+				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.CheckObject<Ap.UI.ButtonEx>(L, 1);
 				Ap.Lua.PointerClickEvent o = Ap.Lua.PointerClickEvent.Create(arg0);
 				ToLua.PushObject(L, o);
 				return 1;
 			}
-			else if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(Ap.UI.ButtonEx), typeof(LuaInterface.LuaFunction)))
+			else if (count == 2)
 			{
-				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.ToObject(L, 1);
-				LuaFunction arg1 = ToLua.ToLuaFunction(L, 2);
+				Ap.UI.ButtonEx arg0 = (Ap.UI.ButtonEx)ToLua.CheckObject<Ap.UI.ButtonEx>(L, 1);
+				LuaFunction arg1 = ToLua.CheckLuaFunction(L, 2);
 				Ap.Lua.PointerClickEvent o = Ap.Lua.PointerClickEvent.Create(arg0, arg1);
 				ToLua.PushObject(L, o);
 				return 1;
@@ -66,7 +66,7 @@ public class Ap_Lua_PointerClickEventWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: Ap.Lua.PointerClickEvent.Create");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -82,12 +82,12 @@ public class Ap_Lua_PointerClickEventWrap
 			o = ToLua.ToObject(L, 1);
 			Ap.Lua.PointerClickEvent obj = (Ap.Lua.PointerClickEvent)o;
 			LuaInterface.LuaFunction ret = obj.Fun;
-			ToLua.Push(L, ret);
+			ToLua.PushObject(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Fun on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Fun on a nil value");
 		}
 	}
 
@@ -106,7 +106,7 @@ public class Ap_Lua_PointerClickEventWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Fun on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Fun on a nil value");
 		}
 	}
 }

@@ -25,7 +25,7 @@ public class Ap_Managers_ManagerBase_Ap_Managers_FormManagerWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -39,7 +39,7 @@ public class Ap_Managers_ManagerBase_Ap_Managers_FormManagerWrap
 			ToLua.Push(L, Ap.Managers.ManagerBase<Ap.Managers.FormManager>.Instance);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

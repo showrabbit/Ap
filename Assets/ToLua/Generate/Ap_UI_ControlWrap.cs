@@ -28,12 +28,12 @@ public class Ap_UI_ControlWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.UI.Control obj = (Ap.UI.Control)ToLua.CheckObject(L, 1, typeof(Ap.UI.Control));
+			Ap.UI.Control obj = (Ap.UI.Control)ToLua.CheckObject<Ap.UI.Control>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.LoadPerfab(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -45,12 +45,12 @@ public class Ap_UI_ControlWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.UI.Control obj = (Ap.UI.Control)ToLua.CheckObject(L, 1, typeof(Ap.UI.Control));
+			Ap.UI.Control obj = (Ap.UI.Control)ToLua.CheckObject<Ap.UI.Control>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			obj.LoadSprite(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -68,7 +68,7 @@ public class Ap_UI_ControlWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -89,7 +89,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LoadAssetStart on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LoadAssetStart on a nil value");
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LoadAssetEnd on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LoadAssetEnd on a nil value");
 		}
 	}
 
@@ -127,7 +127,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Controls on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Controls on a nil value");
 		}
 	}
 
@@ -146,7 +146,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index CtrTag on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index CtrTag on a nil value");
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ID on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ID on a nil value");
 		}
 	}
 
@@ -184,7 +184,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Visible on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Visible on a nil value");
 		}
 	}
 
@@ -197,25 +197,13 @@ public class Ap_UI_ControlWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Control obj = (Ap.UI.Control)o;
-			Ap.UI.Control.LoadAssetStartHandle arg0 = null;
-			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
-
-			if (funcType2 != LuaTypes.LUA_TFUNCTION)
-			{
-				 arg0 = (Ap.UI.Control.LoadAssetStartHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Control.LoadAssetStartHandle));
-			}
-			else
-			{
-				LuaFunction func = ToLua.ToLuaFunction(L, 2);
-				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetStartHandle), func) as Ap.UI.Control.LoadAssetStartHandle;
-			}
-
+			Ap.UI.Control.LoadAssetStartHandle arg0 = (Ap.UI.Control.LoadAssetStartHandle)ToLua.CheckDelegate<Ap.UI.Control.LoadAssetStartHandle>(L, 2);
 			obj.LoadAssetStart = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LoadAssetStart on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LoadAssetStart on a nil value");
 		}
 	}
 
@@ -228,25 +216,13 @@ public class Ap_UI_ControlWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Control obj = (Ap.UI.Control)o;
-			Ap.UI.Control.LoadAssetEndHandle arg0 = null;
-			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
-
-			if (funcType2 != LuaTypes.LUA_TFUNCTION)
-			{
-				 arg0 = (Ap.UI.Control.LoadAssetEndHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Control.LoadAssetEndHandle));
-			}
-			else
-			{
-				LuaFunction func = ToLua.ToLuaFunction(L, 2);
-				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetEndHandle), func) as Ap.UI.Control.LoadAssetEndHandle;
-			}
-
+			Ap.UI.Control.LoadAssetEndHandle arg0 = (Ap.UI.Control.LoadAssetEndHandle)ToLua.CheckDelegate<Ap.UI.Control.LoadAssetEndHandle>(L, 2);
 			obj.LoadAssetEnd = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LoadAssetEnd on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LoadAssetEnd on a nil value");
 		}
 	}
 
@@ -265,7 +241,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Controls on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Controls on a nil value");
 		}
 	}
 
@@ -284,7 +260,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index CtrTag on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index CtrTag on a nil value");
 		}
 	}
 
@@ -303,7 +279,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ID on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ID on a nil value");
 		}
 	}
 
@@ -322,7 +298,7 @@ public class Ap_UI_ControlWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Visible on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Visible on a nil value");
 		}
 	}
 
@@ -336,13 +312,13 @@ public class Ap_UI_ControlWrap
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetEndHandle), func);
+				Delegate arg1 = DelegateTraits<Ap.UI.Control.LoadAssetEndHandle>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetEndHandle), func, self);
+				Delegate arg1 = DelegateTraits<Ap.UI.Control.LoadAssetEndHandle>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;
@@ -363,13 +339,13 @@ public class Ap_UI_ControlWrap
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetStartHandle), func);
+				Delegate arg1 = DelegateTraits<Ap.UI.Control.LoadAssetStartHandle>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Control.LoadAssetStartHandle), func, self);
+				Delegate arg1 = DelegateTraits<Ap.UI.Control.LoadAssetStartHandle>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

@@ -11,6 +11,7 @@ MainFormCtr = class(FormCtr)
 
 -- 加载
 function MainFormCtr:OnLoad()
+    print(11);
     -- 绑定事件
     Ap.Lua.PointerClickEvent.Create(self.m_View.btnStart, function(sender)
         self:btnStart_OnClick(sender);

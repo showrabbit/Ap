@@ -41,7 +41,7 @@ public class Ap_Managers_ManagerManagersWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Managers.ManagerManagers.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -53,11 +53,11 @@ public class Ap_Managers_ManagerManagersWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject(L, 1, typeof(Ap.Managers.ManagerManagers));
+			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject<Ap.Managers.ManagerManagers>(L, 1);
 			obj.Clear();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -69,12 +69,12 @@ public class Ap_Managers_ManagerManagersWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject(L, 1, typeof(Ap.Managers.ManagerManagers));
+			Ap.Managers.ManagerManagers obj = (Ap.Managers.ManagerManagers)ToLua.CheckObject<Ap.Managers.ManagerManagers>(L, 1);
 			System.Collections.IEnumerator o = obj.ExecFirstInit();
 			ToLua.Push(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -88,7 +88,7 @@ public class Ap_Managers_ManagerManagersWrap
 			LuaDLL.lua_pushstring(L, Ap.Managers.ManagerManagers.MANAGERS_LOG);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -109,7 +109,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index A on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index A on a nil value");
 		}
 	}
 
@@ -128,7 +128,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index E on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index E on a nil value");
 		}
 	}
 
@@ -147,7 +147,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index F on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index F on a nil value");
 		}
 	}
 
@@ -166,7 +166,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index G on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index G on a nil value");
 		}
 	}
 
@@ -185,7 +185,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index L on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index L on a nil value");
 		}
 	}
 
@@ -204,7 +204,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index N on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index N on a nil value");
 		}
 	}
 
@@ -223,7 +223,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index O on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index O on a nil value");
 		}
 	}
 
@@ -242,7 +242,7 @@ public class Ap_Managers_ManagerManagersWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFirstInited on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index IsFirstInited on a nil value");
 		}
 	}
 
@@ -255,7 +255,7 @@ public class Ap_Managers_ManagerManagersWrap
 			Ap.Managers.ManagerManagers.MANAGERS_LOG = arg0;
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

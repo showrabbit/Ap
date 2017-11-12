@@ -19,11 +19,11 @@ public class Ap_Base_SingletonBase_Ap_Base_ContextWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Base.SingletonBase<Ap.Base.Context> obj = (Ap.Base.SingletonBase<Ap.Base.Context>)ToLua.CheckObject(L, 1, typeof(Ap.Base.SingletonBase<Ap.Base.Context>));
+			Ap.Base.SingletonBase<Ap.Base.Context> obj = (Ap.Base.SingletonBase<Ap.Base.Context>)ToLua.CheckObject<Ap.Base.SingletonBase<Ap.Base.Context>>(L, 1);
 			obj.Clear();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -37,7 +37,7 @@ public class Ap_Base_SingletonBase_Ap_Base_ContextWrap
 			ToLua.PushObject(L, Ap.Base.SingletonBase<Ap.Base.Context>.Instance);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

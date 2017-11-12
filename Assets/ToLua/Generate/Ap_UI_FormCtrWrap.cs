@@ -19,12 +19,12 @@ public class Ap_UI_FormCtrWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.UI.FormCtr obj = (Ap.UI.FormCtr)ToLua.CheckObject(L, 1, typeof(Ap.UI.FormCtr));
-			Ap.Base.IView arg0 = (Ap.Base.IView)ToLua.CheckObject(L, 2, typeof(Ap.Base.IView));
+			Ap.UI.FormCtr obj = (Ap.UI.FormCtr)ToLua.CheckObject<Ap.UI.FormCtr>(L, 1);
+			Ap.Base.IView arg0 = (Ap.Base.IView)ToLua.CheckObject<Ap.Base.IView>(L, 2);
 			obj.BindView(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -42,7 +42,7 @@ public class Ap_UI_FormCtrWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

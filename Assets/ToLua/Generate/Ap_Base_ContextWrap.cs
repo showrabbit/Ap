@@ -33,7 +33,7 @@ public class Ap_Base_ContextWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Base.Context.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -45,11 +45,11 @@ public class Ap_Base_ContextWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Base.Context obj = (Ap.Base.Context)ToLua.CheckObject(L, 1, typeof(Ap.Base.Context));
+			Ap.Base.Context obj = (Ap.Base.Context)ToLua.CheckObject<Ap.Base.Context>(L, 1);
 			obj.Clear();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -70,7 +70,7 @@ public class Ap_Base_ContextWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ServerIp on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ServerIp on a nil value");
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Ap_Base_ContextWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ServerPort on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ServerPort on a nil value");
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Ap_Base_ContextWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ServerIp on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ServerIp on a nil value");
 		}
 	}
 
@@ -127,7 +127,7 @@ public class Ap_Base_ContextWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ServerPort on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ServerPort on a nil value");
 		}
 	}
 }

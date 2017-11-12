@@ -58,7 +58,8 @@ namespace Ap.Managers
                 while (m_Events.Count > 0)
                 {
                     KeyValuePair<int, ByteBuffer> e = m_Events.Dequeue();
-                    OnReceivedMessage?.Invoke(e.Key, e.Value);
+                    if (OnReceivedMessage != null)
+                        OnReceivedMessage.Invoke(e.Key, e.Value);
                     LuaManager.Instance.CallFunction("NetworkManager.OnMessage", e.Key, e.Value);
                 }
             }
@@ -86,7 +87,8 @@ namespace Ap.Managers
         /// <param name="data"></param>
         protected void OnConnect(int protocal, ByteBuffer data)
         {
-            OnReceivedMessage?.Invoke(protocal, data);
+            if (OnReceivedMessage != null)
+                OnReceivedMessage.Invoke(protocal, data);
             LuaManager.Instance.CallFunction("NetworkManager.OnConnect", protocal, data);
         }
         /// <summary>
@@ -96,7 +98,8 @@ namespace Ap.Managers
         /// <param name="data"></param>
         protected void OnDisconnected(int protocal, ByteBuffer data)
         {
-            OnReceivedMessage?.Invoke(protocal, data);
+            if (OnReceivedMessage != null)
+                OnReceivedMessage.Invoke(protocal, data);
             LuaManager.Instance.CallFunction("NetworkManager.OnDisconnect", protocal, data);
         }
         /// <summary>

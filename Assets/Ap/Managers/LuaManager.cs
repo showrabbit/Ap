@@ -66,20 +66,64 @@ namespace Ap.Managers
             this.OpenCJson();
         }
 
-        public object[] DoFile(string filename)
+        public void DoFile(string filename)
         {
-            return m_Lua.DoFile(filename);
+            m_Lua.DoFile(filename);
         }
 
         // Update is called once per frame
-        public object[] CallFunction(string funcName, params object[] args)
+        public void CallFunction(string funcName, params object[] args)
         {
             LuaFunction func = m_Lua.GetFunction(funcName);
             if (func != null)
             {
-                return func.Call(args);
+                if (args == null || args.Length == 0)
+                {
+                    func.Call();
+                }
+                else
+                {
+                    if (args.Length == 1)
+                    {
+                        func.Call(args[0]);
+                    }
+                    else if (args.Length == 2)
+                    {
+                        func.Call(args[0], args[1]);
+                    }
+                    else if (args.Length == 3)
+                    {
+                        func.Call(args[0], args[1], args[2]);
+                    }
+                    else if (args.Length == 4)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3]);
+                    }
+                    else if (args.Length == 5)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3], args[4]);
+                    }
+                    else if (args.Length == 6)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3], args[4], args[5]);
+                    }
+                    else if (args.Length == 7)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                    }
+                    else if (args.Length == 8)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]);
+                    }
+                    else if (args.Length == 9)
+                    {
+                        func.Call(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]);
+                    }
+                    else
+                        func.Call<object[]>(args);
+                }
             }
-            return null;
+            return;
         }
 
         public void LuaGC()

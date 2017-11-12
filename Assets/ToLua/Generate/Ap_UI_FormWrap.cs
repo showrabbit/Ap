@@ -32,11 +32,11 @@ public class Ap_UI_FormWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject(L, 1, typeof(Ap.UI.Form));
+			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject<Ap.UI.Form>(L, 1);
 			obj.Start();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -48,11 +48,11 @@ public class Ap_UI_FormWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject(L, 1, typeof(Ap.UI.Form));
+			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject<Ap.UI.Form>(L, 1);
 			obj.OnLoad();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -64,11 +64,11 @@ public class Ap_UI_FormWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject(L, 1, typeof(Ap.UI.Form));
+			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject<Ap.UI.Form>(L, 1);
 			obj.OnClose();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -80,13 +80,13 @@ public class Ap_UI_FormWrap
 		try
 		{
 			int count = LuaDLL.lua_gettop(L);
-			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject(L, 1, typeof(Ap.UI.Form));
+			Ap.UI.Form obj = (Ap.UI.Form)ToLua.CheckObject<Ap.UI.Form>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			object[] arg1 = ToLua.ToParamsObject(L, 3, count - 2);
 			obj.Changed(arg0, arg1);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -104,7 +104,7 @@ public class Ap_UI_FormWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -125,7 +125,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerIndex on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerIndex on a nil value");
 		}
 	}
 
@@ -144,7 +144,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Load on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Load on a nil value");
 		}
 	}
 
@@ -163,7 +163,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Close on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Close on a nil value");
 		}
 	}
 
@@ -182,7 +182,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index FocusChanged on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index FocusChanged on a nil value");
 		}
 	}
 
@@ -201,7 +201,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index IsFull on a nil value");
 		}
 	}
 
@@ -220,7 +220,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Visible on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Visible on a nil value");
 		}
 	}
 
@@ -239,7 +239,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Focus on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Focus on a nil value");
 		}
 	}
 
@@ -258,7 +258,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index LayerIndex on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index LayerIndex on a nil value");
 		}
 	}
 
@@ -271,25 +271,13 @@ public class Ap_UI_FormWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Form obj = (Ap.UI.Form)o;
-			Ap.UI.Form.LoadHandle arg0 = null;
-			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
-
-			if (funcType2 != LuaTypes.LUA_TFUNCTION)
-			{
-				 arg0 = (Ap.UI.Form.LoadHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Form.LoadHandle));
-			}
-			else
-			{
-				LuaFunction func = ToLua.ToLuaFunction(L, 2);
-				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.LoadHandle), func) as Ap.UI.Form.LoadHandle;
-			}
-
+			Ap.UI.Form.LoadHandle arg0 = (Ap.UI.Form.LoadHandle)ToLua.CheckDelegate<Ap.UI.Form.LoadHandle>(L, 2);
 			obj.Load = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Load on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Load on a nil value");
 		}
 	}
 
@@ -302,25 +290,13 @@ public class Ap_UI_FormWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Form obj = (Ap.UI.Form)o;
-			Ap.UI.Form.CloseHandle arg0 = null;
-			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
-
-			if (funcType2 != LuaTypes.LUA_TFUNCTION)
-			{
-				 arg0 = (Ap.UI.Form.CloseHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Form.CloseHandle));
-			}
-			else
-			{
-				LuaFunction func = ToLua.ToLuaFunction(L, 2);
-				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.CloseHandle), func) as Ap.UI.Form.CloseHandle;
-			}
-
+			Ap.UI.Form.CloseHandle arg0 = (Ap.UI.Form.CloseHandle)ToLua.CheckDelegate<Ap.UI.Form.CloseHandle>(L, 2);
 			obj.Close = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Close on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Close on a nil value");
 		}
 	}
 
@@ -333,25 +309,13 @@ public class Ap_UI_FormWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			Ap.UI.Form obj = (Ap.UI.Form)o;
-			Ap.UI.Form.FocusChangedHandle arg0 = null;
-			LuaTypes funcType2 = LuaDLL.lua_type(L, 2);
-
-			if (funcType2 != LuaTypes.LUA_TFUNCTION)
-			{
-				 arg0 = (Ap.UI.Form.FocusChangedHandle)ToLua.CheckObject(L, 2, typeof(Ap.UI.Form.FocusChangedHandle));
-			}
-			else
-			{
-				LuaFunction func = ToLua.ToLuaFunction(L, 2);
-				arg0 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func) as Ap.UI.Form.FocusChangedHandle;
-			}
-
+			Ap.UI.Form.FocusChangedHandle arg0 = (Ap.UI.Form.FocusChangedHandle)ToLua.CheckDelegate<Ap.UI.Form.FocusChangedHandle>(L, 2);
 			obj.FocusChanged = arg0;
 			return 0;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index FocusChanged on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index FocusChanged on a nil value");
 		}
 	}
 
@@ -370,7 +334,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index IsFull on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index IsFull on a nil value");
 		}
 	}
 
@@ -389,7 +353,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Visible on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Visible on a nil value");
 		}
 	}
 
@@ -408,7 +372,7 @@ public class Ap_UI_FormWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index Focus on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Focus on a nil value");
 		}
 	}
 
@@ -422,13 +386,13 @@ public class Ap_UI_FormWrap
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.FocusChangedHandle>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.FocusChangedHandle), func, self);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.FocusChangedHandle>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;
@@ -449,13 +413,13 @@ public class Ap_UI_FormWrap
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.CloseHandle), func);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.CloseHandle>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.CloseHandle), func, self);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.CloseHandle>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;
@@ -476,13 +440,13 @@ public class Ap_UI_FormWrap
 
 			if (count == 1)
 			{
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.LoadHandle), func);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.LoadHandle>.Create(func);
 				ToLua.Push(L, arg1);
 			}
 			else
 			{
 				LuaTable self = ToLua.CheckLuaTable(L, 2);
-				Delegate arg1 = DelegateFactory.CreateDelegate(typeof(Ap.UI.Form.LoadHandle), func, self);
+				Delegate arg1 = DelegateTraits<Ap.UI.Form.LoadHandle>.Create(func, self);
 				ToLua.Push(L, arg1);
 			}
 			return 1;

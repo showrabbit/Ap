@@ -50,8 +50,10 @@ end
 
 -- 界面加载
 function FormManager.FormLoad(id, viewObj)
+    --print("FormLoad"..tostring(id));
     local form = self.m_Forms[id];
     if form ~= nil then
+        --print("FormLoad"..tostring(id));
         form:OnLoad(viewObj);
 
         -- lua ctr对象初始化

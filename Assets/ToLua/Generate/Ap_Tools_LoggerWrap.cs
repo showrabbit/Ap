@@ -32,7 +32,7 @@ public class Ap_Tools_LoggerWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Tools.Logger.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -44,11 +44,11 @@ public class Ap_Tools_LoggerWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 1);
-			Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.CheckObject(L, 1, typeof(Ap.Tools.Logger));
+			Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.CheckObject<Ap.Tools.Logger>(L, 1);
 			obj.Clear();
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -61,24 +61,24 @@ public class Ap_Tools_LoggerWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 2 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(string)))
+			if (count == 2)
 			{
-				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
-				string arg0 = ToLua.ToString(L, 2);
+				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.CheckObject<Ap.Tools.Logger>(L, 1);
+				string arg0 = ToLua.CheckString(L, 2);
 				obj.Write(arg0);
 				return 0;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(Ap.Tools.LogLevel), typeof(string)))
+			else if (count == 3 && TypeChecker.CheckTypes<Ap.Tools.LogLevel, string>(L, 2))
 			{
-				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
+				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.CheckObject<Ap.Tools.Logger>(L, 1);
 				Ap.Tools.LogLevel arg0 = (Ap.Tools.LogLevel)ToLua.ToObject(L, 2);
 				string arg1 = ToLua.ToString(L, 3);
 				obj.Write(arg0, arg1);
 				return 0;
 			}
-			else if (count == 3 && TypeChecker.CheckTypes(L, 1, typeof(Ap.Tools.Logger), typeof(int), typeof(string)))
+			else if (count == 3 && TypeChecker.CheckTypes<int, string>(L, 2))
 			{
-				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.ToObject(L, 1);
+				Ap.Tools.Logger obj = (Ap.Tools.Logger)ToLua.CheckObject<Ap.Tools.Logger>(L, 1);
 				int arg0 = (int)LuaDLL.lua_tonumber(L, 2);
 				string arg1 = ToLua.ToString(L, 3);
 				obj.Write(arg0, arg1);
@@ -89,7 +89,7 @@ public class Ap_Tools_LoggerWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: Ap.Tools.Logger.Write");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}

@@ -21,12 +21,12 @@ public class Ap_UI_ButtonExWrap
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
-			Ap.UI.ButtonEx obj = (Ap.UI.ButtonEx)ToLua.CheckObject(L, 1, typeof(Ap.UI.ButtonEx));
-			UnityEngine.EventSystems.PointerEventData arg0 = (UnityEngine.EventSystems.PointerEventData)ToLua.CheckObject(L, 2, typeof(UnityEngine.EventSystems.PointerEventData));
+			Ap.UI.ButtonEx obj = (Ap.UI.ButtonEx)ToLua.CheckObject<Ap.UI.ButtonEx>(L, 1);
+			UnityEngine.EventSystems.PointerEventData arg0 = (UnityEngine.EventSystems.PointerEventData)ToLua.CheckObject<UnityEngine.EventSystems.PointerEventData>(L, 2);
 			obj.OnPointerClick(arg0);
 			return 0;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -44,7 +44,7 @@ public class Ap_UI_ButtonExWrap
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -65,7 +65,7 @@ public class Ap_UI_ButtonExWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index CtrTag on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index CtrTag on a nil value");
 		}
 	}
 
@@ -84,7 +84,7 @@ public class Ap_UI_ButtonExWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ID on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ID on a nil value");
 		}
 	}
 
@@ -103,7 +103,7 @@ public class Ap_UI_ButtonExWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index CtrTag on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index CtrTag on a nil value");
 		}
 	}
 
@@ -122,7 +122,7 @@ public class Ap_UI_ButtonExWrap
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o == null ? "attempt to index ID on a nil value" : e.Message);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index ID on a nil value");
 		}
 	}
 }

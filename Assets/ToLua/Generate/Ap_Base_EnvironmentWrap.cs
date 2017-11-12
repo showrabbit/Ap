@@ -41,7 +41,7 @@ public class Ap_Base_EnvironmentWrap
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: Ap.Base.Environment.New");
 			}
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -57,7 +57,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, o);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -71,7 +71,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.AssetBundlesOutputPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -85,7 +85,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.DataPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -99,7 +99,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.CachePath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -113,7 +113,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.AssetBundleUpdatePath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -127,7 +127,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.AssetBundlePath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -141,7 +141,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.LuaPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -155,7 +155,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.LogPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -169,7 +169,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.TempPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -183,7 +183,7 @@ public class Ap_Base_EnvironmentWrap
 			LuaDLL.lua_pushstring(L, Ap.Base.Environment.FrameworkPath);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
@@ -197,7 +197,7 @@ public class Ap_Base_EnvironmentWrap
 			ToLua.Push(L, Ap.Base.Environment.Platform);
 			return 1;
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
 		}
