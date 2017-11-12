@@ -11,14 +11,14 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
-    <UnityVersion>5.5.2f1</UnityVersion>
+    <UnityVersion>2017.1.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -27,8 +27,8 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_2;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_ANDROID;ENABLE_SUBSTANCE;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VIDEO;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_HAS_GOOGLEVR</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,18 +37,19 @@
     <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_2;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_ANDROID;ENABLE_SUBSTANCE;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VIDEO;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;ENABLE_VSTU</DefineConstants>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;PLATFORM_SUPPORTS_ADS_ID;UNITY_CAN_SHOW_SPLASH_SCREEN;ENABLE_VR;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;UNITY_HAS_GOOGLEVR</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.XML" />
     <Reference Include="System.Core" />
-    <Reference Include="Boo.Lang" />
-    <Reference Include="UnityScript.Lang" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
@@ -58,8 +59,14 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.PlaymodeTestsRunner">
-      <HintPath>Library\UnityAssemblies\UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
@@ -67,17 +74,14 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.VR">
-      <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
-    </Reference>
     <Reference Include="Debugger">
       <HintPath>Assets\Plugins\Debugger.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>Assets\Plugins\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>Assets\Plugins\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System.Data">
       <HintPath>Assets\Plugins\System.Data.dll</HintPath>
@@ -91,6 +95,7 @@
     <Compile Include="Assets\Ap\Base\AssetLoader.cs" />
     <Compile Include="Assets\Ap\Base\ColliderTrigger.cs" />
     <Compile Include="Assets\Ap\Base\CompressBase.cs" />
+    <Compile Include="Assets\Ap\Base\Context.cs" />
     <Compile Include="Assets\Ap\Base\DiceType.cs" />
     <Compile Include="Assets\Ap\Base\DictItem.cs" />
     <Compile Include="Assets\Ap\Base\Environment.cs" />
@@ -100,12 +105,11 @@
     <Compile Include="Assets\Ap\Base\IController.cs" />
     <Compile Include="Assets\Ap\Base\IEventTrigge.cs" />
     <Compile Include="Assets\Ap\Base\IView.cs" />
-    <Compile Include="Assets\Ap\Base\LZMACompress.cs" />
     <Compile Include="Assets\Ap\Base\LoadedAssetBundle.cs" />
+    <Compile Include="Assets\Ap\Base\LZMACompress.cs" />
     <Compile Include="Assets\Ap\Base\MonoBehaviourEx.cs" />
     <Compile Include="Assets\Ap\Base\ResTypeEnum.cs" />
     <Compile Include="Assets\Ap\Base\SingletonBase.cs" />
-    <Compile Include="Assets\Ap\Context.cs" />
     <Compile Include="Assets\Ap\Data\DbHelper.cs" />
     <Compile Include="Assets\Ap\Lua\Behaviour.cs" />
     <Compile Include="Assets\Ap\Lua\ControlEvent.cs" />
@@ -131,8 +135,8 @@
     <Compile Include="Assets\Ap\ObjectPool\Pool.cs" />
     <Compile Include="Assets\Ap\SDK\AndroidSdk.cs" />
     <Compile Include="Assets\Ap\SDK\IosSdk.cs" />
-    <Compile Include="Assets\Ap\SDK\SDKEventArgs.cs" />
     <Compile Include="Assets\Ap\SDK\SdkBase.cs" />
+    <Compile Include="Assets\Ap\SDK\SDKEventArgs.cs" />
     <Compile Include="Assets\Ap\Tools\Bezier.cs" />
     <Compile Include="Assets\Ap\Tools\DirectoryHelper.cs" />
     <Compile Include="Assets\Ap\Tools\FileHelper.cs" />
@@ -153,12 +157,16 @@
     <Compile Include="Assets\Ap\UI\VerticalLayoutGroupEx.cs" />
     <Compile Include="Assets\Scripts\CS\Common\AutoUpdateLog.cs" />
     <Compile Include="Assets\Scripts\CS\Common\EventTypes.cs" />
+    <Compile Include="Assets\Scripts\CS\Common\ProtocolHelper.cs" />
     <Compile Include="Assets\Scripts\CS\Controller\AutoUpdateCtr.cs" />
+    <Compile Include="Assets\Scripts\CS\Controller\ProtocolCtr.cs" />
     <Compile Include="Assets\Scripts\CS\Data\Config.cs" />
+    <Compile Include="Assets\Scripts\CS\Data\ProtocolParser.cs" />
+    <Compile Include="Assets\Scripts\CS\Model\Protocol.cs" />
     <Compile Include="Assets\Scripts\CS\StartUp.cs" />
     <Compile Include="Assets\Scripts\CS\View\AutoUpdate.cs" />
-    <Compile Include="Assets\Thirdparty\7zip\Common\CRC.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Common\CommandLineParser.cs" />
+    <Compile Include="Assets\Thirdparty\7zip\Common\CRC.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Common\InBuffer.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Common\OutBuffer.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\LZ\IMatchFinder.cs" />
@@ -172,7 +180,6 @@
     <Compile Include="Assets\Thirdparty\7zip\Compress\LzmaAlone\LzmaBench.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\LzmaAlone\Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\LzmaAlone\Properties\Resources.cs" />
-    <Compile Include="Assets\Thirdparty\7zip\Compress\LzmaAlone\Properties\Settings.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\RangeCoder\RangeCoder.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\RangeCoder\RangeCoderBit.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Compress\RangeCoder\RangeCoderBitTree.cs" />
@@ -184,9 +191,9 @@
     <Compile Include="Assets\ToLua\BaseType\LuaInterface_LuaOutWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\LuaInterface_LuaPropertyWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_ArrayWrap.cs" />
-    <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_DictionaryWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_Dictionary_KeyCollectionWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_Dictionary_ValueCollectionWrap.cs" />
+    <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_DictionaryWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_KeyValuePairWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_Collections_Generic_ListWrap.cs" />
     <Compile Include="Assets\ToLua\BaseType\System_Collections_IEnumeratorWrap.cs" />
@@ -220,16 +227,18 @@
     <Compile Include="Assets\ToLua\Core\ToLua.cs" />
     <Compile Include="Assets\ToLua\Core\TypeChecker.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Base_AssetLoaderWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\Ap_Base_ContextWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\Ap_Base_EnvironmentWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Base_MonoBehaviourExWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\Ap_Base_SingletonBase_Ap_Base_ContextWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Base_SingletonBase_Ap_Managers_ManagerManagersWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Base_SingletonBase_Ap_Tools_LoggerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Lua_ControlEventWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\Ap_Lua_LuaControlEventWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\Ap_Lua_LuaPointerClickEventWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Lua_PointerClickEventWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Managers_FormManagerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Managers_ManagerBase_Ap_Managers_FormManagerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Managers_ManagerManagersWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\Ap_Net_ByteBufferWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_Tools_LoggerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_UI_ButtonExWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\Ap_UI_ControlWrap.cs" />
@@ -257,13 +266,14 @@
     <Compile Include="Assets\ToLua\Generate\UnityEngine_CharacterControllerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ColliderWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ComponentWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\UnityEngine_CustomYieldInstructionWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_EventSystems_UIBehaviourWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\UnityEngine_Experimental_Director_DirectorPlayerWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_GameObjectWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_InputWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_KeyCodeWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_LightTypeWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_LightWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\UnityEngine_LineRendererWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_MaterialWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_MeshColliderWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_MeshRendererWrap.cs" />
@@ -272,14 +282,12 @@
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ParticleEmitterWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ParticleRendererWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ParticleSystemWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\UnityEngine_PhysicsWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_PlayModeWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_QualitySettingsWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_QueueModeWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\UnityEngine_RendererWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_RenderSettingsWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_RenderTextureWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\UnityEngine_RendererWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\UnityEngine_RigidbodyWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ScreenWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_ShaderWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_SkinnedMeshRendererWrap.cs" />
@@ -290,11 +298,12 @@
     <Compile Include="Assets\ToLua\Generate\UnityEngine_TextureWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_TimeWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_TrackedReferenceWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\UnityEngine_TrailRendererWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_TransformWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_UI_ButtonWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_UI_SelectableWrap.cs" />
-    <Compile Include="Assets\ToLua\Generate\UnityEngine_WWWWrap.cs" />
     <Compile Include="Assets\ToLua\Generate\UnityEngine_WrapModeWrap.cs" />
+    <Compile Include="Assets\ToLua\Generate\UnityEngine_WWWWrap.cs" />
     <Compile Include="Assets\ToLua\LuaConst.cs" />
     <Compile Include="Assets\ToLua\Misc\LuaClient.cs" />
     <Compile Include="Assets\ToLua\Misc\LuaCoroutine.cs" />
@@ -316,6 +325,7 @@
     <None Include="Assets\Resources\Data\UpdateFiles.txt" />
     <None Include="Assets\Sences\Info.txt" />
     <None Include="Assets\Shaders\Info.txt" />
+    <None Include="Assets\Shaders\Test.shader" />
     <None Include="Assets\Sounds\Info.txt" />
     <None Include="Assets\ToLua\readme.txt" />
   </ItemGroup>

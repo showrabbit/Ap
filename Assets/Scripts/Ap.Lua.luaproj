@@ -58,9 +58,7 @@
     <Content Include="Lua\3rd\luabitop\msvcbuild.bat" />
     <Content Include="Lua\3rd\luabitop\msvctest.bat" />
     <Content Include="Lua\3rd\luabitop\README" />
-    <Content Include="Lua\3rd\pbc\addressbook.pb" />
     <Content Include="Lua\3rd\pbc\addressbook.proto" />
-    <Content Include="Lua\3rd\pblua\login.proto" />
     <Content Include="Lua\Model\protocol.pb" />
   </ItemGroup>
   <ItemGroup>

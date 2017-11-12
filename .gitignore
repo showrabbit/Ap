@@ -8,6 +8,7 @@ ehthumbs.db
 [Bb]uild/
 [Aa]ssetBundles/
 [Pp]layers/
+[Pp]rojectSettings/
 Assets/StreamingAssets/Scripts/
 # Folder config file
 Desktop.ini
@@ -57,3 +58,7 @@ Library/metadata/00/00000000000000004000000000000000
 *.dll
 Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
 ProjectSettings/EditorBuildSettings.asset
+Library/metadata/00/0000000000000000a100000000000000
+Library/assetDatabase3
+Library/metadata/00/00000000000000001000000000000000
+*.info
