@@ -29,7 +29,13 @@ namespace Ap.Base
             get;
             set;
         }
-        
+
+        /// <summary>
+        /// 是否是小端序的数据
+        /// </summary>
+        public bool IsLittleEndian = true;
+
+
 
         protected override void Init()
         {

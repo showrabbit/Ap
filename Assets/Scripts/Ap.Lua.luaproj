@@ -58,7 +58,6 @@
     <Content Include="Lua\3rd\luabitop\msvcbuild.bat" />
     <Content Include="Lua\3rd\luabitop\msvctest.bat" />
     <Content Include="Lua\3rd\luabitop\README" />
-    <Content Include="Lua\3rd\pbc\addressbook.proto" />
     <Content Include="Lua\Model\protocol.pb" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +75,6 @@
     <Compile Include="Lua\3rd\pbc\test.lua" />
     <Compile Include="Lua\3rd\pbc\test2.lua" />
     <Compile Include="Lua\3rd\pbc\testparser.lua" />
-    <Compile Include="Lua\3rd\pblua\login_pb.lua" />
     <Compile Include="Lua\3rd\pblua\person_pb.lua" />
     <Compile Include="Lua\3rd\sproto\print_r.lua" />
     <Compile Include="Lua\3rd\sproto\sproto.lua" />

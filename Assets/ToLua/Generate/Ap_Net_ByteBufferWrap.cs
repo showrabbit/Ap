@@ -357,9 +357,10 @@ public class Ap_Net_ByteBufferWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
+			ToLua.CheckArgsCount(L, 2);
 			Ap.Net.ByteBuffer obj = (Ap.Net.ByteBuffer)ToLua.CheckObject<Ap.Net.ByteBuffer>(L, 1);
-			byte[] o = obj.ReadBytes();
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			byte[] o = obj.ReadBytes(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}
@@ -374,9 +375,10 @@ public class Ap_Net_ByteBufferWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
+			ToLua.CheckArgsCount(L, 2);
 			Ap.Net.ByteBuffer obj = (Ap.Net.ByteBuffer)ToLua.CheckObject<Ap.Net.ByteBuffer>(L, 1);
-			LuaInterface.LuaByteBuffer o = obj.ReadBuffer();
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			LuaInterface.LuaByteBuffer o = obj.ReadBuffer(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}

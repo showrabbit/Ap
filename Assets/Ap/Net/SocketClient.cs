@@ -86,7 +86,7 @@ namespace Ap.Net
             //NetworkManager.AddEvent(Protocal.Connect, new ByteBuffer());
             if (OnConnectEvent != null)
             {
-                OnConnectEvent(Protocal.Connect, new ByteBuffer());
+                OnConnectEvent(Protocal.Connect, null);
             }
         }
 
@@ -113,7 +113,7 @@ namespace Ap.Net
                 else
                 {
                     Ap.Tools.Logger.Instance.Write(Tools.LogLevel.Error, "client.connected----->>false");
-                    
+
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace Ap.Net
             //NetworkManager.AddEvent(protocal, buffer);
             if (OnDisconnectedEvent != null)
             {
-                OnDisconnectedEvent(protocal, buffer);
+                OnDisconnectedEvent(protocal, null);
             }
             Debug.LogError("Connection was closed by the server:>" + msg + " Distype:>" + dis);
         }
@@ -247,9 +247,15 @@ namespace Ap.Net
             BinaryReader r = new BinaryReader(ms);
             byte[] message = r.ReadBytes((int)(ms.Length - ms.Position));
             //int msglen = message.Length;
-
+            
+            if (Ap.Base.Context.Instance.IsLittleEndian)
+            {
+                Array.Reverse(message, 0, 2);
+            }
             ByteBuffer buffer = new ByteBuffer(message);
-            int mainId = buffer.ReadShort();
+            int mainId = 0;
+            mainId = buffer.ReadShort();
+            
             //NetworkManager.AddEvent(mainId, buffer);
             if (OnReceivedMessageEvent != null)
             {

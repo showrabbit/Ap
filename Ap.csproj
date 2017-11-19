@@ -74,6 +74,9 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="CString">
+      <HintPath>Assets\Plugins\CString.dll</HintPath>
+    </Reference>
     <Reference Include="Debugger">
       <HintPath>Assets\Plugins\Debugger.dll</HintPath>
     </Reference>
@@ -85,9 +88,6 @@
     </Reference>
     <Reference Include="System.Data">
       <HintPath>Assets\Plugins\System.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="CString">
-      <HintPath>Assets\Plugins\CString.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +162,10 @@
     <Compile Include="Assets\Scripts\CS\Common\EventTypes.cs" />
     <Compile Include="Assets\Scripts\CS\Common\ProtocolHelper.cs" />
     <Compile Include="Assets\Scripts\CS\Controller\AutoUpdateCtr.cs" />
-    <Compile Include="Assets\Scripts\CS\Controller\ProtocolCtr.cs" />
+    <Compile Include="Assets\Scripts\CS\Controller\MainFormCtr.cs" />
     <Compile Include="Assets\Scripts\CS\Data\Config.cs" />
     <Compile Include="Assets\Scripts\CS\Data\ProtocolParser.cs" />
-    <Compile Include="Assets\Scripts\CS\Model\Protocol.cs" />
+    <Compile Include="Assets\Scripts\CS\Msg\Protocol.cs" />
     <Compile Include="Assets\Scripts\CS\StartUp.cs" />
     <Compile Include="Assets\Scripts\CS\View\AutoUpdate.cs" />
     <Compile Include="Assets\Thirdparty\7zip\Common\CommandLineParser.cs" />

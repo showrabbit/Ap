@@ -51,7 +51,7 @@ public class StartUp : MonoBehaviourEx
         // 注册协议内容
         ProtocolParser.Init();
         m.N.OnReceivedMessage += ProtocolParser.Parse;
-        ProtocolCtr.Init();
+        //ProtocolCtr.Init();
         
         if (AutoUpdateCtr.IsAutoUpdate())
         {
@@ -70,6 +70,7 @@ public class StartUp : MonoBehaviourEx
 
         }
         
+
         yield return null;
     }
 
@@ -84,17 +85,7 @@ public class StartUp : MonoBehaviourEx
         // 重新开始游戏
     }
 
-    /// <summary>
-    /// 监听登陆消息
-    /// </summary>
-    /// <param name="data"></param>
-    public static void StartUp_OnLogin(object data)
-    {
-        if (data == null)
-            return;
-        var info = data as Msg.LoginInfo;
-
-    }
+    
 }
 
 
