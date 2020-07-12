@@ -25,7 +25,7 @@ namespace Ap.Res
         protected AssetBundleManifest m_AssetBundleManifest = null;
 
         protected Dictionary<string, LoadedAssetBundle> m_LoadedAssetBundles = new Dictionary<string, LoadedAssetBundle>();
-        protected Dictionary<string,string> m_DownloadingBundles = new Dictionary<string,string>();
+        protected Dictionary<string, string> m_DownloadingBundles = new Dictionary<string, string>();
         protected Dictionary<string, string> m_DownloadingErrors = new Dictionary<string, string>();
         protected List<AssetBundleLoadOperation> m_InProgressOperations = new List<AssetBundleLoadOperation>();
         protected Dictionary<string, string[]> m_Dependencies = new Dictionary<string, string[]>();
@@ -113,7 +113,7 @@ namespace Ap.Res
             //LoadAssetBundle(manifestAssetBundleName, true);
             string path = Ap.Core.Environment.AssetBundleUpdatePath + "/" + manifestAssetBundleName;
             m_InProgressOperations.Add(new AssetBundleDownloadFromFileOperation(manifestAssetBundleName, path));
-            m_DownloadingBundles.Add(manifestAssetBundleName);
+            m_DownloadingBundles.Add(manifestAssetBundleName, manifestAssetBundleName);
 
             var operation = new AssetBundleLoadManifestOperation(manifestAssetBundleName, "AssetBundleManifest", typeof(AssetBundleManifest));
             m_InProgressOperations.Add(operation);
@@ -246,7 +246,7 @@ namespace Ap.Res
             }
 
 
-            if (this.m_DownloadingBundles.Contains(assetBundleName))
+            if (this.m_DownloadingBundles.ContainsKey(assetBundleName))
                 return true;
             if (m_AssetBundleDatas.ContainsKey(assetBundleName) == false)
                 return true;
@@ -258,10 +258,10 @@ namespace Ap.Res
 
             m_InProgressOperations.Add(new AssetBundleDownloadFromFileOperation(assetBundleName, path));
 
-            m_DownloadingBundles.Add(assetBundleName);
+            m_DownloadingBundles.Add(assetBundleName, assetBundleName);
 
             return false;
-            
+
         }
 
 

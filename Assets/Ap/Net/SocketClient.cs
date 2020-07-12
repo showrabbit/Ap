@@ -248,7 +248,7 @@ namespace Ap.Net
             byte[] message = r.ReadBytes((int)(ms.Length - ms.Position));
             //int msglen = message.Length;
             
-            if (Ap.Base.Context.Instance.IsLittleEndian)
+            if (Ap.Game.Context.Instance.IsLittleEndian)
             {
                 Array.Reverse(message, 0, 2);
             }

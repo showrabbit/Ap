@@ -3,7 +3,6 @@ using System.Collections;
 using System.IO;
 using System.Text;
 using System;
-using LuaInterface;
 
 namespace Ap.Net
 {
@@ -101,11 +100,7 @@ namespace Ap.Net
             //writer.Write((int)v.Length);
             m_Writer.Write(v);
         }
-
-        public void WriteBuffer(LuaByteBuffer strBuffer)
-        {
-            WriteBytes(strBuffer.buffer);
-        }
+        
 
         public byte ReadByte()
         {
@@ -160,13 +155,7 @@ namespace Ap.Net
             int len = (int)(m_Reader.BaseStream.Length - m_Reader.BaseStream.Position);
             return ReadBytes(len);
         }
-
-        public LuaByteBuffer ReadBuffer(int len)
-        {
-            byte[] bytes = ReadBytes(len);
-            return new LuaByteBuffer(bytes);
-        }
-
+        
         public byte[] ToBytes()
         {
             m_Writer.Flush();

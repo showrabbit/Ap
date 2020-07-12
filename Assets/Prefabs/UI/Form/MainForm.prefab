@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 22408508}
   - component: {fileID: 11496068}
   - component: {fileID: 114847059252888804}
+  - component: {fileID: 114929613866560508}
   m_Layer: 5
   m_Name: MainForm
   m_TagString: Untagged
@@ -903,6 +904,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Start
+--- !u!114 &114929613866560508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 166802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dd89a9a36055a498c89ccfe6920bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 4900000, guid: dea30bc3f5730bd4d80a9190d99fe517, type: 3}
 --- !u!222 &222000011313091220
 CanvasRenderer:
   m_ObjectHideFlags: 1

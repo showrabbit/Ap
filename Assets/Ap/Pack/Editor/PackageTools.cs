@@ -19,9 +19,9 @@ namespace Ap.Pack
             // 重命名
             if (File.Exists(path + "/" + PackageConfig.Version))
             {
-                if (File.Exists(path + "/" + Ap.Base.Environment.GetPlatformName()))
-                    File.Delete(path + "/" + Ap.Base.Environment.GetPlatformName());
-                File.Move(path + "/" + PackageConfig.Version, path + "/" + Ap.Base.Environment.GetPlatformName());
+                if (File.Exists(path + "/" + Ap.Core.Environment.GetPlatformName()))
+                    File.Delete(path + "/" + Ap.Core.Environment.GetPlatformName());
+                File.Move(path + "/" + PackageConfig.Version, path + "/" + Ap.Core.Environment.GetPlatformName());
             }
             // 拷贝
             string toPath = Application.streamingAssetsPath + "/AssetBundles";
@@ -57,16 +57,13 @@ namespace Ap.Pack
                 System.IO.Directory.Delete(outPath, true);
             }
             // 拷贝文件
-            PackageTools.DirectoryCopy(PackageConfig.ToLuaPath, outPath + "/ToLua");
             PackageTools.DirectoryCopy(PackageConfig.LuaPath, outPath + "/Lua");
 
             // luajit/luac
 
-            Ap.Base.LZMACompress lzma = new Base.LZMACompress();
-            lzma.CompressFolder(outPath + "/ToLua", outPath + "/ToLua.7z");
+            Ap.Res.LZMACompress lzma = new Ap.Res.LZMACompress();
             lzma.CompressFolder(outPath + "/Lua", outPath + "/Lua.7z");
-
-            System.IO.Directory.Delete(outPath + "/ToLua",true);
+            
             System.IO.Directory.Delete(outPath + "/Lua", true);
 
             AssetDatabase.Refresh();

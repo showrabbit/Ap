@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ap.Managers;
-using Ap.Base;
+using Ap.Core;
+using Ap.Event;
+
 namespace Ap.SDK
 {
     public class AndroidSDK : SdkBase
